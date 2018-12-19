@@ -1,0 +1,31 @@
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+
+#MessageBox.Show("Do you want to update record?")
+selACCOUNT_REC_ID = DataValueCursor.CreateFormatted(table.Columns["ACCOUNT_REC_ID"])
+markedRows = Document.Data.Markings["Update"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["markedaccrecid"]=selACCOUNT_REC_ID.CurrentValue
+finally:
+		tblgetrows.Dispose()
+
+if Document.Properties["IDriverNme"]=="N/A" or Document.Properties["IReasonForUnrec"]=="" or Document.Properties["IActionPlan"]=="" or Document.Properties["iStatusCd"]=="N/A" or Document.Properties["iEstPlImpactAmt"]==0:
+    MessageBox.Show("Please Enter Values to update")
+elif (Document.Properties["markedaccrecid"].strip()==""):
+     MessageBox.Show('Please mark record to update')
+else:    
+    dataTable.Refresh()
+    MessageBox.Show('Please click refresh button after 5 sec to update dashbaord')
+
+tab.Refresh()
+	
