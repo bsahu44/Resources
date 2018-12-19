@@ -1,0 +1,103 @@
+import Spotfire.Dxp.Application.Filters as filters
+import Spotfire.Dxp.Application.Filters.ListBoxFilter
+from Spotfire.Dxp.Application.Filters import FilterTypeIdentifiers
+from Spotfire.Dxp.Data import DataPropertyClass
+from System import String
+from Spotfire.Dxp.Application.Filters import CheckBoxFilter
+from Spotfire.Dxp.Data import *
+
+from Spotfire.Dxp.Data import DataManager 
+from Spotfire.Dxp.Data import IndexSet 
+from Spotfire.Dxp.Data import RowSelection 
+
+
+MK1=Application.GetService[DataManager]().Markings[marking1]
+selectRows = IndexSet(datatable1.RowCount, False)
+MK1.SetSelection(RowSelection(selectRows),datatable1)
+
+
+tg = Document.ActivePageReference.FilterPanel.TableGroups
+#print "Available filters:"
+#for t in tg:
+# print t
+#print "------------\n"
+#print "Visibility of filters in a table group"
+#for h in tg[0].FilterHandles:
+# print h.FilterReference.Name, h.Visible
+#print "------------\n"
+#print "Print all available filters and reset only the visible ones"
+for t in tg:
+ for h in t.FilterHandles:
+   f = h.FilterReference
+#   print '[',t,'].[',f.Name,'].Visible = ',h.Visible
+   if (h.Visible): f.Reset()
+
+
+val2 = Document.Data.Tables['ARM_Header_July14'].Columns["maxDate"].RowValues.GetMaxValue().Value
+
+
+#print val2
+lblToClearFilter = Document.FilteringSchemes[17].Item[datatable1].Item[datatable1.Columns.Item["Period(MON_YY) Desc"]].As[filters.ListBoxFilter]() 
+lblToClearFilter.IncludeAllValues=False 
+
+lblToClearFilter.SetSelection(val2)
+
+
+lblToClearFilterSC = Document.FilteringSchemes[23].Item[datatable1].Item[datatable1.Columns.Item["Period(MON_YY) Desc"]].As[filters.ListBoxFilter]() 
+lblToClearFilterSC.IncludeAllValues=False 
+
+lblToClearFilterSC.SetSelection("Mar_18")
+
+
+
+
+lblToClearFilterBU = Document.FilteringSchemes[17].Item[datatable1].Item[datatable1.Columns.Item["Non - Consolidated BU"]].As[filters.ListBoxFilter]() 
+lblToClearFilterBU.IncludeAllValues=False 
+
+lblToClearFilterBU.SetSelection('NO')
+
+
+
+
+
+lblToClearFilter = Document.FilteringSchemes[21].Item[datatable1].Item[datatable1.Columns.Item["Period(MON_YY) Desc"]].As[filters.ListBoxFilter]() 
+lblToClearFilter.IncludeAllValues=False 
+
+lblToClearFilter.SetSelection(val2)
+
+lblToClearFilterBU1 = Document.FilteringSchemes[21].Item[datatable1].Item[datatable1.Columns.Item["Non - Consolidated BU"]].As[filters.ListBoxFilter]() 
+lblToClearFilterBU1.IncludeAllValues=False 
+
+lblToClearFilterBU1.SetSelection("NO")
+
+
+
+
+lblToClearFilterBU1 = Document.FilteringSchemes[18].Item[datatable1].Item[datatable1.Columns.Item["Non - Consolidated BU"]].As[filters.ListBoxFilter]() 
+lblToClearFilterBU1.IncludeAllValues=False 
+
+lblToClearFilterBU1.SetSelection("NO")
+
+
+
+Document.Properties['Vendor']="'Y','N'"
+
+Document.Properties['StatFlg']="'Y'"
+
+Document.Properties['Vendor2']="'Y','N'"
+
+Document.Properties['StatFlg2']="'Y'"
+
+
+Document.Properties['Exempt']="'Y','N'"
+Document.Properties['Exempt2']="'Y','N'"
+
+
+lblToClearFilter = Document.FilteringSchemes[18].Item[datatable1].Item[datatable1.Columns.Item["Period(MON_YY) Desc"]].As[filters.ListBoxFilter]() 
+lblToClearFilter.IncludeAllValues=False 
+
+lblToClearFilter.SetSelection(val2)
+
+lblToClearFilter = Document.FilteringSchemes[18].Item[datatable1].Item[datatable1.Columns.Item["Business Renamed"]].As[filters.RadioButtonFilter]() 
+
+lblToClearFilter.Value='GEA'
