@@ -1,0 +1,58 @@
+
+
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+#MessageBox.Show("Do you want to update record?")
+Document.Properties["markedaccrecid"]=""
+selACCOUNT_REC_ID = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID"])
+markedRows = Document.Data.Markings["Update"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["markedaccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			Document.Properties["iaccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			
+finally:
+		tblgetrows.Dispose()
+
+if (Document.Properties["markedaccrecid"].strip()==""):
+       Document.Properties["Messagetext"]="Mark at least one record to update"
+else:
+     Document.Properties["pHelp"]=Document.Properties["ihelp"].replace("'","~&~")
+     Document.Properties["pDriverNme"]=Document.Properties["IDriverNme"]
+     Document.Properties["pReasonForUnrec"]=Document.Properties["IReasonForUnrec"].replace("'","~&~")
+     Document.Properties["pActionPlan"]=Document.Properties["IActionPlan"].replace("'","~&~")
+     Document.Properties["pExpectedCloseDt"]=Document.Properties["iExpectedCloseDt"]
+     Document.Properties["pStatusCd"]=Document.Properties["iStatusCd"]
+     Document.Properties["pEstPIImpactAmt"]=Document.Properties["iEstPlImpactAmt"]
+     Document.Properties["pRecTeam"]=Document.Properties["irecteam"].replace("'","~&~")
+     Document.Properties["pAccntMngr"]=Document.Properties["iAccntMngr"].replace("'","~&~")
+     Document.Properties["paccleader"]=Document.Properties["Iaccleader"].replace("'","~&~")
+     Document.Properties["ppendingaction"]=Document.Properties["Ipendingaction"].replace("'","~&~")
+     Document.Properties["pExpectPerRecon"]=Document.Properties["iExpectPerRecon"]
+     dataTable.Refresh()
+     print("success")
+
+     Document.Properties["IDriverNme"]=""
+	 
+     Document.Properties["IReasonForUnrec"]=""
+     Document.Properties["IActionPlan"]=""
+     Document.Properties["iExpectedCloseDt"]=None
+     Document.Properties["iStatusCd"]=""
+     Document.Properties["iEstPlImpactAmt"]=""
+     Document.Properties["irecteam"]=""
+     Document.Properties["iAccntMngr"]=""
+     Document.Properties["ihelp"]=""
+     Document.Properties["Iaccleader"]=""
+     Document.Properties["Ipendingaction"]=""
+     Document.Properties["iExpectPerRecon"]=""
+     Document.Properties["Messagetext"]="Success."
+
