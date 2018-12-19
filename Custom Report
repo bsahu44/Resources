@@ -1,0 +1,36 @@
+from Spotfire.Dxp.Application.Visuals import TablePlot, VisualContent
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Application.Visuals import TablePlotColumnSortMode
+
+tablePlotVisual = None
+updateTablePlot = False
+defaultTableTitle="Rec Details"
+
+# 1.1 check if tablePlot already exist (based on name)
+for v in Document.ActivePageReference.Visuals: 
+   tablePlotVisual = v
+   updateTablePlot = v.Title ==  "Rec Details"
+   if v.Title == defaultTableTitle: break
+
+
+tablePlotVisual=tablePlotVisual.As[VisualContent]()
+
+
+# 2 Adds columns to a Data Table based on a document property. 
+# The doc prop is a comma separated list of columns for the data table to show.
+# use a multiline doc prop control to create a csv list of cols
+
+# 2.1 Remove all columns
+cols = tablePlotVisual.Data.DataTableReference.Columns
+tablePlotVisual.TableColumns.Clear()
+tablePlotVisual.TableColumns.Add(dataTable.Columns["Account Rec ID"])
+tablePlotVisual.TableColumns.Add(dataTable.Columns["Period(MON_YY)"])
+#tablePlotVisual.SortInfos.Add(dataTable.Columns["Journal Entry Header ID"], TablePlotColumnSortMode.Descending)
+
+# 2.2 get document property
+selection = Document.Data.Properties.GetProperty(DataPropertyClass.Document, "DetailCol").Value
+
+# 2.3 Parse columns from selection and add to tablePlotVisual
+for property in selection:
+   for col in property.split(","): 
+	tablePlotVisual.TableColumns.Add(cols[str(col)])
