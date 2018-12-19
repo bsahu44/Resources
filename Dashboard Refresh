@@ -1,0 +1,17 @@
+from Spotfire.Dxp.Data import DataPropertyClass
+
+
+#vis and dataTable are script parameters.
+from Spotfire.Dxp.Application.Visuals import TablePlot
+from Spotfire.Dxp.Data import RowSelection
+
+v1 = vis.As[TablePlot]()
+from Spotfire.Dxp.Data import RowSelection, IndexSet
+#prepare to unmark all rows
+rowSelection = RowSelection(IndexSet(dataTable.RowCount,False))
+
+#set visualization data table marking based on rowSelection
+v1.Data.MarkingReference.SetSelection(rowSelection,dataTable)
+dataTable.Refresh()
+Document.Properties["Messagetext"]=""
+print("Success")
