@@ -1,0 +1,41 @@
+import clr
+clr.AddReference('System.Data')
+import System
+from System import Environment
+from Spotfire.Dxp.Data import *
+from Spotfire.Dxp.Application.Visuals import TablePlot
+from Spotfire.Dxp.Application.Visuals import VisualTypeIdentifiers
+from Spotfire.Dxp.Application.Visuals import VisualContent
+from Spotfire.Dxp.Application.Filters import *
+from System.IO import Path, File, StreamWriter
+from Spotfire.Dxp.Application.Visuals import CrossTablePlot
+from System.Data import DataSet, DataTable
+from System.IO import Path, StreamWriter,File
+from Spotfire.Dxp.Application.Visuals import CrossTablePlot
+from System.IO import StringReader, StreamReader, StreamWriter, MemoryStream, SeekOrigin
+from Spotfire.Dxp.Data.Import import TextFileDataSource, TextDataReaderSettings
+from Spotfire.Dxp.Data import DataType, DataTableSaveSettings,AddRowsSettings
+from System.Text import Encoding
+
+RequestedUser = Environment.UserName
+stream = MemoryStream()
+writer = StreamWriter(stream)
+vTable3.As[CrossTablePlot]().ExportText(writer)
+vTable2.As[CrossTablePlot]().ExportText(writer)
+vTable.As[CrossTablePlot]().ExportText(writer)
+DataString = System.Text.Encoding.UTF8.GetString(stream.ToArray(),0, stream.Length).replace("\t",",")
+# DataString can be used for further manipulation
+tempFilename2 = "\\\\3.24.129.181\\cihcisdapp903v_spotfire_etl\\Spotfire_Migration_Checklist.csv"
+try: 
+	File.AppendAllText(tempFilename2,DataString)
+	Document.Properties["Display"]="The request For Migration is placed successsfully"
+except:
+	Document.Properties["Display"]="Something Went wrong, please click Submit button again after a Minute"
+
+for i in range(0,Document.FilteringSchemes.Count):
+    Document.FilteringSchemes[i].ResetAllFilters()
+
+for dataTable in Document.Data.Tables:
+	for marking in Document.Data.Markings:
+		rows = RowSelection(IndexSet(dataTable.RowCount, False))
+		marking.SetSelection(rows, dataTable)
