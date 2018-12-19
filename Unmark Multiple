@@ -1,0 +1,17 @@
+from Spotfire.Dxp.Data import DataManager 
+from Spotfire.Dxp.Data import IndexSet 
+from Spotfire.Dxp.Data import RowSelection 
+
+marking=Application.GetService[DataManager]().Markings[markingName]
+selectRows = IndexSet(dataTable.RowCount, False)
+marking.SetSelection(RowSelection(selectRows),dataTable)
+
+marking12=Application.GetService[DataManager]().Markings[marking2]
+selectRows = IndexSet(dataTable.RowCount, False)
+marking12.SetSelection(RowSelection(selectRows),dataTable)
+
+
+marking13=Application.GetService[DataManager]().Markings[marking3]
+selectRows = IndexSet(dataTable.RowCount, False)
+marking13.SetSelection(RowSelection(selectRows),dataTable)
+
