@@ -1,0 +1,53 @@
+from Spotfire.Dxp.Data import *
+from System.Collections.Generic import List
+
+#get the data table
+table=Document.Data.Tables["T_R2R_ACCTREC_TOOL_SECURITY"]
+table1 = Document.Data.Tables["Auditor Details"]
+
+#place generic data cursor on a specific column
+cursorBus = DataValueCursor.CreateFormatted(table.Columns["BUSINESS_NME"])
+cursorReg = DataValueCursor.CreateFormatted(table.Columns["REGION_NME"])
+
+cursorBus1 = DataValueCursor.CreateFormatted(table1.Columns["Business"])
+cursorReg1 = DataValueCursor.CreateFormatted(table1.Columns["Center Name"])
+
+
+#list object to store retrieved values
+valDataBus = List [str]();
+valDataReg = List [str]();
+
+#iterate through table column rows to retrieve the values
+for row in table.GetRows(cursorBus):
+	#rowIndex = row.Index ##un-comment if you want to fetch the row index into some defined condition
+	value = cursorBus.CurrentValue
+	if value == "All":
+		for row1 in table1.GetRows(cursorBus1):
+			valDataBus.Add(cursorBus1.CurrentValue)
+	else:
+		valDataBus.Add(value)
+
+#iterate through table column rows to retrieve the values
+for row in table.GetRows(cursorReg):
+	#rowIndex = row.Index ##un-comment if you want to fetch the row index into some defined condition
+	value1 = cursorReg.CurrentValue
+	if value1 == "GLOBAL":
+		for row1 in table1.GetRows(cursorReg1):
+			valDataReg.Add(cursorReg1.CurrentValue)
+	else:
+		valDataReg.Add(value1)		
+
+#print only unique values
+valDataBus = List [str](set(valDataBus))
+
+valDataReg = List [str](set(valDataReg))
+
+
+#store in a document property
+mBusiness = '\', \''.join(valDataBus)
+mCenter = '\', \''.join(valDataReg)
+print mBusiness
+print mCenter
+
+Document.Properties["pBusiness"] = mBusiness
+Document.Properties["pCenter"] = mCenter
