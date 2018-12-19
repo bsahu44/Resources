@@ -1,0 +1,33 @@
+from Spotfire.Dxp.Application import *
+from Spotfire.Dxp.Application.Visuals import *
+
+
+myDocument=Application.Document
+vc = vis.As[BarChart]() 
+viz=viz.As[VisualContent]()
+nav = myDocument.Properties ['drillview']
+
+if (nav  == 'No Estimated'):
+	 vc.YAxis.Expression="UniqueCount(case  when [EXPECTED_CLOSE_DT] is null then [ACCOUNT_REC_ID] end) as [No Est. Closure Date]"
+	 vc.XAxis.Expression="<[Axis.Default.Names]>"
+	 vc.ColorAxis.Expression="<[Axis.Default.Names]>"
+	 viz.Data.WhereClauseExpression="[EXPECTED_CLOSE_DT] is null"
+	 
+if (nav  == 'P/L Risk is TBD or Blank'):
+	 vc.YAxis.Expression="UniqueCount(case  when ([EST_PL_IMPACT_AMT]='TBD') or (Trim([EST_PL_IMPACT_AMT]) is null) then [ACCOUNT_REC_ID] end) as [P/L Risk is TBD or Blank]"
+	 vc.XAxis.Expression="<[Axis.Default.Names]>"
+	 vc.ColorAxis.Expression="<[Axis.Default.Names]>"
+	 viz.Data.WhereClauseExpression="([EST_PL_IMPACT_AMT]='TBD') or (Trim([EST_PL_IMPACT_AMT]) is null)"
+	 
+if (nav  == 'Status is Not Started'):
+	 vc.YAxis.Expression="UniqueCount(case  when Trim([STATUS_CD]) is null then [ACCOUNT_REC_ID] end) as [Status is Not Started or Blank]"
+	 vc.XAxis.Expression="<[Axis.Default.Names]>"
+	 vc.ColorAxis.Expression="<[Axis.Default.Names]>"
+	 viz.Data.WhereClauseExpression="Trim([STATUS_CD]) is null"
+
+if (nav  == 'Est. Closure Dt Passed & Status != Reconciled'):
+	 vc.YAxis.Expression="UniqueCount(case  when ([EXPECTED_CLOSE_DT]<DateTimeNow()) and ([STATUS_CD]<>'Reconciled') then [ACCOUNT_REC_ID] end) as [Est. Closure Date has passed & Status is not Reconciled ]"
+	 vc.XAxis.Expression="<[Axis.Default.Names]>"
+	 vc.ColorAxis.Expression="<[Axis.Default.Names]>"
+	 viz.Data.WhereClauseExpression="([EXPECTED_CLOSE_DT]<DateTimeNow()) and ([STATUS_CD]<>'Reconciled')"
+	 
