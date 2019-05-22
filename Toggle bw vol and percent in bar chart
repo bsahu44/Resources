@@ -1,0 +1,28 @@
+from Spotfire.Dxp.Application.Visuals import BarChart, StackMode, LabelInformationType
+if viz.As[BarChart]().StackMode == StackMode.Stack:
+  viz.As[BarChart]().StackMode = StackMode.Stack100Percent
+  viz.As[BarChart]().SegmentLabelInformationType=LabelInformationType.Percentage
+else:
+  viz.As[BarChart]().StackMode = StackMode.Stack
+  viz.As[BarChart]().SegmentLabelInformationType=LabelInformationType.Value
+
+
+
+if viz1.As[BarChart]().StackMode == StackMode.Stack:
+  viz1.As[BarChart]().StackMode = StackMode.Stack100Percent
+  viz1.As[BarChart]().SegmentLabelInformationType=LabelInformationType.Percentage
+else:
+  viz1.As[BarChart]().StackMode = StackMode.Stack
+  viz1.As[BarChart]().SegmentLabelInformationType=LabelInformationType.Value
+
+
+if (Document.Properties["PerVol"] == "Percentage"):
+ Document.Properties["VP1"] = "UniqueCount([${OpenItem}]) / Count([${OpenItem}]) over (all([Axis.Hierarchy])) * 100 "
+ Document.Properties["TP"] = "Concatenate( UniqueCount([${OpenItem}]) / Count([${OpenItem}]) over (all([Axis.Hierarchy])) * 100,'%') "
+else:
+ Document.Properties["VP1"] = "UniqueCount([${OpenItem}])"
+ Document.Properties["TP"] = "UniqueCount([${OpenItem}])"
+
+
+---------------------
+viz and viz1 are 2 stacked bar charts
