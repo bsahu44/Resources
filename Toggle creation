@@ -1,0 +1,149 @@
+
+<style>   
+   
+ #SumMapSelMetricReg6 {
+  display: inline;
+  border: 0px;
+  border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  background-color: transparent;
+  
+  position: relative;
+  padding: 4px 2px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  font-family: Arial;
+}
+
+#SumMapSelMetricReg6 .ix-radio-btn6 {
+  display: inline;
+  position: relative;
+}
+#SumMapSelMetricReg6 .ix-radio-btn6 input {
+  width: 60px;
+  padding:0px;
+  height: 19px;
+  font-size: 11px;
+  font-family: "GE Inspira",Arial;
+  font-weight: bold;
+  text-shadow: rgba(255, 255, 255, 0.247059) 0px 1px 0px;
+
+  margin: 0px;
+  color: #fff;
+  background-color: transparent;
+   
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1); 
+ }
+#SumMapSelMetricReg6 .ix-radio-btn6.selected input {
+  border-radius: 3px;
+  background: #3aa2d0;
+  background-image: -webkit-linear-gradient(top, #56cb00, #409800);
+  background-image:    -moz-linear-gradient(top, #56cb00, #409800);
+  background-image:      -o-linear-gradient(top, #56cb00, #409800);
+  background-image:     -ms-linear-gradient(top, #56cb00, #409800);
+  background-image:         linear-gradient(top bottom, #56cb00, #409800);
+
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow:         inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition:    left 0.15s ease-out;
+  -o-transition:      left 0.15s ease-out;
+  transition:         left 0.15s ease-out;
+}
+
+#MAP_configPanel6 {
+  display: block;
+  margin-top: 5px;
+}
+@media (min-height: 770px) {
+  #MAP_configPanel { margin-top: 18px; }
+}
+@media (min-height: 800px) {
+  #MAP_configPanel { margin-top: 20px; }
+}
+#MAP_configPanel6 > div {
+  display: inline-block;
+  positon: relative;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "GE Inspira", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#MAP_configPanel > div:nth-child(2) > img {
+  border: 0; width: 500px;  height: 11px;
+}
+</style>
+<div>
+   <div id="MapControlSelectMetric_InputReg6" style='display: none;'>
+<SpotfireControl id="60eebbb6d57140c2a7064059db6b8306" />
+   </div>
+</div>
+
+  
+<div id="MAP_configPanel6" style="text-align: center;">
+
+  <div >
+     <div id="SumMapSelMetricReg6">
+       <div class="ix-radio-btn6"><input type="button" value="Site"></div>
+       <div class="ix-radio-btn6"><input type="button" value="Business"></div>
+   <div class="ix-radio-btn6"><input type="button" value="BS Category"></div>
+     </div>
+  </div>
+
+</div>
+
+
+
+<script>
+
+$(function() {
+
+/* 
+ set the previous selected value
+from "MapControlSelectMetric" SpotFire Property
+*/
+setTimeout(function() {
+  var seld = $("#MapControlSelectMetric_InputReg6 input").val();
+  $("#SumMapSelMetricReg6 input[value='"+seld+"']").parent().addClass("selected");
+}, 200);
+
+/*
+Add event listener:
+user select a Metric 
+   => Update "MapControlSelectMetric" SpotFire Property
+     => run SelectMetric2 IronPython
+       => set a lot of SpotFire Property
+*/
+$("#SumMapSelMetricReg6 input").click(function() {
+  var seld = $(this).attr("value");
+  $("#SumMapSelMetricReg6 .ix-radio-btn6").removeClass("selected");
+  $(this).parent().addClass("selected");
+  $("#MapControlSelectMetric_InputReg6 input").val(seld).blur();
+});
+
+
+});
+
+</script>
+
+------------------------------
+Iro Python
+-----------------------------
+if Document.Properties["summaryscb"]=="Business":
+	Document.Properties["summaryby"]="Business"
+	Document.Properties["SummaryName"]="Business"
+elif Document.Properties["summaryscb"]=="BS Category":
+	Document.Properties["summaryby"]="[Balance Sheet Category]"
+	Document.Properties["SummaryName"]="BS Category"
+else:
+	Document.Properties["SummaryName"]="Site"
+	Document.Properties["summaryby"]="[Center] NEST [Site] as []"
