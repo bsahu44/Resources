@@ -1,0 +1,893 @@
+<SPAN style="DISPLAY:none" id=inputPropertyControl3><SpotfireControl id="5eff00588a6b44c09bd3516da9e72a10" /></SPAN><SPAN style="DISPLAY:none" id=calcVal3><SpotfireControl id="0154f6538d8c4126916470bd2903e555" /></SPAN>                    
+                                  
+                
+<!-- final without same size buttons -->         
+<DIV id=panel style="HEIGHT: 560px; TEXT-ALIGN: center; PADDING-TOP: 10px; LEFT: -200px; BACKGROUND-COLOR: rgb(234,234,234)">
+<DIV class=default-scroll><A class="btn btn-inverse clearMark" style="WIDTH: 135px; DISPLAY: none" jQuery1102028117585101526243="435">Clear Chart Selections</A>                    
+<DIV style="MARGIN-BOTTOM: 10px; PADDING-TOP: 4px"><A class="btn btn-inverse closeall" style="WIDTH: 135px;TEXT-ALIGN: center;COLOR: white"  jQuery1102028117585101526243="437">Clear All Filters</A> </DIV>
+<P id=resetfilter style="DISPLAY: none"><SpotfireControl id="043daffbbe1343f39b37c86c12bd1f22" /></P>
+<P id=clearselection style="DISPLAY: none"><SPOTFIRECONTROL id=4f9a03b10a1a494f9499fac40af4c8d9 /></P> 
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bus_hub">Account Rec Ownership</BUTTON> </DIV>
+<DIV id=bus_hub class=collapse ><SpotfireControl id="4d6fa0868e1e4dc29c4c87a977cf307c" /></DIV>  
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#ARS">Account Rec Status</BUTTON> </DIV>
+<DIV id=ARS class=collapse ><SpotfireControl id="cbca20c351d243049d39744b66d15026" /></DIV>
+
+ 
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bus_business">Period</BUTTON> </DIV>
+<DIV id=bus_business class=collapse jQuery1102028117585101526243="441"><SpotfireControl id="b80ae85aece04718a4e43ea352dd9cd2" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#RCycle">Rec Cycle</BUTTON> </DIV>
+<DIV id=RCycle class=collapse ><SpotfireControl id="5ebf77d055414c4ba46ea48dafd2b57f" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bus_sub_business">Business</BUTTON> </DIV>
+<DIV id=bus_sub_business class=collapse jQuery1102028117585101526243="442"><SpotfireControl id="cf8feb9cd4c44b2b879e3f10e7a31337" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bus_sub_business1">Sub Business</BUTTON> </DIV>
+<DIV id=bus_sub_business1 class=collapse><SpotfireControl id="8eb43481764249fe9d74c272d3d2d4c0" />
+</DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bus_region">Source</BUTTON> </DIV>
+<DIV id=bus_region class=collapse jQuery1102028117585101526243="443"><SpotfireControl id="45d0b81b037c449e9eb1ac942acb3e57" /></DIV><!-- COUNTRY -->
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#country_name">Country-Account Rec</BUTTON> </DIV>
+<DIV id=country_name class=collapse jQuery1102028117585101526243="444"><SpotfireControl id="0d2bc63299304d519e547acff7b55dd7" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#CountryReconciler">Country-Preparer</BUTTON> </DIV>
+<DIV id=CountryReconciler class=collapse jQuery1102028117585101526243="445"><SpotfireControl id="76b947bf67734d979aa46ddc44e972d6" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Countryreviewer">Country-Reviewer</BUTTON> </DIV>
+<DIV id=Countryreviewer class=collapse jQuery1102028117585101526243="446"><SpotfireControl id="7dc632abb34d4207b9926cfdf003cd31" /></DIV><!-- OU      -->
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#OU">Site-Ownership</BUTTON> </DIV>
+<DIV id=OU class=collapse jQuery1102028117585101526243="447"><SpotfireControl id="95b4b178f6d74c0d9536f94c6435a85a" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#PS">Site-Preparer</BUTTON> </DIV>
+<DIV id=PS class=collapse jQuery1102028117585101526243="448"><SpotfireControl id="452d53f4e67f42feabd9d8c987fca645" /></DIV><!-- LE      -->
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#legal_entity">Center</BUTTON> </DIV>
+<DIV id=legal_entity class=collapse jQuery1102028117585101526243="449"><SpotfireControl id="0f655f950daf42bb9901d01a152e2f64" /></DIV>
+
+<div id="BSC1">
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#BSC">B/S Category</BUTTON> </DIV>
+<DIV id=BSC class=collapse><SpotfireControl id="86abded18ab7494393ecdbf7aee80169" /></DIV></div>
+
+
+<div id="BSC2">
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#BSC_tax">B/S Category-Tax</BUTTON> </DIV>
+<DIV id=BSC_tax class=collapse><SpotfireControl id="3af3e59b943c4117964510923f0d2434" /></DIV></div>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Sts">Exempt Recs</BUTTON> </DIV>
+<DIV id=Sts class=collapse ><SpotfireControl id="6a6f45fa953a4b69a54b3919f88743b3" /></DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Rcs">Reconciler SSO</BUTTON> </DIV>
+<DIV id=Rcs class=collapse jQuery1102028117585101526243="451"><SpotfireControl id="2ae5fd6ab3c3413d9558abb1b55a2b3d" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Rvs">Reviewer SSO</BUTTON> </DIV>
+<DIV id=Rvs class=collapse jQuery1102028117585101526243="452"><SpotfireControl id="e924e8b431a948588a8be039c298c3a5" /></DIV>
+
+
+
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#PTRC">Process Team: Reconciler</BUTTON> </DIV>
+<DIV id=PTRC class=collapse><SpotfireControl id="faaf1e3550624272b614960d6c08adf4" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#PTRV">Process Team: Reviewer</BUTTON> </DIV>
+<DIV id=PTRV class=collapse><SpotfireControl id="681a4327296045128ecc3dca636dbbab" /></DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#TLRC">Team Leader: Reconciler</BUTTON> </DIV>
+<DIV id=TLRC class=collapse><SpotfireControl id="622bcc660d004dd8a093a8b2a5333de7" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#TLRV">Team Leader: Reviewer</BUTTON> </DIV>
+<DIV id=TLRV class=collapse><SpotfireControl id="03f294a302f84d33ab25c2b9fc0062c6" /></DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#GO1">GO Team - Reconciler</BUTTON> </DIV>
+<DIV id=GO1 class=collapse><SpotfireControl id="62092caadec54e18a80cb42990211875" /></DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#GO2">GO Team - Reviewer</BUTTON> </DIV>
+<DIV id=GO2 class=collapse><SpotfireControl id="379931bd36b74fa9ba159419c7b8423b" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Actleader">Accountable Leader</BUTTON></DIV>
+<DIV id=Actleader class=collapse><SpotfireControl id="de4616c90a604a3ea40e4ea0f98b845d" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#OHR">OHR 1-5 Level Supervisor</BUTTON> </DIV>
+<DIV id=OHR class=collapse>
+<br>
+Reconciler L1 Supervisor
+<SpotfireControl id="61b034efdfaf4c2c9a4c71fb16210db7" />
+
+
+
+Reconciler L2 Supervisor
+<SpotfireControl id="4e31ec6e7b4e49dabfb8fac165a74eba" />
+
+
+Reconciler L3 Supervisor
+<SpotfireControl id="8937a34b7c99436a86a896523f704dc9" />
+
+Reconciler L4 Supervisor
+<SpotfireControl id="dfc65661fcb849d590979dcd1a98123a" />
+
+
+Reconciler L5 Supervisor
+<SpotfireControl id="7cb3a530368b4ecd9fdbabc2361d9f22" />
+
+
+
+
+<br><br><br>
+
+Reviewer L1 Supervisor
+<SpotfireControl id="e2b38476c9b349159998d6e98b81f92a" />
+
+ 
+ 
+Reviewer L2 Supervisor
+<SpotfireControl id="0423d49e5edd4c24b70153e8f8717725" />
+
+
+Reviewer L3 Supervisor
+<SpotfireControl id="b828c40c8fb44cd0a9a2c26bbd7ec6b4" />
+
+Reviewer L4 Supervisor
+<SpotfireControl id="9c5805f70e69464ab144108a7504ebd3" />
+
+
+Reviewer L5 Supervisor
+<SpotfireControl id="ab8eced432764e5382e4b486083f1b07" />
+
+
+
+</DIV>
+
+
+
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#ME">ME</BUTTON> </DIV>
+<DIV id=ME class=collapse><SpotfireControl id="f3e1272afe3544f4b36b87b38a644079" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#LE">LE</BUTTON> </DIV>
+<DIV id=LE class=collapse><SpotfireControl id="5f827f7c52c64e8d8ecac421a51af868" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#SB">Sub-Region</BUTTON> </DIV>
+<DIV id=SB class=collapse><SpotfireControl id="d0dc559b669a48fcbb6a9c5e09bbcdb7" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#TPCL2">Taxonomy Process COE L2</BUTTON> </DIV>
+<DIV id=TPCL2 class=collapse><SpotfireControl id="ec82a1b8241d41e2af34eaefe8958c7e" /></DIV>
+
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#TPCL3">Taxonomy Sub-Process L3</BUTTON> </DIV>
+<DIV id=TPCL3 class=collapse><SpotfireControl id="221cf95d58b142669b63b31d244ad007" /></DIV>
+
+
+
+
+
+
+
+<DIV align="center"><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#SR">Other Filters</BUTTON> </DIV>
+<div align="center">
+<div id=SR class=collapse ><strong><font face="GE Inspira">
+<br>
+
+Non-Consolidated BU
+<SpotfireControl id="7d169ca6e815450abf87d5dcdc1f6cf4" />
+
+
+Company Code
+<SpotfireControl id="ca6d28b1cf8342ed9ce647177dd88e19" />
+Src Sub Business
+<SpotfireControl id="7baf6fa78dc94b44a11a0c56505c1ce3" />
+
+
+
+
+
+
+
+
+Saudi BPO Recs
+<SpotfireControl id="6f484fc82abf4531bb18adf4c8520eee" />
+
+Statutory Ledger Recs
+<SpotfireControl id="5fc159986bab48c8978d6066ca5b39d1" />
+
+
+Intercompany-Cincinnati
+<SpotfireControl id="074f4f08dc2d4b11ae26db104c234b2a" />
+
+LE Center
+<SpotfireControl id="453dce838ffa4689a2da097d6a4d1405" />
+
+
+
+</DIV>
+
+
+
+</DIV>
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+</DIV>
+<DIV class=menu jQuery1102028117585101526243="6"></DIV></DIV>
+<SCRIPT type=text/javascript>
+
+$(function() {
+//$('.countryLabel').css( "background-color", "" );
+});
+
+//$(".country").animate({width:'600px'}, 300);
+
+$( ".menu" ).click(function() {  
+$( this ).toggleClass( "active" );
+if($(this).hasClass("active"))
+{
+$("#panel").animate({left:'0px'}, 300);
+}
+else
+{
+$("#panel").animate({left:'-200px'}, 300);
+}
+
+
+});
+
+
+
+
+
+var oldValue=0
+ transferValue = function(){
+ 
+   //get value from calcVal spotfire Calculated Value Dyn Item
+    value=$("#calcVal3").text().trim()
+value1=$("#calcVal3").length
+ 
+   //update input when oldValue changes
+    if(value!=oldValue){
+       $("#inputPropertyControl3 input").val(value).blur();
+
+    }
+if(value=="All Recs"){
+  $("#BSC1").show();   
+ $("#BSC2").hide(); 
+
+
+    }
+else
+{
+ $("#BSC1").hide();   
+ $("#BSC2").show(); 
+
+}
+
+    oldValue=value
+ }
+ 
+ 
+ 
+ setInterval(transferValue,333) //3 times per second
+
+
+
+//.side1.multiple
+</SCRIPT>
+
+<STYLE>
+  .default-scroll {
+/* fix for Spotfire scrollbar update issue */
+height: 100%;
+-webkit-overflow-scrolling: touch;
+overflow: auto;
+}
+.HtmlTextAreaControl{
+/*margin-top:10px;*/
+padding-bottom:5px;
+}
+.btn{
+font-family: "Georgia, serif";
+font-size:10px;
+width:200px;
+}
+.custom {
+    width: 78px ;
+}
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+a:hover,
+a:active {
+    outline: 0
+}
+
+button {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: middle
+}
+button{
+    *overflow: visible;
+    line-height: normal
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+button,
+input[type="button"] {
+    cursor: pointer;
+    -webkit-appearance: button
+}
+
+.clearfix {
+    *zoom: 1
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: ""
+}
+.clearfix:after {
+    clear: both
+}
+
+button{
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px
+}
+input[type="button"] {
+    width: auto
+}
+
+textarea:focus:required:invalid{
+    color: #b94a48;
+    border-color: #ee5f5b
+}
+textarea:focus:required:invalid:focus{
+    border-color: #e9322d;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7
+}
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -moz-transition: opacity .15s linear;
+    -ms-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear
+}
+.fade.in {
+    opacity: 1
+}
+.collapse {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .35s ease;
+    -moz-transition: height .35s ease;
+    -ms-transition: height .35s ease;
+    -o-transition: height .35s ease;
+    transition: height .35s ease
+}
+.collapse.in {
+    height: auto;
+margin-bottom:5px;
+}
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20)
+}
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .4;
+    filter: alpha(opacity=40)
+}
+
+.btn {
+    display: inline-block;
+    *display: inline;
+    padding: 2px 5px 2px;
+    margin-bottom: 0;
+    *margin-left: .3em;
+    font-size: 10pt;
+    line-height: 18px;
+    *line-height: 22px;
+    color: #333;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #019fdd;
+    border: 1px solid #ccc;
+    *border: 0;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn:hover,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+    background-color: #e6e6e6;
+    *background-color: #d9d9d9
+}
+.btn:active,
+.btn.active {
+    background-color: #ccc \9
+}
+.btn:first-child {
+font-family: sans-serif;
+    *margin-left: 0
+}
+.btn:hover {
+    color: #333;
+    text-decoration: none;
+    background-color: #e6e6e6;
+    *background-color: #d9d9d9;
+    background-position: 0 -15px;
+    -webkit-transition: background-position .1s linear;
+    -moz-transition: background-position .1s linear;
+    -ms-transition: background-position .1s linear;
+    -o-transition: background-position .1s linear;
+    transition: background-position .1s linear
+}
+.btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+.btn.active,
+.btn:active {
+    background-color: #e6e6e6;
+    background-color: #d9d9d9 \9;
+    background-image: none;
+    outline: 0;
+   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn.disabled,
+.btn[disabled] {
+    cursor: default;
+    background-color: #e6e6e6;
+    background-image: none;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-warning,
+.btn-warning:hover,
+.btn-danger,
+.btn-danger:hover,
+.btn-success,
+.btn-success:hover,
+.btn-info,
+.btn-info:hover,
+.btn-inverse,
+.btn-inverse:hover {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+}
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+    color: rgba(255, 255, 255, 0.75)
+}
+.btn {
+WIDTH: 180px;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
+}
+.btn-primary {
+    background-color: #0074cc;
+    *background-color: #05c;
+    background-image: -ms-linear-gradient(top, #08c, #05c);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#05c));
+    background-image: -webkit-linear-gradient(top, #08c, #05c);
+    background-image: -o-linear-gradient(top, #08c, #05c);
+    background-image: -moz-linear-gradient(top, #08c, #05c);
+    background-image: linear-gradient(top, #08c, #05c);
+    background-repeat: repeat-x;
+    border-color: #05c #05c #003580;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+    background-color: #05c;
+    *background-color: #004ab3
+}
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #004099 \9
+}
+.btn-warning {
+    background-color: #faa732;
+    *background-color: #f89406;
+    background-image: -ms-linear-gradient(top, #fbb450, #f89406);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+    background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+    background-image: -o-linear-gradient(top, #fbb450, #f89406);
+    background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+    background-image: linear-gradient(top, #fbb450, #f89406);
+    background-repeat: repeat-x;
+    border-color: #f89406 #f89406 #ad6704;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#fbb450', endColorstr='#f89406', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning.disabled,
+.btn-warning[disabled] {
+    background-color: #f89406;
+    *background-color: #df8505
+}
+.btn-warning:active,
+.btn-warning.active {
+    background-color: #c67605 \9
+}
+.btn-danger {
+    background-color: #da4f49;
+    *background-color: #bd362f;
+    background-image: -ms-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+    background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: linear-gradient(top, #ee5f5b, #bd362f);
+    background-repeat: repeat-x;
+    border-color: #bd362f #bd362f #802420;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#bd362f', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger.disabled,
+.btn-danger[disabled] {
+    background-color: #bd362f;
+    *background-color: #a9302a
+}
+.btn-danger:active,
+.btn-danger.active {
+    background-color: #942a25 \9
+}
+.btn-success {
+    background-color: #5bb75b;
+    *background-color: #51a351;
+    background-image: -ms-linear-gradient(top, #62c462, #51a351);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+    background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+    background-image: -o-linear-gradient(top, #62c462, #51a351);
+    background-image: -moz-linear-gradient(top, #62c462, #51a351);
+    background-image: linear-gradient(top, #62c462, #51a351);
+    background-repeat: repeat-x;
+    border-color: #51a351 #51a351 #387038;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+    background-color: #51a351;
+    *background-color: #499249
+}
+.btn-success:active,
+.btn-success.active {
+    background-color: #408140 \9
+}
+.btn-info {
+        background-color: #019fdd;
+  
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-info:hover,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+    background-color: #2f96b4;
+    *background-color: #2a85a0
+}
+.btn-info:active,
+.btn-info.active {
+    background-color: #24748c \9
+}
+.btn-inverse {
+    background-color: #888;
+    *background-color: #666;
+    background-image: -ms-linear-gradient(top, #888, #666);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#888), to(#666));
+    background-image: -webkit-linear-gradient(top, #888, #666);
+    background-image: -o-linear-gradient(top, #888, #666);
+    background-image: -moz-linear-gradient(top, #888, #666);
+    background-image: linear-gradient(top, #888, #666);
+    background-repeat: repeat-x;
+    border-color: #222 #222 #000;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#888888', endColorstr='#666666', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-inverse:hover,
+.btn-inverse:active,
+.btn-inverse.active,
+.btn-inverse.disabled,
+.btn-inverse[disabled] {
+    background-color: #666;
+    *background-color: #666
+}
+.btn-inverse:active,
+.btn-inverse.active {
+    background-color: #080808 \9
+}
+button.btn,
+input[type="submit"].btn {
+    *padding-top: 2px;
+    *padding-bottom: 2px
+}
+button.btn::-moz-focus-inner,
+input[type="submit"].btn::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+button.btn.btn-large,
+input[type="submit"].btn.btn-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px
+}
+button.btn.btn-small,
+input[type="submit"].btn.btn-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px
+}
+button.btn.btn-mini,
+input[type="submit"].btn.btn-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px
+}
+.btn-group {
+    position: relative;
+    *margin-left: .3em;
+    *zoom: 1
+}
+.btn-group:before,
+.btn-group:after {
+    display: table;
+    content: ""
+}
+.btn-group:after {
+    clear: both
+}
+.btn-group:first-child {
+    *margin-left: 0
+}
+.btn-group+.btn-group {
+    margin-left: 5px
+}
+.btn-toolbar {
+    margin-top: 9px;
+    margin-bottom: 9px
+}
+.btn-toolbar .btn-group {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+.btn-group>.btn {
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+.btn-group>.btn:first-child {
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-topleft: 0px
+}
+.btn-group>.btn:last-child,
+.btn-group>.dropdown-toggle {
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px
+}
+.btn-group>.btn.large:first-child {
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+   border-top-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-topleft: 6px
+}
+.btn-group>.btn.large:last-child,
+.btn-group>.large.dropdown-toggle {
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-bottomright: 6px
+}
+.btn-group>.btn:hover,
+.btn-group>.btn:focus,
+.btn-group>.btn:active,
+.btn-group>.btn.active {
+    z-index: 2
+}
+.btn-group .dropdown-toggle:active,
+.btn-group.open .dropdown-toggle {
+    outline: 0
+}
+.btn-group>.dropdown-toggle {
+    *padding-top: 4px;
+    padding-right: 8px;
+    *padding-bottom: 4px;
+    padding-left: 8px;
+    -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn-group>.btn-mini.dropdown-toggle {
+    padding-right: 5px;
+    padding-left: 5px
+}
+.btn-group>.btn-small.dropdown-toggle {
+    *padding-top: 4px;
+    *padding-bottom: 4px
+}
+.btn-group>.btn-large.dropdown-toggle {
+    padding-right: 12px;
+    padding-left: 12px
+}
+.btn-group.open .dropdown-toggle {
+    background-image: none;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn-group.open .btn.dropdown-toggle {
+    background-color: #e6e6e6
+}
+.btn-group.open .btn-primary.dropdown-toggle {
+    background-color: #05c
+}
+.btn-group.open .btn-warning.dropdown-toggle {
+    background-color: #f89406
+}
+.btn-group.open .btn-danger.dropdown-toggle {
+    background-color: #bd362f
+}
+.btn-group.open .btn-success.dropdown-toggle {
+    background-color: #51a351
+}
+.btn-group.open .btn-info.dropdown-toggle {
+    background-color: #2f96b4
+}
+.btn-group.open .btn-inverse.dropdown-toggle {
+    background-color: #222
+}
+.btn .caret {
+    margin-top: 7px;
+    margin-left: 0
+}
+.btn:hover .caret,
+.open.btn-group .caret {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+.btn-mini .caret {
+    margin-top: 5px
+}
+.btn-small .caret {
+    margin-top: 6px
+}
+.btn-large .caret {
+    margin-top: 6px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-left-width: 5px
+}
+.dropup .btn-large .caret {
+    border-top: 0;
+    border-bottom: 5px solid #000
+}
+.btn-primary .caret,
+.btn-warning .caret,
+.btn-danger .caret,
+.btn-info .caret,
+.btn-success .caret,
+.btn-inverse .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+    opacity: .75;
+    filter: alpha(opacity=75)
+}
+.hide {
+    display: none
+}
+.show {
+    display: block
+}
+.invisible {
+    visibility: hidden
+}
+#panel .menu {
+   top: 150px !important;
+}
+
+</STYLE>
+
+<STYLE type=text/css>.button{text-decoration:none; text-align:center;  padding:4px 21px;  border:none;    font:14px Arial, Helvetica, sans-serif;  font-weight:bold;  color:#ffffff;  background:#019fdd;  -webkit-box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;  -moz-box-shadow: 0px 0px -20px #bababa,  inset -19px -20px -20px #ffffff;   box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;      }.button:hover{  padding:4px 21px;  border:none;    font:14px Arial, Helvetica, sans-serif;  font-weight:bold;  color:#ffffff;  background:#0181b8;  -webkit-box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;  -moz-box-shadow: -20px -20px -20px #bababa,  inset -20px -20px -20px #ffffff;   box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;     }button:active{  padding:10px 14px;  border:none;    font:14px Arial, Helvetica, sans-serif;  font-weight:bold;  color:#ffffff;  background-color:#3BA4C7;  background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%);  background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%);  background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%);  background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1982A5", endColorstr="#1982A5",GradientType=0 );  background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);    -webkit-box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;  -moz-box-shadow: 0px 0px -20px #bababa,  inset -19px -20px -20px #ffffff;   box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;     }  #panel {   background-color: rgb(42,42,42);   -webkit-border-radius: 3px;   -moz-border-radius: 3px;   border-radius: 3px;   -webkit-border-top-left-radius: 0px;   -moz-border-radius-topleft: 0px;   border-top-left-radius: 0px;   -webkit-border-bottom-left-radius: 0px;   -moz-border-radius-bottomleft: 0px;   border-bottom-left-radius: 0px;   -webkit-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   -moz-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;    position: fixed;   z-index: 1500;   left: -200px;   width: 200px;    height: 93%;   top: 43px; }  .menu {   position: absolute;   top: 33px;   left: 200px;   cursor: pointer;   display: block;   vertical-align: bottom;   border: none;   width: 27px;   height: 88px;   outline: none; background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAABYCAMAAAAzxnylAAAAUVBMVEUAAAAAAAAAAAAAAAAAAABoaGgAAAAAAAAAAAAAAAAAAAAAAABjY2Nra2v///94eHjDw8Pm5uampqa5ubmUlJT39/fe3t7MzMyEhITv7+/V1dV6AtV5AAAADXRSTlMADEgkCvZFIRgFNyrYFZ88fQAAAQpJREFUSMft1t1qwzAMBeB1y1onmY4l/8XO+z/oGrNcWfZgrLBBz0Uu8oGMhTB6GWWetMzzYcbc2hhzOXBdrm2WteK7mo/V3I30LGbq2vXWt9e3y9P+kdkzrTHO8MjUmg5sXWs1x//fNusyBfE/uTtR/+7iwCN7eD/HNU8UsdRaKEDN1lrCmdCYyFdN5Ty/16/X58wxO73Xth5YsmaMlMqOpJkIsdAGq1nJd9sjKeYhHAs2zYg9A5ttrSa7/M28UH9eRtat6eEbO5MBq1lgyptX7xdizBFgzXZ4jySx0+sEx51eh4ggnV4DyXd6vaGEwKQa2b/zDj7tkTbeGRYzjXaU0W4z2IlGu9Q4n0+AZisAR9AwAAAAAElFTkSuQmCC") } .active { background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABYCAMAAACwAkWeAAAAUVBMVEUAAAAAAAAAAAAAAAAAAAAAAAD4sw8AAAAAAAAAAAD6tA8AAAAAAADtqw7/uA//////vTH/4Kz/8t7/253/0YH/7M7/yWT/+/T/5Lr/wkn/9umaqjwzAAAADnRSTlMAJAxICiH2RhgF9UE32NNTVY4AAAETSURBVEjH7dfbboMwDAbg0bVbOCyObZzT+z/oCiq39T9pUnvBL8HVJzkER5E/4IxXN+O4wRBuTkK4bHJY5u+nmZdhl9P05WT6GcIdRiBLuGJwvoHwc7ic8ISvgOmIA5mOMAz90ivx9vgfs6EXwbS2mEX/d8NjBDdcVmIYvvW/BkofUiRFB+b+qFwdaHQkP4cij9LeGtX2twKnUJkVaIq0L7I3FzKZdSNzoUhkiZWSC3u7QyvRg0rCpVN1YWRlopocuKet7S9nJoJnBoZYaSV14Z5GlFyYObaq/j7mUlohYhcaqZJJQZrCaGWkKXKhLEhTEJkiTVGp58zIzZXe/9I84QnhEQAeKuAxBR580FEKH87w/AJal6bQhpiLWwAAAABJRU5ErkJggg=="); left: 200px;   width: 39px;  }</stlye></div></STYLE>                                                                                                       
