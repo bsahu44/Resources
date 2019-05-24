@@ -1,0 +1,1230 @@
+Edit Record
+----------------
+HTML/JS
+---------
+
+<style>   
+ .default-scroll {
+/* fix for Spotfire scrollbar update issue */
+height: 100%;
+-webkit-overflow-scrolling: touch;
+overflow: auto;
+}
+.HtmlTextAreaControl{ 
+/*margin-top:10px;*/
+padding-bottom:5px;
+} 
+.btn{
+font-family: "Georgia, serif";
+font-size:10px;
+width:200px; 
+}
+.custom {
+    width: 78px ;
+}
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+a:hover,
+a:active {
+    outline: 0
+}
+
+button {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: middle
+}
+button{
+    *overflow: visible;
+    line-height: normal
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+button,
+input[type="button"] {
+    cursor: pointer;
+    -webkit-appearance: button
+}
+
+.clearfix {
+    *zoom: 1
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: ""
+}
+.clearfix:after {
+    clear: both
+}
+
+button{
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px
+}
+input[type="button"] {
+    width: auto
+}
+
+textarea:focus:required:invalid{
+    color: #b94a48;
+    border-color: #ee5f5b
+}
+textarea:focus:required:invalid:focus{
+    border-color: #e9322d;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7
+}
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -moz-transition: opacity .15s linear;
+    -ms-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear
+}
+.fade.in {
+    opacity: 1
+}
+.collapse {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .35s ease;
+    -moz-transition: height .35s ease;
+    -ms-transition: height .35s ease;
+    -o-transition: height .35s ease;
+    transition: height .35s ease
+}
+.collapse.in {
+    height: auto;
+margin-bottom:5px;
+}
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20)
+}
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .4;
+    filter: alpha(opacity=40)
+}
+
+.btn {
+    display: inline-block;
+    *display: inline;
+    padding: 2px 5px 2px;
+    margin-bottom: 0;
+    *margin-left: .3em;
+    font-size: 10pt;
+    line-height: 18px;
+    *line-height: 22px;
+    color: #333;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #019fdd;
+    border: 1px solid #ccc;
+    *border: 0;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn:hover,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+    background-color: #e6e6e6;
+    *background-color: #d9d9d9
+}
+.btn:active,
+.btn.active {
+    background-color: #ccc \9
+}
+.btn:first-child {
+font-family: sans-serif;
+    *margin-left: 0
+}
+.btn:hover {
+    color: #333;
+    text-decoration: none;
+    background-color: #e6e6e6;
+    *background-color: #d9d9d9;
+    background-position: 0 -15px;
+    -webkit-transition: background-position .1s linear;
+    -moz-transition: background-position .1s linear;
+    -ms-transition: background-position .1s linear;
+    -o-transition: background-position .1s linear;
+    transition: background-position .1s linear
+}
+.btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+.btn.active,
+.btn:active {
+    background-color: #e6e6e6;
+    background-color: #d9d9d9 \9;
+    background-image: none;
+    outline: 0;
+   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn.disabled,
+.btn[disabled] {
+    cursor: default;
+    background-color: #e6e6e6;
+    background-image: none;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-warning,
+.btn-warning:hover,
+.btn-danger,
+.btn-danger:hover,
+.btn-success,
+.btn-success:hover,
+.btn-info,
+.btn-info:hover,
+.btn-inverse,
+.btn-inverse:hover {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+}
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+    color: rgba(255, 255, 255, 0.75)
+}
+.btn {
+WIDTH: 180px;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
+}
+.btn-primary {
+    background-color: #0074cc;
+    *background-color: #05c;
+    background-image: -ms-linear-gradient(top, #08c, #05c);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#05c));
+    background-image: -webkit-linear-gradient(top, #08c, #05c);
+    background-image: -o-linear-gradient(top, #08c, #05c);
+    background-image: -moz-linear-gradient(top, #08c, #05c);
+    background-image: linear-gradient(top, #08c, #05c);
+    background-repeat: repeat-x;
+    border-color: #05c #05c #003580;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+    background-color: #05c;
+    *background-color: #004ab3
+}
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #004099 \9
+}
+.btn-warning {
+    background-color: #faa732;
+    *background-color: #f89406;
+    background-image: -ms-linear-gradient(top, #fbb450, #f89406);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+    background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+    background-image: -o-linear-gradient(top, #fbb450, #f89406);
+    background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+    background-image: linear-gradient(top, #fbb450, #f89406);
+    background-repeat: repeat-x;
+    border-color: #f89406 #f89406 #ad6704;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#fbb450', endColorstr='#f89406', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning.disabled,
+.btn-warning[disabled] {
+    background-color: #f89406;
+    *background-color: #df8505
+}
+.btn-warning:active,
+.btn-warning.active {
+    background-color: #c67605 \9
+}
+.btn-danger {
+    background-color: #da4f49;
+    *background-color: #bd362f;
+    background-image: -ms-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+    background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+    background-image: linear-gradient(top, #ee5f5b, #bd362f);
+    background-repeat: repeat-x;
+    border-color: #bd362f #bd362f #802420;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#bd362f', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger.disabled,
+.btn-danger[disabled] {
+    background-color: #bd362f;
+    *background-color: #a9302a
+}
+.btn-danger:active,
+.btn-danger.active {
+    background-color: #942a25 \9
+}
+.btn-success {
+    background-color: #5bb75b;
+    *background-color: #51a351;
+    background-image: -ms-linear-gradient(top, #62c462, #51a351);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+    background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+    background-image: -o-linear-gradient(top, #62c462, #51a351);
+    background-image: -moz-linear-gradient(top, #62c462, #51a351);
+    background-image: linear-gradient(top, #62c462, #51a351);
+    background-repeat: repeat-x;
+    border-color: #51a351 #51a351 #387038;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+    background-color: #51a351;
+    *background-color: #499249
+}
+.btn-success:active,
+.btn-success.active {
+    background-color: #408140 \9
+}
+.btn-info {
+        background-color: #019fdd;
+  
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-info:hover,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+    background-color: #2f96b4;
+    *background-color: #2a85a0
+}
+.btn-info:active,
+.btn-info.active {
+    background-color: #24748c \9
+}
+.btn-inverse {
+    background-color: #888;
+    *background-color: #666;
+    background-image: -ms-linear-gradient(top, #888, #666);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#888), to(#666));
+    background-image: -webkit-linear-gradient(top, #888, #666);
+    background-image: -o-linear-gradient(top, #888, #666);
+    background-image: -moz-linear-gradient(top, #888, #666);
+    background-image: linear-gradient(top, #888, #666);
+    background-repeat: repeat-x;
+    border-color: #222 #222 #000;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid: dximagetransform.microsoft.gradient(startColorstr='#888888', endColorstr='#666666', GradientType=0);
+    filter: progid: dximagetransform.microsoft.gradient(enabled=false)
+}
+.btn-inverse:hover,
+.btn-inverse:active,
+.btn-inverse.active,
+.btn-inverse.disabled,
+.btn-inverse[disabled] {
+    background-color: #666;
+    *background-color: #666
+}
+.btn-inverse:active,
+.btn-inverse.active {
+    background-color: #080808 \9
+}
+button.btn,
+input[type="submit"].btn {
+    *padding-top: 2px;
+    *padding-bottom: 2px
+}
+button.btn::-moz-focus-inner,
+input[type="submit"].btn::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+button.btn.btn-large,
+input[type="submit"].btn.btn-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px
+}
+button.btn.btn-small,
+input[type="submit"].btn.btn-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px
+}
+button.btn.btn-mini,
+input[type="submit"].btn.btn-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px
+}
+.btn-group {
+    position: relative;
+    *margin-left: .3em;
+    *zoom: 1
+}
+.btn-group:before,
+.btn-group:after {
+    display: table;
+    content: ""
+}
+.btn-group:after {
+    clear: both
+}
+.btn-group:first-child {
+    *margin-left: 0
+}
+.btn-group+.btn-group {
+    margin-left: 5px
+}
+.btn-toolbar {
+    margin-top: 9px;
+    margin-bottom: 9px
+}
+.btn-toolbar .btn-group {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+.btn-group>.btn {
+    position: relative;
+    float: left;
+    margin-left: -1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+.btn-group>.btn:first-child {
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-topleft: 0px
+}
+.btn-group>.btn:last-child,
+.btn-group>.dropdown-toggle {
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px
+}
+.btn-group>.btn.large:first-child {
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+   border-top-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-topleft: 6px
+}
+.btn-group>.btn.large:last-child,
+.btn-group>.large.dropdown-toggle {
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-bottomright: 6px
+}
+.btn-group>.btn:hover,
+.btn-group>.btn:focus,
+.btn-group>.btn:active,
+.btn-group>.btn.active {
+    z-index: 2
+}
+.btn-group .dropdown-toggle:active,
+.btn-group.open .dropdown-toggle {
+    outline: 0
+}
+.btn-group>.dropdown-toggle {
+    *padding-top: 4px;
+    padding-right: 8px;
+    *padding-bottom: 4px;
+    padding-left: 8px;
+    -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn-group>.btn-mini.dropdown-toggle {
+    padding-right: 5px;
+    padding-left: 5px
+}
+.btn-group>.btn-small.dropdown-toggle {
+    *padding-top: 4px;
+    *padding-bottom: 4px
+}
+.btn-group>.btn-large.dropdown-toggle {
+    padding-right: 12px;
+    padding-left: 12px
+}
+.btn-group.open .dropdown-toggle {
+    background-image: none;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05)
+}
+.btn-group.open .btn.dropdown-toggle {
+    background-color: #e6e6e6
+}
+.btn-group.open .btn-primary.dropdown-toggle {
+    background-color: #05c
+}
+.btn-group.open .btn-warning.dropdown-toggle {
+    background-color: #f89406
+}
+.btn-group.open .btn-danger.dropdown-toggle {
+    background-color: #bd362f
+}
+.btn-group.open .btn-success.dropdown-toggle {
+    background-color: #51a351
+}
+.btn-group.open .btn-info.dropdown-toggle {
+    background-color: #2f96b4
+}
+.btn-group.open .btn-inverse.dropdown-toggle {
+    background-color: #222
+}
+.btn .caret {
+    margin-top: 7px;
+    margin-left: 0
+}
+.btn:hover .caret,
+.open.btn-group .caret {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+.btn-mini .caret {
+    margin-top: 5px
+}
+.btn-small .caret {
+    margin-top: 6px
+}
+.btn-large .caret {
+    margin-top: 6px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-left-width: 5px
+}
+.dropup .btn-large .caret {
+    border-top: 0;
+    border-bottom: 5px solid #000
+}
+.btn-primary .caret,
+.btn-warning .caret,
+.btn-danger .caret,
+.btn-info .caret,
+.btn-success .caret,
+.btn-inverse .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+    opacity: .75;
+    filter: alpha(opacity=75)
+}
+.hide {
+    display: none
+}
+.show {
+    display: block
+}
+.invisible {
+    visibility: hidden
+}
+#panel .menu {
+   top: 150px !important;
+}
+
+</STYLE>
+</style>
+
+<div id="panel" style="left: -200px; height: 550px; TEXT-ALIGN: center; padding-top: 10px; padding-left: 0px; display: inline; background-color: rgb(234, 234, 234);">
+
+
+<!-- 
+style="HEIGHT: 560px; TEXT-ALIGN: center; PADDING-TOP: 10px; LEFT: -200px; BACKGROUND-COLOR: rgb(234,234,234)"
+-->
+<div class="default-scroll" style="width: 195px; height: 98.5%;">
+<div style="padding-top: 4px;"><div class="btn btn-inverse closeall" style="width: 135px;TEXT-ALIGN: center;" href="#" jquery1102080907927155295="647">Reset Filters</div> </div>
+<p id="resetfilter" style="display: none;">
+<SpotfireControl id="fa4624cc3a7a4599b5be901c017eb919" />
+</p>
+<strong>
+<p align="left" id="try1" style="text-align: left; display: none;">
+
+<font color="#3a6c9a" size="2">Latest data as of:
+</font>
+<font color="#3a6c9a" size="1">
+<br>&nbsp;&nbsp;WCS - </font><SpotfireControl id="60d12824ffdd4639b493092a2e90ddef" /><br>
+
+<font color="#3a6c9a" size="1">&nbsp;&nbsp;CDW -</font> <SpotfireControl id="979ec007993e4600a4c34bf74fb4436f" /><br>
+
+<font color="#3a6c9a" size="1">&nbsp;&nbsp;Other Biz/ERP - <SpotfireControl id="61359ba403bc4fe480162ce8fc518b4c" /><br>
+
+*Data warehouse date. Source ERP date up to 1 day earlier.
+</font> <br>
+</p>
+
+
+<p align="left" id="try2" style="text-align: left; display: none;"><font color="#3a6c9a"></font></p>
+
+</strong><font color="#3a6c9a">
+<p></p>
+<div id="div2" style="padding-top: 4px; display: none;"><div class="btn btn-inverse show" style="width: 135px;" href="#" jquery1102080907927155295="651">Hide System Info</div> </div>
+
+
+<!--
+<table width="90%">
+<tbody><tr><td>
+<img style="border: 0px currentColor; width: 32px; height: 32px;" src="GetImage.ashx?view=ccc7c9b6-f837-49f0-bbfe-3e37befe9ebe&image=3f56632850fd4f32bf28a575fd0e1231.png">
+</td>
+<td>
+<div style="text-align: justify; font-size: 8pt;">
+Now includes Legacy Alstom PowerMax data for Power &amp; Renewables for 3Q. To include, select "Legacy Alstom" under Data Source filter.
+</div>
+</td>
+</tr>
+</tbody></table>
+-->
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#RecID">Account Rec ID</BUTTON> </DIV>
+<DIV id=RecID class=collapse  ><SpotfireControl id="757533c062514ad59f282e12bc859fa8" /></DIV>
+
+
+ 
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#aro">Account Rec Ownership</BUTTON> </DIV>
+<DIV id=aro class=collapse jQuery1102028117585101526243="441"><SpotfireControl id="5a269c63e6d64d9c91e77b596da77ce4" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#period">Period</BUTTON> </DIV>
+<DIV id=period class=collapse ><SpotfireControl id="92c2b1c2f6374af49812095fa74f725b" /> </DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Leader">GE Resp Party</BUTTON> </DIV>
+<DIV id=Leader class=collapse><SpotfireControl id="79bb36ebec604c8c9e753b5982f0f617" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#GenOwn">GENPACT Ownership</BUTTON> </DIV>
+<DIV id=GenOwn class=collapse><SpotfireControl id="26acdbc649de41d08603122766866c7f" /></DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#GenResp">GENPACT Resp Party</BUTTON> </DIV>
+<DIV id=GenResp class=collapse><SpotfireControl id="279bedce244842909a842cc8f9953d13" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#business">Business</BUTTON></DIV>
+<DIV id=business class=collapse> 
+<SpotfireControl id="8f433f4f3966467d8d4f0e408a28d1d8" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#subb">Sub Business</BUTTON> </DIV>
+<DIV id=subb class=collapse jQuery1102028117585101526243="441"> <SpotfireControl id="197d0c4eea51490483e4c8f731e62734" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#src">Source</BUTTON> </DIV>
+<DIV id=src class=collapse jQuery1102028117585101526243="441"><SpotfireControl id="25cf80de302e48a5b060ee0c8e95d5c0" /> </DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#cntryacrec">Country-Account Rec</BUTTON> </DIV>
+<DIV id=cntryacrec class=collapse jQuery1102028117585101526243="441"> <SpotfireControl id="ea29b1338b0c483f8deef128739c4ec2" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#cntrypre">Country-Preparer</BUTTON> </DIV>
+<DIV id=cntrypre class=collapse jQuery1102028117585101526243="441"> <SpotfireControl id="845486c2c6ec49cf86d0bc8a3cc3b1b0" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#cntryrev">Country-Reviewer</BUTTON> </DIV>
+<DIV id=cntryrev class=collapse jQuery1102028117585101526243="441"> <SpotfireControl id="c89e4f32df58489dbbbd30939c91365d" /></DIV>
+
+
+<!--
+<div><button class="btn btn-info collapsed" data-toggle="collapse" data-target="#Business">Business Hierarchy</button> </div>
+
+</strong><div class="collapse" id="Business"  jquery1102080907927155295="640"><strong><br>
+
+<p>Select Hierarchy:<br></p>
+<font color="#000000">
+<p><SpotfireControl id="9fb755128c7a4af89434983ac40245e0" /></p>
+</font>
+
+
+</strong><p><strong>Business Level:</strong><br></p>
+<p><SpotfireControl id="c7ef9c31324c4e4a90aa28963799863a" /></p>
+<p></p><strong>GE/Alstom:<br>
+<p><SpotfireControl id="cbde7853bd7c4580b85eb4fb4a5615fd" /></p>
+<p></p><strong>GE/ JV (External):<br>
+<p><SpotfireControl id="3143d258d4414da1bd13fd152a20419a" /></p>
+Business Tier 1:</strong><br><strong><strong>
+<p><SpotfireControl id="02f5781ce2ed45e2ba9cbd083e0b5519" /></p>Business Tier 2:<br>
+<p><SpotfireControl id="f91b700def6d4f81aa720a4cba526455" /></p>Business Tier 3:<br>
+<p><SpotfireControl id="b65fefc0c4134e1f9626909178f5d34b" />&nbsp;</p>Business Tier 4:<br>
+<p><SpotfireControl id="57572448a971402e86bf814c31e32084" />&nbsp;</p>Business Tier 5:<br>
+<p><SpotfireControl id="98588d7b1bb0494a88d72ae9fa8ec154" /><br></p>
+
+Business Tier 6:<br>
+<p><SpotfireControl id="5484538e4d2e432cbe4531df233827f1" /><br></p>
+
+<br>
+<p><br></p>
+
+
+&nbsp;
+<p></p></strong></strong></strong></div><strong><strong>
+
+-->
+
+<div><button class="btn btn-info collapsed" data-toggle="collapse" data-target="#siteowner">Site Ownership</button> </div>
+<div class="collapse" id="siteowner"><br><strong></strong><strong>
+<SpotfireControl id="9815c7e5befc4a069beb1785c5111e90" /></div><strong><strong>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#status">Status</BUTTON> </DIV>
+<DIV id=status class=collapse><SpotfireControl id="bd48507d95b8474cbc005d871cc9ea2e" /> </DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#OPS">Open Period Status</BUTTON> </DIV>
+<DIV id=OPS class=collapse><SpotfireControl id="d04d25f1240a4038bf49918e6691750d" /></DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#bscat">BS Category</BUTTON> </DIV>
+<DIV id=bscat class=collapse><SpotfireControl id="2cffd485b0f049aa936be390644e6d25" /> </DIV>
+
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#EPR">Exptd. Period Reconciled</BUTTON> </DIV>
+<DIV id=EPR class=collapse><SpotfireControl id="2cd20450e7564265907a9321ffbc8d49" /> </DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Processteamrec">Process Team: Reconciler</BUTTON> </DIV>
+<DIV id=Processteamrec class=collapse><SpotfireControl id="ab1037541fe94a00a6b498d9f809bc48" /> </DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#Processteamrev">Process Team: Reviewer</BUTTON> </DIV>
+<DIV id=Processteamrev class=collapse><SpotfireControl id="a943ea81d2d341b3b74062549e77bab1" /> </DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#teamleaderrec">Team Leader: Reconciler</BUTTON> </DIV>
+<DIV id=teamleaderrec class=collapse> <SpotfireControl id="40794e7b86444419b8f46c983e2b14dc" /> </DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#teamleaderrev">Team Leader: Reviewer</BUTTON> </DIV>
+<DIV id=teamleaderrev class=collapse><SpotfireControl id="82ce74d9cc08464a804ede91ea088ca8" /> </DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#goteamrec">GO Team: Reconciler</BUTTON> </DIV>
+<DIV id=goteamrec class=collapse><SpotfireControl id="f9af5009f1a3435c80f1fac122e15f32" /> </DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#goteamrev">GO Team: Reviewer</BUTTON> </DIV>
+<DIV id=goteamrev class=collapse><SpotfireControl id="aa9c8c8052bc4f29bafb851938ec4f0f" /> </DIV>
+
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#NCB">Non-Consolidated BU</BUTTON> </DIV>
+<DIV id=NCB class=collapse><SpotfireControl id="cfe8d5c2e538437a9015d1daf24b041c" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#L2">Taxonomy L2</BUTTON> </DIV>
+<DIV id=L2 class=collapse><SpotfireControl id="1f29a3ed8c0b46348a5195fe34520243" /></DIV>
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#L3">Taxonomy L3</BUTTON> </DIV>
+<DIV id=L3 class=collapse><SpotfireControl id="337e9ea5d1cf47438394250a5067a6ce" /></DIV>
+
+<DIV><BUTTON class="btn btn-info" data-toggle="collapse" data-target="#AMG">Accountable Manager</BUTTON> </DIV>
+<DIV id=AMG class=collapse><SpotfireControl id="6d6df614c14f4edea8f83c433194a044" /></DIV>
+
+
+
+
+
+
+
+
+<!--<div><button class="btn btn-info collapsed" data-toggle="collapse" data-target="#SDM">Service Delivery Model</button> </div>-->
+<div class="collapse" id="SDM" jquery1102080907927155295="646"><br>
+<p><SpotfireControl id="b538de3874fb47c88d3a493f49ecbb96" /><br></p></div>
+
+</strong></strong></strong></strong></strong></strong></strong></strong></strong></font></div><font color="#3a6c9a">
+<div class="menu" jquery1102080907927155295="6"></div></font></div><font color="#3a6c9a">
+
+<!-- Panel 4 starts here -->
+
+<div id="panel4" style="left: -1010px; padding-top: 10px; padding-left: 10px; display: inline; background-color: rgb(240, 240, 240);">
+<div class="default-scroll">
+<div class="WordSection1">
+<div style="width: 30%; padding-top: 10px; padding-right: 20px; padding-left: 10px; float: left;">
+
+
+
+
+
+<style type="text/css">
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; height:100% }
+.tg  {border-collapse:collapse;border-spacing:2px;border-color:#999;border:none;margin:2px auto;}
+.tg td{font-family:"GE Inspira";padding:2px 2px;border-style:solid ;border-width:0px;overflow:hidden; word-break:normal; border-color:#999; color:#444;background-color:#f0f0f0;}
+.tg th{font-family:"GE Inspira";font-size:16px;font-weight:bold;padding:2x 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+.tg .tg-404i{font-weight:bold;font-family:"GE Inspira",font-size:3;text-align:left}
+.tg .tg-403i{font-weight:bold;font-size:5;font-family:"GE Inspira"; background-color:#ffffff; color:#fe0000;vertical-align:top; text-align: center}
+.tg .tg-c174{font-family:"GE Inspira"; font-weight:bold;font-size:24px; background-color:#3166ff;color:#ffffff;vertical-align:top}
+.tg .tg-c175{font-family:"GE Inspira"; font-size:12px; background-color:#3166ff;color:#ffffff;vertical-align:middle}
+.tg .tg-tvdt{font-weight:bold;font-family:"GE Inspira" !important;;color:#fe0000;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+th.tg-sort-header::-moz-selection { background:transparent; }th.tg-sort-header::selection      { background:transparent; }th.tg-sort-header { cursor:pointer; }table th.tg-sort-header:after {  content:'';  float:right;  margin-top:7px;  border-width:0 4px 4px;  border-style:solid;  border-color:#404040 transparent;  visibility:hidden;  }table th.tg-sort-header:hover:after {  visibility:visible;  }table th.tg-sort-desc:after,table th.tg-sort-asc:after,table th.tg-sort-asc:hover:after {  visibility:visible;  opacity:0.4;  }table th.tg-sort-desc:after {  border-bottom:none;  border-width:4px 4px 0;  }@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style>
+
+<div class="datagrid"><table id="tg-T61TW" class="tg" align=left  width=100%>
+  
+<TR class="tg-c174"><TD colspan="2">Unrec Record Info</TD></TR>
+<TR class="tg-c174"><TD colspan="2"></TD></TR>
+<TR><TD colspan="2"><font color="red">Note: Text field's max length is 4,000 charaters.<br> Max #records for update are limited to 25 at once.</font></TD></TR>
+
+<TR><TD class="tg-404i" >Account Rec Id:</TD><TD><SpotfireControl id="d45b1d3b09c5447381b0b4d17b8e874c" /></TD></TR>
+<TR ><TD class="tg-404i" >Period ID:</TD><TD><SpotfireControl id="3b0bc07f56b84e29bdff39595df61d8b" /></TD></TR>
+<TR ><TD class="tg-404i" >Source Code:</TD><TD><SpotfireControl id="cf7ff736b3c24548b635ac79443f0e64" /></TD></TR>
+<TR><TD class="tg-404i">Updating SSO:</TD><TD><SpotfireControl id="34bf72cddd2844749684bdc89dccf8c0" /></TD></TR>
+<TR><TD class="tg-404i" >Driver:</TD><TD><SpotfireControl id="cdae6a9da9b04a69872f67431be13978" /></TD></TR>
+<TR><TD class="tg-404i" >Reason Unrec:</TD><TD><SpotfireControl id="61710b3f11be4c4e9706a44c1789b88a" /></TD></TR>
+<TR><TD class="tg-404i" >Action Plan:</TD><TD><SpotfireControl id="be736e6ab91c41f1ab7dfbcdd48a6d30" /></TD></TR>
+
+<TR><TD class="tg-404i">Pending Actions (Num Only):</TD><TD id="OnlyNumbers" onkeypress = "return AllowNumbersOnly(event)" >
+<SpotfireControl id="d70c1fddabe24e549bd95ebdb6a476d7" />
+</TD></TR>
+
+<TR><TD class="tg-404i" >Expected Close Dt:</TD><TD><Span id='dt1'><SpotfireControl id="f952dcc5ac9c4c499be8fb0ec6fb20f8" /></span>
+</td><td><span id='dt1picker'></span></TD></TR>
+<TR><TD  class="tg-404i" >Status:</TD><TD><SpotfireControl id="1c7c14278c024e72871d2dd82e6bea61" /></TD></TR>
+<TR><TD class="tg-404i" >Est. P/L Impact:</TD><TD><SpotfireControl id="1aec594d24434ca5b001686ee5577974" /></TD></TR>
+
+<TR><TD class="tg-404i" >Rec Team/Owner:</TD><TD><SpotfireControl id="6443dbc7baac4cf89520ddb40b3cc4b5" /> </TD></TR>
+
+
+<TR><TD class="tg-404i" >Accountable Manager</TD><TD><SpotfireControl id="507e173a46754f878522952b12b128ad" /> </TD></TR>
+
+
+<TR><TD class="tg-404i" >Help Needed/ Dependency:</TD><TD> <SpotfireControl id="d02b13f75a8241e19d63f96362442b70" /></TD></TR>
+
+<TR style="display:none;" ><TD class="tg-404i" >Accountable Leader:</TD><TD><SpotfireControl id="781d6656b417453f91dde7a7d4fb7a58" /></TD></TR>
+
+
+
+
+
+<TR><TD class="tg-404i">Expected Period Reconciled:</TD><TD>
+<SpotfireControl id="c1077e4d5dea484a937d9a360c32e66d" /></TD></TR>
+
+<TR><TD class="tg-404i">P&L Impact if known in K $USD</TD><TD>
+<SpotfireControl id="ab998b22830146c3a62f77ad35cd23e6" /></TD></TR>
+
+<tr align=right>
+<TD><span id="btn_submit" ><SpotfireControl id="2bfec8e7ba1f49c481eeff7c54fc7ab6" /></span></td> </tr>
+<tr> <td colspan="2" align=center face="GE Inspira"><SpotfireControl id="3589672dfb0e487d876234575e3b760c" /></td></tr>
+
+<TR><TD colspan="2"><SpotfireControl id="504b486d63ee4e40be9dddbbcf62687b" /></TD></TR>
+</table></div>
+<script type="text/javascript" charset="utf-8">var TgTableSort=window.TgTableSort||function(n,t){"use strict";function r(n,t){for(var e=[],o=n.childNodes,i=0;i<o.length;++i){var u=o[i];if("."==t.substring(0,1)){var a=t.substring(1);f(u,a)&&e.push(u)}else u.nodeName.toLowerCase()==t&&e.push(u);var c=r(u,t);e=e.concat(c)}return e}function e(n,t){var e=[],o=r(n,"tr");return o.forEach(function(n){var o=r(n,"td");t>=0&&t<o.length&&e.push(o[t])}),e}function o(n){return n.textContent||n.innerText||""}function i(n){return n.innerHTML||""}function u(n,t){var r=e(n,t);return r.map(o)}function a(n,t){var r=e(n,t);return r.map(i)}function c(n){var t=n.className||"";return t.match(/\S+/g)||[]}function f(n,t){return-1!=c(n).indexOf(t)}function s(n,t){f(n,t)||(n.className+=" "+t)}function d(n,t){if(f(n,t)){var r=c(n),e=r.indexOf(t);r.splice(e,1),n.className=r.join(" ")}}function v(n){d(n,L),d(n,E)}function l(n,t,e){r(n,"."+E).map(v),r(n,"."+L).map(v),e==T?s(t,E):s(t,L)}function g(n){return function(t,r){var e=n*t.str.localeCompare(r.str);return 0==e&&(e=t.index-r.index),e}}function h(n){return function(t,r){var e=+t.str,o=+r.str;return e==o?t.index-r.index:n*(e-o)}}function m(n,t,r){var e=u(n,t),o=e.map(function(n,t){return{str:n,index:t}}),i=e&&-1==e.map(isNaN).indexOf(!0),a=i?h(r):g(r);return o.sort(a),o.map(function(n){return n.index})}function p(n,t,r,o){for(var i=f(o,E)?N:T,u=m(n,r,i),c=0;t>c;++c){var s=e(n,c),d=a(n,c);s.forEach(function(n,t){n.innerHTML=d[u[t]]})}l(n,o,i)}function x(n,t){var r=t.length;t.forEach(function(t,e){t.addEventListener("click",function(){p(n,r,e,t)}),s(t,"tg-sort-header")})}var T=1,N=-1,E="tg-sort-asc",L="tg-sort-desc";return function(t){var e=n.getElementById(t),o=r(e,"tr"),i=o.length>0?r(o[0],"td"):[];0==i.length&&(i=r(o[0],"th"));for(var u=1;u<o.length;++u){var a=r(o[u],"td");if(a.length!=i.length)return}x(e,i)}}(document);document.addEventListener("DOMContentLoaded",function(n){TgTableSort("tg-T61TW")});</script>
+
+
+
+
+
+<STYLE>   
+   
+ #btn_submit input { -webkit-border-radius: 3px !important;    -moz-border-radius: 3px !important;         border-radius: 3px !important; color: #ffffff !important; padding: 5px 3px 5px 3px !important; border: solid #005270 1px !important; text-decoration: none !important; font-size: 10pt; font-family: "GE Inspira" !important; line-height: 12px; padding-top: 5px; width: 120px !important; text-shadow: 0 1px rgba(255, 255, 255, 0.25) !important; background: #005cb9 !important; background-image: none !important; text-align: center !important; cursor: pointer !important; color: #FFF !important; border-radius: 3px !important; border: solid 1px #d3d3d3 !important; -webkit-appearance: none !important;}
+
+ #btn_submit input:hover {  -webkit-border-radius: 3px !important;    -moz-border-radius: 3px !important;         border-radius: 3px !important; color: #ffffff !important; padding: 3px 5px 3px 5px !important; border: solid #005270 1px !important; text-decoration: none !important; font-size: 10pt; font-family: "GE Inspira","Arial" !important; line-height: 14px; padding-top: 5px; width: 120px !important; text-shadow: 0 1px rgba(255, 255, 255, 0.25) !important; background: #4bb000 !important; background-image: none !important; text-align: center !important; cursor: pointer !important; color: #FFF !important; border-radius: 3px !important; border: solid 1px #005270 !important; -webkit-appearance: none !important; margin-top: 4px;}
+
+
+
+ #btn_assign input { -webkit-border-radius: 3px !important;    -moz-border-radius: 3px !important;         border-radius: 3px !important; color: #ffffff !important; padding: 7px 7px 7px 7px !important; border: solid #005270 1px !important; text-decoration: none !important; font-size: 10pt; font-family: "GE Inspira","Arial" !important; line-height: 12px; padding-top: 5px; width: 120px !important; text-shadow: 0 1px rgba(255, 255, 255, 0.25) !important; background: #005cb9 !important; background-image: none !important; text-align: center !important; cursor: pointer !important; color: #FFF !important; border-radius: 3px !important; border: solid 1px #d3d3d3 !important; -webkit-appearance: none !important;}
+
+ #btn_assign input:hover {  -webkit-border-radius: 2px !important;    -moz-border-radius: 2px !important;         border-radius: 3px !important; color: #ffffff !important; padding: 3px 5px 3px 5px !important; border: solid #ffffff 1px !important; text-decoration: none !important; font-size: 10pt; font-family: "GE Inspira","Arial" !important; line-height: 10px; padding-top: 5px; width: 120px !important; text-shadow: 0 1px rgba(255, 255, 255, 0.25) !important; background: #696969 !important; background-image: none !important; text-align: center !important; cursor: pointer !important; color: #FFF !important; border-radius: 3px !important; border: solid 1px #005270 !important; -webkit-appearance: none !important; margin-top: 4px;}
+
+
+#btn_edt input { -webkit-border-radius: 3px !important;    -moz-border-radius: 3px !important;         border-radius: 3px !important; color: #696969 !important; padding: 5px 3px 5px 3px !important; border: solid #005270 0px !important; text-decoration: none !important; font-size: 10pt; font-family: "GE Inspira" !important; line-height: 8px; padding-top: 5px; width: 110px !important; text-shadow: 0 1px rgba(255, 255, 255, 0.25) !important; background: #696969 !important; background-image: none !important; text-align: center !important; cursor: pointer !important; color: #FFF !important; border-radius: 3px !important; border: solid 1px #d3d3d3 !important; -webkit-appearance: none !important;}
+
+ 
+
+</STYLE>
+
+
+<div align="center" class="menu4" style="color: rgb(255, 255, 255);" jquery110203709408966605221="8" jquery110209047916265042698="8" jquery110205301953788760403="8" jquery1102004742353164694724="8"><strong><font size="2"><span id="btn_edt"><SpotfireControl id="0ec684d7eecd483cbd6c992d119e40ff" /></span></font></strong></div></div>
+
+<script type="text/javascript">
+
+$(function() {
+//$('.countryLabel').css( "background-color", "" );
+});
+
+//$(".country").animate({width:'600px'}, 300);
+
+$( ".menu" ).click(function() {  
+$( this ).toggleClass( "active" );
+if($(this).hasClass("active"))
+{
+$("#panel").animate({left:'0px'}, 300);
+document.getElementById('panel4').style.display = "none";
+}
+else
+{
+$("#panel").animate({left:'-200px'}, 300);
+document.getElementById('panel').style.display = "inline";
+document.getElementById('panel4').style.display = "inline";
+}
+
+
+});
+//.side1.multiple
+//.side1.multiple
+$(function() {
+$('.countryLabel').css( "background-color", "" );
+});
+
+$(".country").animate({width:'600px'}, 300);
+
+$( ".menu4" ).click(function() {  
+$( this ).toggleClass( "active4" );
+if($(this).hasClass("active4"))
+{
+$("#panel4").animate({left:'0px'}, 100);
+document.getElementById('panel').style.display = "none";
+}
+else
+{
+$("#panel4").animate({left:'-1010px'},50);
+document.getElementById('panel').style.display = "inline";
+document.getElementById('panel4').style.display = "inline";
+}
+
+
+});
+</script>
+
+
+<script type="text/javascript">
+  function AllowNumbersOnly(e) {
+    var code = (e.which) ? e.which : e.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      e.preventDefault();
+    }
+  }
+</script>
+
+<style>
+  .default-scroll {
+/* fix for Spotfire scrollbar update issue */
+height: 100%;
+-webkit-overflow-scrolling: touch;
+overflow: auto;
+}
+
+</style>
+
+<style type="text/css">.button{text-decoration:none; text-align:center;  padding:4px 21px;  border:none;    font:14px GE Inspira;  font-weight:bold;  color:#ffffff;  background:#019fdd;  -webkit-box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;  -moz-box-shadow: 0px 0px -20px #bababa,  inset -19px -20px -20px #ffffff;   box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;      }.button:hover{  padding:4px 21px;  border:none;    font:14px Arial, Helvetica, sans-serif;  font-weight:bold;  color:#ffffff;  background:#0181b8;  -webkit-box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;  -moz-box-shadow: -20px -20px -20px #bababa,  inset -20px -20px -20px #ffffff;   box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;     }  #panel4 {   background-color: rgb(42,42,42);   -webkit-border-radius: 3px;   -moz-border-radius: 3px;   border-radius: 3px;   -webkit-border-top-left-radius: 0px;   -moz-border-radius-topleft: 0px;   border-top-left-radius: 0px;   -webkit-border-bottom-left-radius: 0px;   -moz-border-radius-bottomleft: 0px;   border-bottom-left-radius: 0px;   -webkit-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   -moz-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;    position: fixed;   z-index: 1300;   left: -200px;   width:310px;    height: 80%;   top: 43px; }  .menu4 { -webkit-transform:rotate(90deg);    -moz-transform:rotate(90deg);    -o-transform: rotate(90deg);    -ms-transform:rotate(90deg);    transform: rotate(90deg);
+  position: absolute;   top: 350px;   left: 960px;   cursor: pointer;   display: block;   vertical-align: bottom;   border: none;   width: 115px;   height: 37px;   outline: none;background-color:#777777; } .active4 {-webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);    -o-transform: rotate(90deg);    -ms-transform:rotate(90deg);    transform: rotate(90deg); background-color:#777777; left: 280px;   height: 37px;  }</stlye>
+
+
+
+
+
+<style type="text/css">.button{text-decoration:none; text-align:center;  padding:4px 21px;  border:none;    font:14px GE Inspira;  font-weight:bold;  color:#ffffff;  background:#019fdd;  -webkit-box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;  -moz-box-shadow: 0px 0px -20px #bababa,  inset -19px -20px -20px #ffffff;   box-shadow:0px 0px -20px #bababa, inset -19px -20px -20px #ffffff;      }.button:hover{  padding:4px 21px;  border:none;    font:14px Arial, Helvetica, sans-serif;  font-weight:bold;  color:#ffffff;  background:#0181b8;  -webkit-box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;  -moz-box-shadow: -20px -20px -20px #bababa,  inset -20px -20px -20px #ffffff;   box-shadow:-20px -20px -20px #bababa, inset -20px -20px -20px #ffffff;     }  #panel {   background-color: rgb(42,42,42);   -webkit-border-radius: 3px;   -moz-border-radius: 3px;   border-radius: 3px;   -webkit-border-top-left-radius: 0px;   -moz-border-radius-topleft: 0px;   border-top-left-radius: 0px;   -webkit-border-bottom-left-radius: 0px;   -moz-border-radius-bottomleft: 0px;   border-bottom-left-radius: 0px;   -webkit-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   -moz-box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;   box-shadow: 0px 0px 3px 0px #4d4d4d, 0px 0px 0px 8px #6b6b6b;    position: fixed;   z-index: 1500;   left: -200px;   width: 200px;    height: 93%;   top: 43px; }  .menu {   position: absolute;   top: 33px;   left: 200px;   cursor: pointer;   display: block;   vertical-align: bottom;   border: none;   width: 27px;   height: 88px;   outline: none; background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAABYCAMAAAAzxnylAAAAUVBMVEUAAAAAAAAAAAAAAAAAAABoaGgAAAAAAAAAAAAAAAAAAAAAAABjY2Nra2v///94eHjDw8Pm5uampqa5ubmUlJT39/fe3t7MzMyEhITv7+/V1dV6AtV5AAAADXRSTlMADEgkCvZFIRgFNyrYFZ88fQAAAQpJREFUSMft1t1qwzAMBeB1y1onmY4l/8XO+z/oGrNcWfZgrLBBz0Uu8oGMhTB6GWWetMzzYcbc2hhzOXBdrm2WteK7mo/V3I30LGbq2vXWt9e3y9P+kdkzrTHO8MjUmg5sXWs1x//fNusyBfE/uTtR/+7iwCN7eD/HNU8UsdRaKEDN1lrCmdCYyFdN5Ty/16/X58wxO73Xth5YsmaMlMqOpJkIsdAGq1nJd9sjKeYhHAs2zYg9A5ttrSa7/M28UH9eRtat6eEbO5MBq1lgyptX7xdizBFgzXZ4jySx0+sEx51eh4ggnV4DyXd6vaGEwKQa2b/zDj7tkTbeGRYzjXaU0W4z2IlGu9Q4n0+AZisAR9AwAAAAAElFTkSuQmCC") } .active { background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABYCAMAAACwAkWeAAAAUVBMVEUAAAAAAAAAAAAAAAAAAAAAAAD4sw8AAAAAAAAAAAD6tA8AAAAAAADtqw7/uA//////vTH/4Kz/8t7/253/0YH/7M7/yWT/+/T/5Lr/wkn/9umaqjwzAAAADnRSTlMAJAxICiH2RhgF9UE32NNTVY4AAAETSURBVEjH7dfbboMwDAbg0bVbOCyObZzT+z/oCiq39T9pUnvBL8HVJzkER5E/4IxXN+O4wRBuTkK4bHJY5u+nmZdhl9P05WT6GcIdRiBLuGJwvoHwc7ic8ISvgOmIA5mOMAz90ivx9vgfs6EXwbS2mEX/d8NjBDdcVmIYvvW/BkofUiRFB+b+qFwdaHQkP4cij9LeGtX2twKnUJkVaIq0L7I3FzKZdSNzoUhkiZWSC3u7QyvRg0rCpVN1YWRlopocuKet7S9nJoJnBoZYaSV14Z5GlFyYObaq/j7mUlohYhcaqZJJQZrCaGWkKXKhLEhTEJkiTVGp58zIzZXe/9I84QnhEQAeKuAxBR580FEKH87w/AJal6bQhpiLWwAAAABJRU5ErkJggg=="); left: 200px;   width: 39px;  } </style>
+</body>
+</html>
+</style>
+</div></div><br></font>
+
+-------------------------------------------
+Iron Python (Copy Record)
+-----------------------
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+from System import String
+#MessageBox.Show("Do you want to update record?")
+Document.Properties["tempaccrecid"]=""
+selDriver = DataValueCursor.CreateFormatted(table.Columns["Driver Name"])
+selAccRec = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID"])
+selReason = DataValueCursor.CreateFormatted(table.Columns["Reason For Unrec"])
+selAction_Plan = DataValueCursor.CreateFormatted(table.Columns["Action Plan"])
+selClosed_Date = DataValueCursor.CreateFormatted(table.Columns["Input Exp Closed DT"])
+selStatus = DataValueCursor.CreateFormatted(table.Columns["STATUS_CD"])
+selPL_Impact = DataValueCursor.CreateFormatted(table.Columns["EST_PL_IMPACT_AMT"])
+selOwner = DataValueCursor.CreateFormatted(table.Columns["Rec Team Owner"])
+selAccntMngr = DataValueCursor.CreateFormatted(table.Columns["Accountable Manager"])
+selHelp = DataValueCursor.CreateFormatted(table.Columns["Dependency/Help"])
+selLeader = DataValueCursor.CreateFormatted(table.Columns["Accountable Leader"])
+selPending = DataValueCursor.CreateFormatted(table.Columns["#Pending Actions"])
+selExpectPerRecon = DataValueCursor.CreateFormatted(table.Columns["Exptd Period Reconciled"])
+selPLImpact = DataValueCursor.CreateFormatted(table.Columns["P&L Impact if known in K $USD"])
+
+
+markedRows = Document.Data.Markings["Update"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selDriver, selAccRec, selReason, selAction_Plan, selClosed_Date, selStatus, selPL_Impact, selOwner, selAccntMngr, selHelp, selLeader, selPending, selExpectPerRecon, selPLImpact ))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["tempdriver"]=selDriver.CurrentValue
+			Document.Properties["tempaccrecid"]=selAccRec.CurrentValue
+			Document.Properties["IReasonForUnrec"]=selReason.CurrentValue
+			Document.Properties["IActionPlan"]=selAction_Plan.CurrentValue
+			Document.Properties["tempdate"]=selClosed_Date.CurrentValue
+			Document.Properties["iStatusCd"]=selStatus.CurrentValue
+			Document.Properties["tempplimpactamt"]=selPL_Impact.CurrentValue
+			Document.Properties["irecteam"]=selOwner.CurrentValue
+			Document.Properties["iAccntMngr"]=selAccntMngr.CurrentValue
+			Document.Properties["temphelp"]=selHelp.CurrentValue
+			Document.Properties["tempaccleader"]=selLeader.CurrentValue
+			Document.Properties["temppendingaction"]=selPending.CurrentValue
+			Document.Properties["tempExpectPerRecon"]=selExpectPerRecon.CurrentValue
+			Document.Properties["iPLImpact"]=selPLImpact.CurrentValue
+			
+
+finally:
+		tblgetrows.Dispose()
+		
+if len(Document.Properties["tempdriver"])==0:
+   Document.Properties["IDriverNme"]=Null
+else:
+  Document.Properties["IDriverNme"]=Document.Properties["tempdriver"]
+  
+if String.IsNullOrEmpty(Document.Properties["tempplimpactamt"])==True:
+   Document.Properties["iEstPlImpactAmt"]=Null
+else:
+   Document.Properties["iEstPlImpactAmt"]=Document.Properties["tempplimpactamt"]
+   
+if str(Document.Properties["tempdate"])=="":
+ Document.Properties["iExpectedCloseDt"]=None
+else:
+  Document.Properties["iExpectedCloseDt"]=Document.Properties["tempdate"]
+
+if String.IsNullOrEmpty(Document.Properties["temphelp"])==True:
+   Document.Properties["ihelp"]=Null
+else:
+   Document.Properties["ihelp"]=Document.Properties["temphelp"]
+   
+if String.IsNullOrEmpty(Document.Properties["tempaccrecid"])==True:
+   Document.Properties["Messagetext"]="Mark at least one record to update"
+else:
+  Document.Properties["Messagetext"]=""
+
+if len(Document.Properties["tempaccleader"])==0:
+   Document.Properties["Iaccleader"]=Null
+else:
+   Document.Properties["Iaccleader"]=Document.Properties["tempaccleader"]
+
+if len(Document.Properties["temppendingaction"])==0:
+   Document.Properties["Ipendingaction"]=Null
+else:
+   Document.Properties["Ipendingaction"]=Document.Properties["temppendingaction"]
+   
+if len(Document.Properties["tempExpectPerRecon"])==0:
+   Document.Properties["iExpectPerRecon"]=Null
+else:
+  Document.Properties["iExpectPerRecon"]=Document.Properties["tempExpectPerRecon"]
+  
+  -----
+  Parameters:
+  table : IFL_UNREC_TRACKER
+  
+  -------------------------------------------------------------------------------
+  Iron Python (Update btn)
+  -------------------------------------------------------------------------------
+  import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+#MessageBox.Show("Do you want to update record?")
+Document.Properties["markedaccrecid"]=""
+selACCOUNT_REC_ID = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID"])
+markedRows = Document.Data.Markings["Update"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["markedaccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			Document.Properties["iaccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			
+finally:
+		tblgetrows.Dispose()
+
+if (Document.Properties["markedaccrecid"].strip()==""):
+       Document.Properties["Messagetext"]="Mark at least one record to update"
+else:
+     Document.Properties["pHelp"]=Document.Properties["ihelp"].replace("'","~&~")
+     Document.Properties["pDriverNme"]=Document.Properties["IDriverNme"]
+     Document.Properties["pReasonForUnrec"]=Document.Properties["IReasonForUnrec"].replace("'","~&~")
+     Document.Properties["pActionPlan"]=Document.Properties["IActionPlan"].replace("'","~&~")
+     Document.Properties["pExpectedCloseDt"]=Document.Properties["iExpectedCloseDt"]
+     Document.Properties["pStatusCd"]=Document.Properties["iStatusCd"]
+     Document.Properties["pEstPIImpactAmt"]=Document.Properties["iEstPlImpactAmt"]
+     Document.Properties["pRecTeam"]=Document.Properties["irecteam"].replace("'","~&~")
+     Document.Properties["pAccntMngr"]=Document.Properties["iAccntMngr"].replace("'","~&~")
+     Document.Properties["paccleader"]=Document.Properties["Iaccleader"].replace("'","~&~")
+     Document.Properties["ppendingaction"]=Document.Properties["Ipendingaction"].replace("'","~&~")
+     Document.Properties["pExpectPerRecon"]=Document.Properties["iExpectPerRecon"]
+     Document.Properties["pPLImpact"]=Document.Properties["iPLImpact"].replace("'","~&~")
+     dataTable.Refresh()
+     print("success")
+     Document.Properties["IDriverNme"]=""
+	 
+     Document.Properties["IReasonForUnrec"]=""
+     Document.Properties["IActionPlan"]=""
+     Document.Properties["iExpectedCloseDt"]=None
+     Document.Properties["iStatusCd"]=""
+     Document.Properties["iEstPlImpactAmt"]=""
+     Document.Properties["irecteam"]=""
+     Document.Properties["iAccntMngr"]=""
+     Document.Properties["ihelp"]=""
+     Document.Properties["Iaccleader"]=""
+     Document.Properties["Ipendingaction"]=""
+     Document.Properties["iExpectPerRecon"]=""
+     Document.Properties["iPLImpact"]=""
+     Document.Properties["Messagetext"]="Success."
+
+------------
+Parameters:
+table : IFL_UNREC_TRACKER (Main)
+dataTable : IFL_UNREC_MULT_ROWS_NEW (data-on-demand)
+vis : Table visual
+
+----------------------------------------------------------------------------------------------------------
+Stored Procedure to Update
+---------------------------------------
+
+create or replace Procedure P_R2r_Unrec_Comments_Update_v1(
+i_src_acctId_period IN VARCHAR,
+I_Driver_Nme In Varchar,
+I_Reason_For_Unrec In Varchar,
+i_Update_By_Sso IN Varchar,
+I_Action_Plan In Varchar,
+i_Expected_Close_Dt IN Date,
+I_Status_Cd In Varchar,
+I_Est_Pl_Impact_Amt In Varchar,
+I_Rec_Team_Owner_Nme In Varchar,
+I_Dependency_Desc In Varchar,
+I_Accountable_Leader_Nme In Varchar,
+i_Pending_actions_nbr In Varchar,
+i_Expected_Period_Reconciled In Varchar,
+i_accountable_mgr_nme In Varchar,
+i_pl_impact In Varchar --Added on 03/15
+) As
+Begin
+ Merge Into R2r_Ods.T_R2r_Unrec_Comments A
+Using ( Select SUBSTR(trim(regexp_substr(i_src_acctId_period, '[^,]+', 1, LEVEL)),-(case when substr(trim(regexp_substr(I_Src_Acctid_Period, '[^,]+', 1, LEVEL)),-11)='GEHC_Manual' then 11 else 3 end )) source_cd,
+substr(Trim(Regexp_Substr(i_src_acctId_period, '[^,]+', 1, Level)),1,length(Trim(Regexp_Substr(i_src_acctId_period, '[^,]+', 1, Level)))-(case when substr(trim(regexp_substr(I_Src_Acctid_Period, '[^,]+', 1, LEVEL)),-11)='GEHC_Manual' then 19 else 11 end )) account_rec_id,
+Substr(Trim(Regexp_Substr(i_Src_Acctid_Period, '[^,]+', 1, Level)),-(case when substr(trim(regexp_substr(I_Src_Acctid_Period, '[^,]+', 1, LEVEL)),-11)='GEHC_Manual' then 18 else 10 end ),6) Period_Id,
+I_Driver_Nme Driver_Nme,I_Reason_For_Unrec Reason_For_Unrec,I_Update_By_Sso Update_By_Sso,I_Action_Plan Action_Plan,I_Expected_Close_Dt Expected_Close_Dt,I_Status_Cd Status_Cd,I_Est_Pl_Impact_Amt Est_Pl_Impact_Amt,i_REC_TEAM_OWNER_NME REC_TEAM_OWNER_NME,i_DEPENDENCY_DESC DEPENDENCY_DESC,I_Accountable_Leader_Nme Accountable_Leader_Nme,i_Pending_actions_nbr Pending_actions_nbr
+,i_Expected_Period_Reconciled Expected_Period_Reconciled ,i_accountable_mgr_nme as accountable_mgr_nme, i_pl_impact as pl_impact
+From Dual
+Connect By Instr(i_src_acctId_period, ',', 1, Level - 1) > 0) B
+on
+(
+A.Source_Cd=B.Source_Cd And 
+a.Account_Rec_Id =b.Account_Rec_Id and 
+A.Period_Id =B.Period_Id
+)
+When Matched Then Update 
+set a.Driver_Nme=	b.Driver_Nme,
+a.Reason_For_Unrec=	b.Reason_For_Unrec,
+a.Update_By_Sso=	b.Update_By_Sso,
+a.Action_Plan=	b.Action_Plan,
+a.Expected_Close_Dt=	b.Expected_Close_Dt,
+A.Status_Cd=	B.Status_Cd,
+A.Est_Pl_Impact_Amt=	B.Est_Pl_Impact_Amt,
+A.Etl_Modified_Dt=Sysdate,
+A.Etl_Modified_By=B.Update_By_Sso,
+A.Rec_Team_Owner_Nme=B.Rec_Team_Owner_Nme,
+A.Dependency_Desc=B.Dependency_Desc,
+--A.Accountable_Leader_Nme=b.Accountable_Leader_Nme,
+A.Pending_Actions_Nbr=B.Pending_Actions_Nbr
+,A.Expected_Period_Reconciled=B.Expected_Period_Reconciled,
+A.accountable_mgr_nme = B.accountable_mgr_nme,
+A.pl_impact = b.pl_impact
+
+When Not Matched Then Insert (Source_Cd, Account_Rec_Id, Period_Id, Driver_Nme, Reason_For_Unrec, Update_By_Sso, Action_Plan, Expected_Close_Dt, Status_Cd, Est_Pl_Impact_Amt,Etl_Created_Dt,Etl_Created_By,Etl_Delete_Ind,Etl_Current_Ind,Etl_Start_Dt,Etl_End_Dt,Rec_Team_Owner_Nme,Dependency_Desc,
+--Accountable_Leader_Nme,
+Pending_Actions_Nbr
+,Expected_Period_Reconciled,accountable_mgr_nme,pl_impact
+)
+Values (B.Source_Cd, B.Account_Rec_Id, B.Period_Id,B.Driver_Nme,B.Reason_For_Unrec,B.Update_By_Sso,B.Action_Plan,B.Expected_Close_Dt,B.Status_Cd,B.Est_Pl_Impact_Amt,Sysdate,'P_R2R_UNREC_COMMENTS_UPDATE','N','Y',Sysdate,Sysdate,B.Rec_Team_Owner_Nme,B.Dependency_Desc,
+--B.Accountable_Leader_Nme,
+B.Pending_Actions_Nbr
+,B.Expected_Period_Reconciled,B.accountable_mgr_nme,b.pl_impact
+);
+Commit;
+End
+P_R2r_Unrec_Comments_Update_v1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
