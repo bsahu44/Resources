@@ -1,0 +1,9 @@
+Refer Custom-modal
+---------------------
+Use this in any text area
+------------------------------
+
+<div class="go-modal-custom" style="position:fixed;top:56.3%;left:99%;z-index:100">
+<go-modal-custom data-page="RTA_due_4" data-folder="RTA_r2r" data-title="Information"></go-modal-custom>
+</div>
+
