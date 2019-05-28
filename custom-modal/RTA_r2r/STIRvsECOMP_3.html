@@ -1,0 +1,23 @@
+<div class="ggo-popup" style="max-width: 900px; display: inline-block; border-radius: 5px; box-shadow: 0px 0px 10px -4px; position: relative; top: 10%; font-family: 'GE Inspira', Arial, 'Helvetica Neue',Helvetica, sans-serif;">
+<table class="ggo-table" style="font-family: 'GE Inspira', Arial, 'Helvetica Neue', Helvetica, sans-serif; border-spacing: 0;">
+<tbody>
+<tr class="first even">
+<th class="ggo-metric" style="width: 10%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Metric Name</th>
+<th class="ggo-definition" style="width: 20%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Definition</th>
+<th class="ggo-calc" style="width: 70%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Color By</th>
+</tr>
+
+<tr class="ggo-zebra" style="background: #F1F1F1;">
+<td class="ggo-metric" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">Tax Filing Due Dates - STIR vs. eCompliance</td>
+<td class="ggo-definition" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">Rec counts comparison of Matched and Unmatched Tax Filing Dates between STIR and eCompliance.</td>
+<td class="ggo-calc" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">
+<ul><li>Both Blank : ([Tax Filing Due Date_ECOMP] is null) and ([Tax Filing Due Date_STIR] is null)</li>
+<li>Match : [Tax Filing Due Date_ECOMP]=[Tax Filing Due Date_STIR]</li>
+<li>ECOMP is null : ([Tax Filing Due Date_ECOMP] is null) and ([Tax Filing Due Date_STIR] is not null)</li>
+<li>STIR is null : ([Tax Filing Due Date_ECOMP] is not null) and ([Tax Filing Due Date_STIR] is null)</li>
+<li>Both Not Null : [Tax Filing Due Date_ECOMP]!=[Tax Filing Due Date_STIR]</li></ul></td>
+
+</tr>
+</tbody>
+</table>
+</div>

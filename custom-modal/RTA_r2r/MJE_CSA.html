@@ -1,0 +1,27 @@
+<div class="ggo-popup" style="max-width: 900px; display: inline-block; border-radius: 5px; box-shadow: 0px 0px 10px -4px; position: relative; top: 10%; font-family: 'GE Inspira', Arial, 'Helvetica Neue',Helvetica, sans-serif;">
+<table class="ggo-table" style="font-family: 'GE Inspira', Arial, 'Helvetica Neue', Helvetica, sans-serif; border-spacing: 0;">
+<tbody>
+<tr class="first even">
+<th class="ggo-metric" style="width: 10%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Metric Name</th>
+<th class="ggo-definition" style="width: 20%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Definition</th>
+<th class="ggo-calc" style="width: 70%; background: #3693F8; height: 25px; padding: 0px 10px; text-align: left; color: white; font-weight: normal; font-size: 14px;">Current Step Aging Bucket</th>
+</tr>
+
+<tr class="ggo-zebra" style="background: #F1F1F1;">
+<td class="ggo-metric" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">MJE Current Step Aging</td>
+<td class="ggo-definition" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">Recs distributed across different Current Step Aging intervals at different MJE Current Steps.</td>
+<td class="ggo-calc" style="color: #58595b; border-bottom: 2px solid #DCDCDC; padding: 10px; text-align: left; font-size: 14px; vertical-align: top;">
+[Current Step Aging] : It is the Date Difference in terms of days between [MJE Updated Date] and DateTimeNow() when [MJE Form Status] is not "Approved/Closed"
+<br>
+<ul><li>1 Week : [Current Step Aging]&lt=7 </li>
+<li>2 Weeks : ([Current Step Aging]>=8) And ([Current Step Aging]&lt=14)</li>
+<li>3 Weeks : ([Current Step Aging]>=15) And ([Current Step Aging]&lt=21)</li>
+<li>4 Weeks : ([Current Step Aging]>=22) And ([Current Step Aging]&lt=28)</li>
+<li>5 Weeks : ([Current Step Aging]>=29) And ([Current Step Aging]&lt=35)</li>
+<li>> 5 Weeks : [Current Step Aging]>35</li>
+</ul></td>
+
+</tr>
+</tbody>
+</table>
+</div>
