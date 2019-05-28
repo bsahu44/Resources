@@ -1,0 +1,13 @@
+$(function() {
+	var webPlayerVersion = !(( window.location + '').indexOf('http://localhost') >= 0);
+
+	if (webPlayerVersion)
+	{	
+	   
+
+	   $($('.sfpc-top .sf-element-tab-group .sf-element-page-tab')[3]).show();
+	   $($('.sfpc-top .sf-element-tab-group .sf-element-page-tab')[4]).hide();
+	   $($('.sfpc-top .sf-element-tab-group .sf-element-page-tab')[5]).hide();
+
+	}
+});
