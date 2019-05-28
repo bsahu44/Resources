@@ -3,6 +3,8 @@ Refer Custom-modal
 Use this in any text area
 ------------------------------
 
+<link rel="stylesheet" href="/slideshow/custom-modal/styles/stylesRTA.css">
+<script type="text/javascript" src="/slideshow/custom-modal/scripts/main.js"></script>
 
 <div class="go-modal-custom" style="position:fixed;top:56.3%;left:51%;z-index:100">
 <go-modal-custom data-page="RTA_Due_3" data-folder="RTA_r2r" data-title="Information"></go-modal-custom>
