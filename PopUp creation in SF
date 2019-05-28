@@ -3,7 +3,15 @@ Refer Custom-modal
 Use this in any text area
 ------------------------------
 
+
+<div class="go-modal-custom" style="position:fixed;top:56.3%;left:51%;z-index:100">
+<go-modal-custom data-page="RTA_Due_3" data-folder="RTA_r2r" data-title="Information"></go-modal-custom>
+</div>
+
+<div class="go-modal-custom" style="position:fixed;top:6.25%;left:99%;z-index:100">
+<go-modal-custom data-page="RTA_due_2" data-folder="RTA_r2r" data-title="Information"></go-modal-custom>
+</div>
+
 <div class="go-modal-custom" style="position:fixed;top:56.3%;left:99%;z-index:100">
 <go-modal-custom data-page="RTA_due_4" data-folder="RTA_r2r" data-title="Information"></go-modal-custom>
 </div>
-
