@@ -1,0 +1,1470 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/ico" href="img/ge-monogram-blue.ico" />
+  <link rel="stylesheet" type="text/css" href="css/MapDemo.css">
+  <script type="text/javascript" src="https://globalops.analytics.ge.com/spotfire/wp/GetJavaScriptApi.ashx?Version=7.11"></script>
+  <script type="text/javascript" src="js/Mashup_cust_file.js"></script>
+
+</head>
+
+<body style="font-family:'GE Inspira';">
+  <h1 style="background-image: linear-gradient(-90deg, black, silver);">
+    <center><img src="img/ge-monogram-white.svg" alt="">
+      <font color="white" , size="16"> Spend Dashboard Mashup Demo </font>
+    </center>
+  </h1>
+  <nav class="nav sticky-top" style="background-color:silver;">
+    <div class="nav" style="background-color:silver;">
+      <div style="background-color:#F8F8F8;color:black;" class="Ctab nav-link" onClick="showDash('containersummary');">Spend Summary</div>
+      <div class="Ctab nav-link" onClick="showDash('containertrending');">Custom Trending</div>
+      <div class="Ctab nav-link" onClick="showDash('containersupplier');">Preferred Supplier</div>
+      <div class="Ctab nav-link" onClick="showDash('containersearch');">Supplier Search</div>
+      <div class="Ctab nav-link" onClick="showDash('containercustom');">Spend Custom Reporting</div>
+    </div>
+  </nav>
+
+
+  <div class="container-fluid px-0">
+    <div id="containersummary" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid px-0">
+    <div id="containertrending" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+
+
+    <div id="containersupplier" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+
+
+    <div id="containersearch" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+
+
+    <div id="containercustom" class="dashContainer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 pl-0">
+            <div id="topContainer">
+              <div class="loading text-align">
+                <img class="img-cen" src="img/ajax-loader.gif" />
+              </div>
+            </div>
+            <div id="bottomContainer">
+              <div class="row">
+                <!-- <div id="filterSection" class="col-18 pr-0">
+                  <div id="leftContainer">
+                    <div class="loading text-align">
+                      <img class="img-cen" src="img/ajax-loader.gif" />
+                    </div>
+                  </div>
+                </div> -->
+
+
+                <div id="fullWidth" class="col-12">
+                  <nav>
+                    <div class="nav nav-tabs" id="nav-sub-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-sub-custom-tab" data-toggle="tab" href="#nav-sub-custom" role="tab" aria-controls="nav-sub-custom" aria-selected="true">Selector</a>
+                    </div>
+                  </nav>
+
+                  <div class="tab-content" id="nav-sub-tabContent">
+                    <div class="tab-pane active show" id="nav-sub-custom" role="tabpanel" aria-labelledby="nav-sub-custom-tab">
+                      <div class="row">
+                        <div class="col-18">
+                          <div id="leftContainer">
+                            <div class="loading text-align">
+                              <img class="img-cen" src="img/ajax-loader.gif" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-82">
+                          <div id="filter-container" style="background-color:rgb(233, 233, 233);">
+                            <p id="filter-detail" class="m-0"></p>
+                          </div>
+                          <div id="customcontainer">
+                            <div class="loading text-align">
+                              <img class="img-cen" src="img/ajax-loader.gif" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="container-fluid pb-2" style="display:none;">
+                        <div id="column-button" class="row pb-2">
+                          <div class="col-12">
+                            <button class="btn btn-secondary btn-sm btn-block" onClick="hideColSelector('column-selector-Toggle');">Hide/Show</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div id="column-selector-Toggle" class="container pt-3" style="display:none;">
+                        <form>
+                        <div id="column-selector" class="row">
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".bu" data-toggle="collapse">Business Unit</button>
+                            </div>
+
+
+
+                            <div class="bu collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Business Tier 1" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Business Tier 2" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Business Tier 3" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Business Tier 4" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Legal Entity Code" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Legal Entity Name" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="ME_Code" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="ORG_ID" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="ORG_NAME" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".period" data-toggle="collapse">Period</button>
+                            </div>
+
+
+                            <div class="period collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Year
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Quarter
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Month
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".spend" data-toggle="collapse">Spend</button>
+                            </div>
+
+
+                            <div class="spend collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+
+
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".buyer" data-toggle="collapse">Buyer</button>
+                            </div>
+
+
+
+                            <div class="buyer collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".escoa" data-toggle="collapse">ESCOA</button>
+                            </div>
+
+
+                            <div class="escoa collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".supplier" data-toggle="collapse">Supplier</button>
+                            </div>
+
+
+                            <div class="supplier collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+
+
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".cash" data-toggle="collapse">Cash-Pay Terms</button>
+                            </div>
+
+
+
+                            <div class="cash collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".invoice" data-toggle="collapse">Invoice</button>
+                            </div>
+
+
+                            <div class="invoice collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".system" data-toggle="collapse">System</button>
+                            </div>
+
+
+                            <div class="system collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+
+
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".comm" data-toggle="collapse">Commodity</button>
+                            </div>
+
+
+
+                            <div class="comm collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".logistics" data-toggle="collapse">Logistics</button>
+                            </div>
+
+
+                            <div class="logistics collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".zycus" data-toggle="collapse">Zycus</button>
+                            </div>
+
+
+                            <div class="zycus collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+
+
+
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".contract" data-toggle="collapse">Contract</button>
+                            </div>
+
+
+
+                            <div class="contract collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".po" data-toggle="collapse">PO</button>
+                            </div>
+
+
+                            <div class="po collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".cap" data-toggle="collapse">Capital Specific</button>
+                            </div>
+
+
+                            <div class="cap collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+
+                          <div class="col-2">
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".reg" data-toggle="collapse">Country Region</button>
+                            </div>
+
+
+
+                            <div class="reg collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".prefer" data-toggle="collapse">Preferred</button>
+                            </div>
+
+
+                            <div class="prefer collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+
+                            <div class="pb-1">
+                              <button class="btn btn-primary btn-sm" data-target=".period1" data-toggle="collapse">Period</button>
+                            </div>
+
+
+                            <div class="period1 collapse">
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt1">
+                                <label class="form-check-label" for="bt1">
+                                  Business Tier 1
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt2">
+                                <label class="form-check-label" for="bt2">
+                                  Business Tier 2
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt3">
+                                <label class="form-check-label" for="bt3">
+                                  Business Tier 3
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="bt4">
+                                <label class="form-check-label" for="bt4">
+                                  Business Tier 4
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="lec">
+                                <label class="form-check-label" for="lec">
+                                  Legal Entity Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="len">
+                                <label class="form-check-label" for="len">
+                                  Legal Entity Name
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="mc">
+                                <label class="form-check-label" for="mc">
+                                  ME_Code
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oi">
+                                <label class="form-check-label" for="oi">
+                                  ORG_ID
+                                </label>
+                              </div>
+
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="on">
+                                <label class="form-check-label" for="on">
+                                  ORG_NAME
+                                </label>
+                              </div>
+
+
+                            </div>
+
+
+                          </div>
+                        </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    $(document).ready(function() {
+      $(".dashContainer").css("z-index", "0");
+      $(".dashContainer").css("visibility", "hidden");
+      $("#containersummary").css("z-index", "1");
+      $("#containersummary").css("visibility", "visible");
+      $(".Ctab").click(function() {
+        $(".Ctab").css("backgroundColor", "silver");
+        $(".Ctab").css("color", "black");
+        $(this).css("backgroundColor", "#F8F8F8");
+        $(this).css("color", "black");
+      });
+    });
+  </script>
+</body>
+
+</html>

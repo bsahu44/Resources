@@ -1,0 +1,143 @@
+
+body {
+    background-color: white;
+    overflow-x: hidden;
+}
+p{
+    font-size: 12px;
+}
+
+.dashContainer {
+    height:105%;
+    width: 100vw;
+    position:absolute;
+}
+
+form {
+  word-break: break-word;
+  font-size: smaller;
+}
+
+#topContainer {
+    height:20vh;
+}
+
+#bottomContainer {
+    height:71vh;
+
+}
+
+#nav-tab {
+    background-color: silver;
+}
+
+#nav-sub-tab {
+    background-color: silver;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #ddd;
+}
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+
+a {
+    color: black;
+}
+
+.img-cen {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}
+#leftContainer{
+    height: 77.7vh;
+}
+
+.col-18 {
+    /* position:relative; */
+    /* width:100%; */
+    width:18%;
+    min-height:1px;
+    padding-right:0;
+    padding-left:15px;
+    /* -webkit-box-flex: 0; */
+    /* flex:0 0 18%; */
+    /* max-width: 18% */
+}
+
+.col-82 {
+    /* position:relative; */
+    /* width:100%; */
+    width:82%;
+    min-height:1px;
+    padding-right:15px;
+    padding-left: 0;
+    /* padding-left:15px; */
+    /* -webkit-box-flex: 0; */
+    /* flex:0 0 82%; */
+    /* max-width: 82% */
+}
+
+
+/* Media Query */
+@media (min-width: 992px) {
+
+#topContainer {
+    height:20vh;
+}
+
+#bottomContainer {
+    height:71vh;
+}
+
+}
+
+@media (min-width: 1200px) {
+
+#topContainer {
+    height:17vh;
+}
+
+
+#bottomContainer {
+    height:81vh;
+}
+
+#leftContainer{
+    height: 86.8vh;
+}
+}
+
+@media (min-width: 1600px) {
+
+#topContainer {
+    height:15vh;
+}
+
+
+#bottomContainer {
+    height:81vh;
+}
+
+#leftContainer{
+    height: 91.8vh;
+}
+}
+
+@media (min-width: 1800px) {
+
+#topContainer {
+    height:15vh;
+}
+
+
+#bottomContainer {
+    height:81vh;
+}
+
+#leftContainer{
+    height: 96.8vh;
+}
+}
