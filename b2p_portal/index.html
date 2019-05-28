@@ -1,0 +1,249 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" 
+      type="image/png" 
+      href="img/ge-monogram-blue.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/icon-font.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+ <title>B2P Portal</title>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+<script>
+var searchBy=1;
+var dashboardPath="https://globalops.analytics.ge.com/spotfire/wp/render/828498324740/analysis?file=/GlobalOps/Buy_to_Pay/Analytics/B2P-Ops&configurationBlock=SearchSelect=";
+
+var dashboardPath2="https://globalops.analytics.ge.com/spotfire/wp/render/828498324740/analysis?file=/GlobalOps/Buy_to_Pay/Analytics/B2P-Ops&configurationBlock=TopSuppliersXXX=";
+
+function setSelection(id) {
+	searchBy= id;
+	if(searchBy==1)
+	 {
+	 $("#searchInput").attr("placeholder", "Enter Invoice Number");
+	 }
+	 else if(searchBy==2){ 
+	 $("#searchInput").attr("placeholder", "Enter PO Number");
+	 }
+	 else{
+	 $("#searchInput").attr("placeholder", "Enter Supplier Name");
+	 }
+	$('#searchInput').focus();
+}
+// remove warning when user click on input. Submit search when Enter button is pressed.
+$("#searchInput").on( "keyup", function() {
+  $(this).removeClass("input-error");
+   if (event.keyCode == 13) {
+         goSearch();
+        }
+});
+
+function goSearch()
+{
+var val = $("#searchInput").val();
+//check if search input is empty
+	if(!val){
+		$('#searchInput').addClass("input-error");
+		$('#searchInput').focus();
+		return;
+	}
+	else{
+		if(searchBy<3) {
+			// set active page as search and set all document properties with options
+			window.open(dashboardPath+searchBy+";SearchText=\""+val+"\";SearchSelectHelp="+searchBy+";SearchTextHelp=\""+val+"\";SetPage(pageTitle = \"Search\");&options=5-0,6-0,11-0,9-0");
+		 }
+		 else{
+			var searchterm="[VENDOR_NAME]";
+			   if(searchBy==3)
+			   {
+					searchterm="[VENDOR_NAME]";
+				} else if(searchBy==4){
+					searchterm="[VENDOR_GSL]";
+				} else {
+					searchterm="[VENDOR_SITE_GSL]";
+				}
+			 // set active page as B2P Suppliers and set all document properties with options
+			window.open(dashboardPath2+searchterm+";SearchValue=\""+val+"\";SetPage(pageTitle = \"B2P Suppliers\");&options=5-0,6-0,11-0,9-0");
+		}
+		$('#searchInput').val("");
+	}
+}
+</script>
+
+<style>
+			            
+			.frame_container {
+				width: 100%;
+				height: 52px;
+				position: relative;
+				margin: 0px;
+				padding: 0px;
+				top: 0%;
+				visibility: hidden;
+			}
+			
+			.iframe {
+				width: 100%;
+				height: 100%;
+				visibility: hidden;
+			}
+			
+			.request_text_normal {
+				text-align: center;
+				font-family: GE Inspira sans;
+				color:#FFFFFF;
+			}
+</style>
+
+</head>
+<body id="hero-area">
+<div class="overlay"></div>
+<div class="header-top-area menu-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- START LOGO -->
+          <div class="logo"> <a  target="_blank" href="http://fdl.digital.ge.com/" title="Finance Data Lake"><img src="img/ge-monogram-white.svg" alt=""> <span style="font-family:'GE Inspira';font-size: 26px;font-weight: normal;padding-left: 10px;color:#fff;">FDL </span></a></div>
+          <!-- END LOGO -->
+        </div>
+        <div class="col-md-9">
+          <!-- START MAIN MENU -->
+          <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <!--  <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            
+            </div> -->
+            <!-- Collect the nav links, forms, and other content for toggling 
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                
+                <li class=""><a class="smoth-scroll" href="#aboutus">DATA LANDSCAPE</a></li>
+               
+
+              </ul>
+            </div>-->
+            <!-- /.navbar-collapse -->
+          </nav>
+          <!-- END MAIN MENU -->
+        </div>
+      </div>
+    </div>
+  </div
+<section id="services" class="services">
+<div  id="frame_container" class="frame_container">
+			<iframe id="iframe" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="https://fdl-monitor.digital.ge.com/fdl-header/"></iframe>
+		</div>
+  <div class="container">
+<div class="row">
+<div class="col-md-12">
+       <div class="row">
+      <div class="section-title">
+        <h2>BUY TO PAY PORTAL</h2>
+      </div>
+	  <div>
+	<p class="request_text_normal">
+	As per the newly introduced access policy, the access to MyGlobalMetrics 'open' dashboards is now governed by a generic IDM Distribution list. <br>
+	Please click on the following request button to request access:</p>
+	
+	<center><button type="button" class="btn btn-default" onclick=" window.open('http://sc.ge.com/*MGMAccessRequest', '_blank'); return false;" >REQUEST ACCESS</button></center>
+</div>
+    </div>
+      </div>
+      <div class="service-callouts">
+        <div class="col-sm-6 col-md-3" onclick="window.open('http://sc.ge.com/*B2POpsDashboard');">
+          <div class="single-service"> <span class="service-bar"></span>
+            <div class="service-icon"> <i class="lnr lnr-cart"></i> </div>
+           <h5 class="margin-bottom-1">Buy To Pay <br>
+            Operational</h5>
+            <p>Accounts Payable Invoice Hold Metrics</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3" onclick="window.open('http://sc.ge.com/*B2POCRDashboardFDL');">
+          <div class="single-service"> <span class="service-bar"></span>
+            <div class="service-icon"> <i class="lnr lnr-printer"></i> </div>
+            <h5 class="margin-bottom-1">OCR <br> Performance</h5>
+            <p>OCR Extraction and Posting performance</p>
+          </div>
+        </div>
+      <!--  <div class="col-sm-6 col-md-3" onclick="window.open('http://sc.ge.com/*B2PDataWarehouse');">
+          <div class="single-service"> <span class="service-bar"></span>
+            <div class="service-icon"> <i class="lnr lnr-book"></i> </div>
+             <h5 class="margin-bottom-1">B2P Warehouse <br> Metrics</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit..</p>
+          </div>
+        </div> -->
+        <div class="col-sm-6 col-md-3" onclick="window.open('http://sc.ge.com/*B2PDataWarehouseHistory');">
+          <div class="single-service"> <span class="service-bar"></span>
+            <div class="service-icon"> <i class="lnr lnr-download"></i> </div>
+            <h5 class="margin-bottom-1">Data Export <br> tool</h5>
+            <p>Self Service Reporting <br>&nbsp;</p>
+          </div>
+        </div>
+		
+       <div class="col-sm-6 col-md-3" onclick="window.open('http://sc.ge.com/*IndirectSourcingOSCFDL');">
+          <div class="single-service"> <span class="service-bar"></span>
+            <div class="service-icon"> <i class="lnr lnr-link"></i> </div>
+            <h5 class="margin-bottom-1">Oracle Service<br> Cloud</h5>
+            <p>Accounts Payable Customer Service</p>
+          </div>
+        </div>
+      </div>
+    </div>
+	 <div class=" row">
+      <div class="col-md-12">
+        <div class="ln-sp">
+        <div class="text-center" style="padding-top:20px">
+          <h2 class="margin-bottom-1 text-color">SEARCH</h2>
+         <!-- <h3 class="margin-bottom-2">CREATE ANY WEBSITE QUICKLY</h3> -->
+         
+		 
+			<form class="form-inline">
+			  <div class="form-group" style="padding-right:20px">
+			  
+		<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="searchMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Search By
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="searchMenu">
+    <li onclick="setSelection(1)" value="1"><a href="#">Invoice Number</a></li>
+    <li onclick="setSelection(2)" value="2"><a href="#">PO Number</a></li>
+	<li role="separator" class="divider"></li>
+    <li onclick="setSelection(3)" value="3"><a href="#">Supplier Name</a></li>
+	<!--
+    <li onclick="setSelection(4)" value="4"><a href="#">Supplier GSL</a></li> -->
+  </ul>
+</div>
+
+
+	<!-- 		 
+ <ul class="nav nav-pills nav-justified">
+  <li role="presentation" class="active"><a href="#">Invoice Number</a></li>
+  <li role="presentation"><a href="#" style="color:#ccc;">PO Number</a></li>
+
+</ul> 
+-->
+</div>
+  <div class="form-group" style="padding-right:20px;">
+    <input type="text" class="form-control"  id="searchInput" placeholder="Enter Invoice Number" style="width:300px;color:#fff;">
+  </div>
+  <button type="button" class="btn btn-default" onclick="goSearch();" >SEARCH</button>
+</form>
+		 </div>
+<hr> 
+
+      </div>
+      </div>
+    </div>
+</div>
+</section>
+</body>
+</html>
+
