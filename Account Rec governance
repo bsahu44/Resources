@@ -1,0 +1,368 @@
+Page level security
+------------------------
+Calc column Auditor Assigner Flag
+----------------------------------
+
+case  when (UniqueCount([Assigner SSO]) OVER ([SSO])=1) and (UniqueCount([Auditor SSO]) OVER ([SSO])=1) then "Yes" 
+when UniqueCount([Auditor SSO]) OVER ([SSO])=1 then "No" 
+when UniqueCount([Assigner SSO]) OVER ([SSO])=1 then "Yes"
+else [Auditor Assigner]
+end
+
+calc column drop down
+----------------------
+case  when (BaseRowId()=1) and ([Auditor Assigner new]="Yes") then "Auditor Assignment" 
+when (BaseRowId()=2) and ([Auditor Assigner new]="Yes") then "Auditor Results" 
+when (BaseRowId()=1) and ([Auditor Assigner new]="No") then "Auditor Results" 
+when (BaseRowId()=2) and ([Auditor Assigner new]="No") then "Auditor Results" 
+when BaseRowId()=3 then "Reporting"
+end
+
+/// Use drop down as a property control
+
+Go button Iron python
+----------------------
+
+from System.Threading import Thread
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Application import Bookmark
+from Spotfire.Dxp.Application.AnalyticItems import BookmarkManager
+from Spotfire.Dxp.Application import BookmarkComponentFlags
+from Spotfire.Dxp.Application import Page
+#--Lib related to refreshing datatable-----
+import clr
+from System.Collections.Generic import List, Dictionary
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from Spotfire.Dxp.Framework.ApplicationModel import NotificationService
+
+if Document.Properties["role"]=="Auditor Assignment":
+        table.Refresh()
+        table1.Refresh()
+        Document.ActivePageReference=Document.Pages[2]
+        
+elif Document.Properties["role"]=="Auditor Results":
+        table1.Refresh()
+        Document.ActivePageReference=Document.Pages[1]
+elif Document.Properties["role"]=="Reporting":
+        table1.Refresh()
+        Document.ActivePageReference=Document.Pages[(Document.Pages.Count-3)]
+        
+scriptDef = clr.Reference[ScriptDefinition]()
+Document.ScriptManager.TryGetScript("AccessRestrict", scriptDef)
+params = Dictionary[str, object]()
+Document.ScriptManager.ExecuteScript(scriptDef.ScriptCode, params)
+
+parameters: 
+table : IFL_R2R_ACCREC_RISK
+table1 : Auditors Details
+
+--------------------------------------------------------------
+Auditor assignment page IFL_R2R_ACCREC_RISK table DOD
+--------------------------------------------------------------
+Assign auditor btn Iron Py
+-----------------------------
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+from System.Collections.Generic import List
+from Spotfire.Dxp.Data import *
+# Create a cursor for the table column to get the values from.
+# Add a reference to the data table in the script.
+dataTable = Document.Data.Tables["IFL_R2R_ACCTREC_RISK"]
+cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Account Rec ID-Period"])
+
+# Retrieve the marking selection
+markings = Document.ActiveMarkingSelectionReference.GetSelection(dataTable)
+
+# Create a List object to store the retrieved data marking selection
+markedata = List [str]();
+
+# Iterate through the data table rows to retrieve the marked rows
+for row in dataTable.GetRows(markings.AsIndexSet(),cursor):
+	#rowIndex = row.Index ##un-comment if you want to fetch the row index into some defined condition
+	value = cursor.CurrentValue
+	if value <> str.Empty:
+		markedata.Add(value)
+
+# Get only unique values
+valData = List [str](set(markedata))
+
+# Store in a document property
+yourVariableName = '~ '.join(valData)
+Document.Properties["accrecidperiodid"] = yourVariableName
+#MessageBox.Show("Do you want to update record?")
+Document.Properties["iaction"]=""
+selACCOUNT_REC_ID = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID-Period"])
+selASGNR_SSO = DataValueCursor.CreateFormatted(table.Columns["Login"])
+selAUDITOR_SSO = DataValueCursor.CreateFormatted(table.Columns["Auditor SSO"])
+selAUDITOR_NM = DataValueCursor.CreateFormatted(table.Columns["Auditor Name"])
+markedRows = Document.Data.Markings["Auditorassign"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID,selASGNR_SSO,selAUDITOR_SSO,selAUDITOR_NM))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["paccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			Document.Properties["pasgnrsso"]=selASGNR_SSO.CurrentValue
+			Document.Properties["pauditornm"]=selASGNR_SSO.CurrentValue
+			Document.Properties["pauditorsso"]=selASGNR_SSO.CurrentValue
+finally:
+		tblgetrows.Dispose()
+
+Document.Properties["iaccrecid"]= Document.Properties["paccrecid"]
+Document.Properties["iaction"]='Assign'
+Document.Properties["iasgnrsso"]= Document.Properties["pasgnrsso"]
+#Document.Properties["iauditornm"]=Document.Properties["pauditornm"]
+#Document.Properties["iauditorsso"]= Document.Properties["pauditorsso"]
+table.Refresh()
+print("success")
+
+------------------
+Unassign Auditor
+------------------
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+from System.Collections.Generic import List
+from Spotfire.Dxp.Data import *
+
+# Create a cursor for the table column to get the values from.
+# Add a reference to the data table in the script.
+dataTable = Document.Data.Tables["IFL_R2R_ACCTREC_RISK"]
+cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Account Rec ID-Period"])
+
+# Retrieve the marking selection
+markings = Document.ActiveMarkingSelectionReference.GetSelection(dataTable)
+
+# Create a List object to store the retrieved data marking selection
+markedata = List [str]();
+
+# Iterate through the data table rows to retrieve the marked rows
+for row in dataTable.GetRows(markings.AsIndexSet(),cursor):
+	#rowIndex = row.Index ##un-comment if you want to fetch the row index into some defined condition
+	value = cursor.CurrentValue
+	if value <> str.Empty:
+		markedata.Add(value)
+
+# Get only unique values
+valData = List [str](set(markedata))
+
+# Store in a document property
+yourVariableName = '~ '.join(valData)
+Document.Properties["accrecidperiodid"] = yourVariableName
+#MessageBox.Show("Do you want to update record?")
+Document.Properties["iaction"]=""
+selACCOUNT_REC_ID = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID-Period"])
+selASGNR_SSO = DataValueCursor.CreateFormatted(table.Columns["Login"])
+selAUDITOR_SSO = DataValueCursor.CreateFormatted(table.Columns["Auditor SSO"])
+selAUDITOR_NM = DataValueCursor.CreateFormatted(table.Columns["Auditor Name"])
+markedRows = Document.Data.Markings["Auditorassign"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID, selASGNR_SSO,selAUDITOR_SSO,selAUDITOR_NM))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["paccrecid"]=selACCOUNT_REC_ID.CurrentValue
+			Document.Properties["pasgnrsso"]=selASGNR_SSO.CurrentValue
+			Document.Properties["pauditornm"]=selASGNR_SSO.CurrentValue
+			Document.Properties["pauditorsso"]=selASGNR_SSO.CurrentValue
+finally:
+		tblgetrows.Dispose()
+
+Document.Properties["iaccrecid"]= Document.Properties["paccrecid"]
+Document.Properties["iaction"]='Unassign'
+Document.Properties["iasgnrsso"]= Document.Properties["pasgnrsso"]
+#Document.Properties["iauditornm"]=Document.Properties["pauditornm"]
+#Document.Properties["iauditorsso"]= Document.Properties["pauditorsso"]
+table.Refresh()
+print("success")
+
+Params:
+table : IFL_R2R_ACCREC_RISK
+
+------------------------------------------------------------------------
+Auditor Result page Auditor Details table DoD
+------------------------------------------------------------------------
+Upload/Load btn to writeback Iron Py
+---------------------------------------
+
+import clr
+clr.AddReference("System.Windows.Forms")
+from System.Windows.Forms import MessageBox
+from Spotfire.Dxp.Data import DataPropertyClass
+from Spotfire.Dxp.Data import DataTable
+from Spotfire.Dxp.Data import DataValueCursor
+from System.Collections import IEnumerable
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+from System.Collections.Generic import List, Dictionary
+#MessageBox.Show("Do you want to update record?")
+from System.Collections.Generic import List
+from Spotfire.Dxp.Data import *
+
+# Create a cursor for the table column to get the values from.
+# Add a reference to the data table in the script.
+dataTable = Document.Data.Tables["Auditor Details"]
+cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Account Rec ID-Period"])
+
+# Retrieve the marking selection
+markings = Document.ActiveMarkingSelectionReference.GetSelection(dataTable)
+
+# Create a List object to store the retrieved data marking selection
+markedata = List [str]();
+
+# Iterate through the data table rows to retrieve the marked rows
+for row in dataTable.GetRows(markings.AsIndexSet(),cursor):
+	#rowIndex = row.Index ##un-comment if you want to fetch the row index into some defined condition
+	value = cursor.CurrentValue
+	if value <> str.Empty:
+		markedata.Add(value)
+
+# Get only unique values
+valData = List [str](set(markedata))
+
+# Store in a document property
+yourVariableName = '~ '.join(valData)
+Document.Properties["iaccrecidauditorm"] = yourVariableName
+selACCOUNT_REC_ID1 = DataValueCursor.CreateFormatted(table.Columns["Account Rec ID"])
+selPERIOD_ID1 = DataValueCursor.CreateFormatted(table.Columns["Period"])
+selASGNR_SSO1 = DataValueCursor.CreateFormatted(table.Columns["Login"])
+selAUDIT_STATUS1 = DataValueCursor.CreateFormatted(table.Columns["Audit Status"])
+selSELECTED1 = DataValueCursor.CreateFormatted(table.Columns["Selected"])
+markedRows = Document.Data.Markings["Auditorresults"].GetSelection(table).AsIndexSet()
+tblgetrows = IEnumerable.GetEnumerator(table.GetRows(markedRows, selACCOUNT_REC_ID1, selPERIOD_ID1, selASGNR_SSO1, selAUDIT_STATUS1, selSELECTED1))
+
+try:
+		for row in tblgetrows:
+			Document.Properties["paccrecidauditor"]=selACCOUNT_REC_ID1.CurrentValue
+			Document.Properties["pperiodauditor"]=selPERIOD_ID1.CurrentValue
+			Document.Properties["pauditsso"]=selASGNR_SSO1.CurrentValue
+			Document.Properties["pauditstatus"]=selAUDIT_STATUS1.CurrentValue
+			Document.Properties["pselected"]=selSELECTED1.CurrentValue
+
+finally:
+		tblgetrows.Dispose()
+
+if(Document.Properties["pselected"]=="0"): 
+  Document.Properties["lable"]="Please select audit status(Pass/Fail) for all cases(C1-PII)"
+  Document.Properties["iaccrecidauditor"]="123"
+  Document.Properties["iperiodauditor"]="209901"
+  Document.Properties["iauditsso"]= Document.Properties["pauditsso"]
+  table.Refresh()
+elif(Document.Properties["pselected"]=="1" and Document.Properties["warning"]=="" and Document.Properties["pauditstatus"]=="Audit Completed"):
+     Document.Properties["warning"]='record update'
+     Document.Properties["lable"]=""
+else:
+  Document.Properties["iaccrecidauditor"]= Document.Properties["paccrecidauditor"]
+  Document.Properties["iperiodauditor"]= Document.Properties["pperiodauditor"]
+  Document.Properties["iauditsso"]= Document.Properties["pauditsso"]
+  Document.Properties["warning"]=""
+  Document.Properties["lable"]=""
+  table.Refresh()
+  Document.Properties["pauditstatus"]=""
+
+Params:
+table : Auditor Details
+
+-----------------------------------------------------------------------------------
+procedure fro Auditor details (IFL_R2R_ACCTREC_RISK_AUDITOR_UPDATE_MULTI)
+-------------------------------------------------------------------------
+
+create or replace procedure SP_ACCTRECRISK_AUDIT_DETAILS_B(i_combo IN VARCHAR2,i_C1 IN VARCHAR2,i_C2 IN VARCHAR2,i_C3 IN VARCHAR2,i_C4 IN VARCHAR2,i_C5 IN VARCHAR2,i_C6 IN VARCHAR2,i_C7 IN VARCHAR2,i_PII IN VARCHAR2,i_AUDIT_SSO IN VARCHAR2,i_AUDIT_CMNTS IN VARCHAR2) As
+
+Begin
+
+MERGE INTO R2R_ODS.T_ODS_ACCT_REC_RISK_AUDIT A
+USING ( SELECT substr(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),1,length(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)))-6) ACCOUNT_REC_ID, 
+SUBSTR(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),-6) PERIOD_ID, 
+i_C1 C1,i_C2 C2,i_C3 C3,i_C4 C4,i_C5 C5,i_C6 C6,i_C7 C7,i_PII PII,i_AUDIT_SSO AUDIT_SSO,i_AUDIT_CMNTS CMNTS
+FROM DUAL 
+Connect By Instr(i_combo, '~', 1, Level - 1) > 0
+) B
+ON ( A.ACCOUNT_REC_ID=B.ACCOUNT_REC_ID AND A.PERIOD_ID =B.PERIOD_ID )
+When Matched Then 
+Update set A.C1_ITM_LIST=B.C1,A.C2_INDPNDT_SUPPORT=B.C2,A.C3_SUPPORT_ACSSBLE=B.C3,A.C4_OPEN_ITM_RES=B.C4,A.C5_REV_ASSMNT=B.C5,A.C6_COMPL_TIMLY=B.C6,A.C7_TRS_CD_VLT_CH_ONLY=B.C7,A.PII_IN_REC=B.PII,A.LAST_UPDT_AUDIT_SSO=B.AUDIT_SSO,A.LAST_UPDT_AUDIT_DT=SYSDATE,A.AUDIT_CMNTS=B.CMNTS;
+
+COMMIT; 
+
+END;
+
+-----------------------------------------------
+
+Procedure for IFL_R2R_ACCREC_RISK
+----------------------------------------------
+
+create or replace Procedure SP_ACCTRECRISK_AUDITOR_INFO_B (i_ACC_ID_PERIOD_ID IN VARCHAR2, i_Action IN VARCHAR2, i_ASGNR_SSO IN VARCHAR2, i_AUDITOR_NM IN VARCHAR2, i_AUDITOR_SSO IN VARCHAR2) As
+
+i_combo varchar2(4000);
+i_Action1      varchar2(100);
+i_Action_Assgn      varchar2(100);
+i_Action_Unassgn      varchar2(100);
+i_ASGNR_SSO1   T_ODS_ACCT_REC_RISK_AUDIT.LAST_UPDT_ASGNR_SSO%type;
+i_AUDITOR_NM1  T_ODS_ACCT_REC_RISK_AUDIT.AUDITOR_NME%type;
+i_AUDITOR_SSO1 T_ODS_ACCT_REC_RISK_AUDIT.AUDITOR_SSO%type;
+
+Begin 
+
+i_combo := i_ACC_ID_PERIOD_ID;
+i_Action1 := i_Action;
+i_Action_Assgn := 'Assign';
+i_Action_Unassgn := 'Unassign';
+i_ASGNR_SSO1 := i_ASGNR_SSO;
+i_AUDITOR_NM1 := i_AUDITOR_NM;
+i_AUDITOR_SSO1 := i_AUDITOR_SSO;
+
+
+IF(i_Action1=i_Action_Assgn) THEN 
+
+MERGE INTO R2R_ODS.T_ODS_ACCT_REC_RISK_AUDIT A
+USING ( SELECT substr(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),1,length(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)))-6) ACCOUNT_REC_ID, 
+SUBSTR(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),-6) PERIOD_ID, 
+I_ASGNR_SSO1 ASGNR_SSO1, 
+I_AUDITOR_NM1 AUDITOR_NM1, 
+I_AUDITOR_SSO1 AUDITOR_SSO1 
+FROM DUAL
+Connect By Instr(i_combo, '~', 1, Level - 1) > 0
+) B
+ON ( A.ACCOUNT_REC_ID=B.ACCOUNT_REC_ID AND A.PERIOD_ID =B.PERIOD_ID )
+When Matched Then 
+Update set a.LAST_UPDT_ASGNR_SSO=b.ASGNR_SSO1, a.LAST_UPDT_ASGNR_DT=SYSDATE, a.AUDITOR_NME=b.AUDITOR_NM1, a.AUDITOR_SSO=b.AUDITOR_SSO1
+When Not Matched Then 
+Insert (ACCOUNT_REC_ID,PERIOD_ID,LAST_UPDT_ASGNR_SSO,LAST_UPDT_ASGNR_DT,AUDITOR_NME,AUDITOR_SSO) values (B.ACCOUNT_REC_ID,B.PERIOD_ID,B.ASGNR_SSO1,SYSDATE,B.AUDITOR_NM1,B.AUDITOR_SSO1) ;
+commit;
+END IF;
+
+IF(i_Action1=i_Action_Unassgn)
+THEN 
+
+MERGE INTO R2R_ODS.T_ODS_ACCT_REC_RISK_AUDIT A
+USING ( SELECT substr(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),1,length(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)))-6) ACCOUNT_REC_ID, 
+SUBSTR(trim(regexp_substr(i_combo, '[^~]+', 1, LEVEL)),-6) PERIOD_ID,
+I_ASGNR_SSO1 ASGNR_SSO1, 
+I_AUDITOR_NM1 AUDITOR_NM1, 
+I_AUDITOR_SSO1 AUDITOR_SSO1 
+FROM DUAL
+Connect By Instr(i_combo, '~', 1, Level - 1) > 0
+) B
+ON ( A.ACCOUNT_REC_ID=B.ACCOUNT_REC_ID AND A.PERIOD_ID =B.PERIOD_ID )
+When Matched Then 
+Update set a.LAST_UPDT_ASGNR_SSO=b.ASGNR_SSO1, a.LAST_UPDT_ASGNR_DT=SYSDATE, a.AUDITOR_NME=NULL, a.AUDITOR_SSO=NULL
+When Not Matched Then 
+Insert   (ACCOUNT_REC_ID,PERIOD_ID,LAST_UPDT_ASGNR_SSO,LAST_UPDT_ASGNR_DT,AUDITOR_NME,AUDITOR_SSO) values (B.ACCOUNT_REC_ID,B.PERIOD_ID,B.ASGNR_SSO1,SYSDATE,NULL,NULL) ;
+commit;
+END IF;
+
+
+END;
+
+
