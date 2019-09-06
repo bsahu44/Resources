@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/MapDemo.css">
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript" src="js/GetJavaScriptApi.js"></script>
+  <script type="text/javascript" src="js/MashUp.js"></script>
+
+</head>
+
+<body>
+
+  <h1 style="background-image: linear-gradient(-90deg, black, silver);">
+    <center>
+      <font color="white" , size="16"> BI Portal Mashup Demo </font>
+    </center>
+  </h1>
+
+  <nav class="nav sticky-top" style="background-color:silver;">
+    <div class="nav" style="background-color:silver;">
+      <div style="background-color:#F8F8F8;color:black;" class="Ctab nav-link" onClick="showDash('containerBI');">BI Portal</div>
+      <div class="Ctab nav-link" onClick="showDash('containerRisk');">Risk Dashboard</div>
+      
+    </div>
+  </nav>
+
+  <div class="container-fluid px-0">
+    <div id="containerBI" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-fluid px-0">
+    <div id="containerRisk" class="dashContainer">
+      <div class="loading text-align">
+        <img class="img-cen" src="img/ajax-loader.gif" />
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    $(document).ready(function() {
+      $(".dashContainer").css("z-index", "0");
+      $(".dashContainer").css("visibility", "hidden");
+      $("#containerBI").css("z-index", "1");
+      $("#containerBI").css("visibility", "visible");
+    });
+  </script>
+</body>
+
+</html>
+
+
+  
+  
+  
+  
+  
