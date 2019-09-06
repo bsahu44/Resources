@@ -1,0 +1,22 @@
+<html> 
+  <head>
+     <script type="text/javascript"
+             src="https://spotfire-next.cloud.tibco.com/spotfire/wp/GetJavaScriptApi.ashx?Version=7.5">
+     </script>
+     <script>
+        var serverUrl = "https://spotfire-next.cloud.tibco.com/spotfire/wp/";
+        var analysisPath = "/Samples/Expense Analyzer Dashboard";
+        var customizationInfo = new spotfire.webPlayer.Customization();
+
+        window.onload = function() {				
+          var app = new spotfire.webPlayer.Application(serverUrl,
+                                                       customizationInfo,
+                                                       analysisPath);
+          var doc=app.openDocument("container");
+        }
+     </script>
+  </head>
+  <body>
+     <div id="container"></div>
+  </body>
+</html>
