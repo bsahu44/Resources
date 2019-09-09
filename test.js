@@ -35,7 +35,6 @@ window.onload = function()
 
     app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath_Risk, c_parameters, c_reloadAnalysisInstance);
 
-
     // Register error callback.
     app.onError(errorCallback);
     app.onOpened(onOpened);
@@ -61,5 +60,3 @@ function errorCallback(errorCode, description){
 function onDocumentReady(){
     //console.log('ready');
 }
-
-
