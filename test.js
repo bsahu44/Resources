@@ -1,6 +1,8 @@
 //
 // Constants
 //
+var spotfire = { webPlayer : {} };
+
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 
 var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
