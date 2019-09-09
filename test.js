@@ -1,9 +1,9 @@
 //
 // Constants
 //
-var c_serverUrl = "http://internal-sf-srv-dev1-f247391a9f4f10-2043682034.us-west-2.elb.amazonaws.com/spotfire/wp/";
+var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 
-var c_analysisPath_Risk = "/ACE India/PCS/Analytics/PCS_Risk_POC";
+var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
 
 var customization = new spotfire.webPlayer.Customization();
 
