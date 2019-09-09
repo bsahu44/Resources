@@ -41,7 +41,7 @@ window.onload = function()
     app.onOpened(onOpened);
 	
     console.log("Opening document at : " + (new Date).toLocaleTimeString());
-	RiskDashboard = app.openDocument("container","Metrics", customization);
+	RiskDashboard = app.openDocument("container", customization);
     RiskDashboard.onDocumentReady(onDocumentReady);
 	
 	console.log("Open document at : " + (new Date).toLocaleTimeString());
