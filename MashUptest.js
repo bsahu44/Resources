@@ -3,21 +3,14 @@ var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
 
 
-var customization =  spotfire.webPlayer.Customization();
+var customization =  new spotfire.webPlayer.Customization();
 
 //Hide UI elements
-spotfire.webPlayer.showCustomizableHeader = false;
-spotfire.webPlayer.showTopHeader = false;
-spotfire.webPlayer.showDodPanel = false;
-spotfire.webPlayer.showStatusBar = false;
-spotfire.webPlayer.showToolBar = false;
-spotfire.webPlayer.showPageNavigation = false;
-spotfire.webPlayer.showClose = false;
-spotfire.webPlayer.showAnalysisInfo = false;
-spotfire.webPlayer.showExportFile = false;
-spotfire.webPlayer.showExportVisualization = false;
-spotfire.webPlayer.showUndoRedo = false;
-spotfire.webPlayer.showFilterPanel = false;
+customization.showStatusBar = true;
+customization.showToolBar = false;
+customization.showPageNavigation = false;
+customization.showFilterPanel = false;
+customization.showDodPanel = false;
 
 var c_parameters = "";
 var c_reloadAnalysisInstance = false;
@@ -31,7 +24,7 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", "Metrics=Claims Per Company", customization);
+RiskDashboard = app.openDocument("container", "Metrics", customization);
 RiskDashboard.onDocumentReady(onDocumentReady);
 
 //
