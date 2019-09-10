@@ -1,8 +1,8 @@
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
-var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
+var c_analysisPath = "ACE India/Public/Standardisation_Demo_BI_Portal";
+
 
 var customization = new spotfire.webPlayer.Customization();
-
 //Hide UI elements
 customization.showStatusBar = true;
 customization.showToolBar = false;
@@ -10,7 +10,7 @@ customization.showPageNavigation = false;
 customization.showFilterPanel = false;
 customization.showDodPanel = false;
 
-var c_parameters = "";
+var c_parameters = "flattenDXP=Y;";
 var c_reloadAnalysisInstance = false;
 
 var app;
@@ -22,7 +22,7 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", "Metrics", customization);
+RiskDashboard = app.openDocument("container", "Page1=Grade Points per First Name", customization);
 RiskDashboard.onDocumentReady(onDocumentReady);
 
 //
