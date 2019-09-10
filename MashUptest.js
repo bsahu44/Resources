@@ -7,7 +7,7 @@ var customization = spotfire.webPlayer.Customization();
 
 //Hide UI elements
 
-customization.showStatusBar = true;
+
 customization.showToolBar = false;
 customization.showPageNavigation = false;
 customization.showFilterPanel = false;
