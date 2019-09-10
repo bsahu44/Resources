@@ -1,6 +1,6 @@
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 
-var c_analysisPath_Risk = "/ACE India/BIPortal/BI Portal_Mashup";
+var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
 
 
 var customization = new spotfire.webPlayer.Customization();
@@ -33,7 +33,7 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", "BI Portal=Uncheck to hide",customization);
+RiskDashboard = app.openDocument("container", "Metrics=Claims Per Company",customization);
 RiskDashboard.onDocumentReady(onDocumentReady);
 
 
