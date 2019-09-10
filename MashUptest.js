@@ -1,6 +1,6 @@
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 
-var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
+var c_analysisPath_Risk = "/ACE India/PCS/Analytics/PCS_Risk_POC";
 
 var customization = new spotfire.webPlayer.Customization();
 
@@ -32,10 +32,10 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", customization);
+RiskDashboard = app.openDocument("container", "Terror",customization);
 RiskDashboard.onDocumentReady(onDocumentReady);
 
-console.log("Open document at : " + (new Date).toLocaleTimeString());
+
 
 
 //
