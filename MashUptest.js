@@ -1,5 +1,5 @@
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
-var c_analysisPath = "ACE India/Public/Standardisation_Demo_BI_Portal";
+var c_analysisPath = "/ACE India/Public/Standardisation_Demo_BI_Portal";
 
 
 var customization = new spotfire.webPlayer.Customization();
