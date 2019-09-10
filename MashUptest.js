@@ -22,8 +22,8 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", "Page1=Grade Points per First Name", customization);
-RiskDashboard.onDocumentReady(onDocumentReady);
+DemoDashboard = app.openDocument("container", "Page1=Grade Points per First Name", customization);
+DemoDashboard.onDocumentReady(onDocumentReady);
 
 //
 // Web Player Callbacks
