@@ -24,8 +24,6 @@ var c_reloadAnalysisInstance = false;
 
 var app;
 
-
-
 app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath_Risk, c_parameters, c_reloadAnalysisInstance);
 
 // Register error callback.
@@ -33,11 +31,8 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-RiskDashboard = app.openDocument("container", "Metrics",customization);
+RiskDashboard = app.openDocument("container", "Metrics=Claims Per Company", customization);
 RiskDashboard.onDocumentReady(onDocumentReady);
-
-
-
 
 //
 // Web Player Callbacks
