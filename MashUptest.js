@@ -15,7 +15,7 @@ var c_reloadAnalysisInstance = false;
 
 var app;
 
-app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath_Risk, c_parameters, c_reloadAnalysisInstance);
+app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath, c_parameters, c_reloadAnalysisInstance);
 
 // Register error callback.
 app.onError(errorCallback);
