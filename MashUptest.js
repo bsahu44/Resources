@@ -6,8 +6,6 @@ var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
 var customization = spotfire.webPlayer.Customization();
 
 //Hide UI elements
-
-
 customization.showToolBar = false;
 customization.showPageNavigation = false;
 customization.showFilterPanel = false;
