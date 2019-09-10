@@ -3,7 +3,7 @@ var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
 var c_analysisPath_Risk = "/Public/Hurricane Barry Progression";
 
 
-var customization = new spotfire.webPlayer.Customization();
+var customization = spotfire.webPlayer.Customization();
 
 //Hide UI elements
 
