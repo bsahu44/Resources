@@ -4,6 +4,7 @@ var c_analysisPath = "/ACE India/Public/Standardisation_Demo_BI_Portal";
 
 var customization = new spotfire.webPlayer.Customization();
 //Hide UI elements
+customization.showCustomizableHeader = false;
 customization.showStatusBar = true;
 customization.showToolBar = false;
 customization.showPageNavigation = false;
