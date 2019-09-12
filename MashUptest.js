@@ -11,7 +11,7 @@ customization.showPageNavigation = false;
 customization.showFilterPanel = false;
 customization.showDodPanel = false;
 
-var c_parameters = ["flattenDXP=Y;","VizTabName =Page1;","vizName = Line Chart;"];;
+var c_parameters = ["flattenDXP=Y;","VizTabName =Page1;","vizName =Line Chart;"];;
 var c_reloadAnalysisInstance = false;
 
 
