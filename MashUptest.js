@@ -11,8 +11,9 @@ customization.showPageNavigation = false;
 customization.showFilterPanel = false;
 customization.showDodPanel = false;
 
-var c_parameters = "flattenDXP=Y;";
+var c_parameters = ["flattenDXP=Y;","VizTabName =Page1;","vizName = Line Chart;"];;
 var c_reloadAnalysisInstance = false;
+
 
 var app;
 
@@ -23,7 +24,7 @@ app.onError(errorCallback);
 app.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-DemoDashboard = app.openDocument("container", "Page1=Grade Points per First Name", customization);
+DemoDashboard = app.openDocument("container", "Page1=Line Chart", customization);
 DemoDashboard.onDocumentReady(onDocumentReady);
 
 //
