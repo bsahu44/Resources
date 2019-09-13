@@ -34,7 +34,7 @@ console.log("Opening document at : " + (new Date).toLocaleTimeString());
 DemoDashboard = app.openDocument("container", "Page1=Bar Chart (Dashboard 1)", customization);
 DemoDashboard.onDocumentReady(onDocumentReady);
 
-DemoDashboard2 = app2.openDocument("container", "Page1=Line Chart (Dashboard 2)", customization);
+DemoDashboard2 = app2.openDocument("container2", "Page1=Line Chart (Dashboard 2)", customization);
 DemoDashboard2.onDocumentReady(onDocumentReady);
 
 //
