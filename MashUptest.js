@@ -1,5 +1,7 @@
 var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
-var c_analysisPath = "/ACE India/Public/Standardisation_Demo_BI_Portal_2";
+
+var c_analysisPath = "/ACE India/Public/Standardisation_Demo_BI_Portal";
+var c_analysisPath2 = "/ACE India/Public/Standardisation_Demo_BI_Portal_2";
 
 
 var customization = new spotfire.webPlayer.Customization();
@@ -11,21 +13,29 @@ customization.showPageNavigation = false;
 customization.showFilterPanel = false;
 customization.showDodPanel = false;
 
-var c_parameters = 'flattenDXP="Y";VizTabName="Page1";vizName="Line Chart";';
+var c_parameters = 'flattenDXP="Y";VizTabName="Page1";vizName="Bar Chart (Dashboard 1)";';
+var c_parameters2 = 'flattenDXP="Y";VizTabName="Page1";vizName="Line Chart (Dashboard 2)";';
 var c_reloadAnalysisInstance = false;
 
 
-var app;
+var app, app2;
 
 app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath, c_parameters, c_reloadAnalysisInstance);
+app2 = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath2, c_parameters2, c_reloadAnalysisInstance);
 
 // Register error callback.
 app.onError(errorCallback);
+app2.onError(errorCallback);
 app.onOpened(onOpened);
+app2.onOpened(onOpened);
 
 console.log("Opening document at : " + (new Date).toLocaleTimeString());
-DemoDashboard = app.openDocument("container", "Page1=Line Chart", customization);
+
+DemoDashboard = app.openDocument("container", "Page1=Bar Chart (Dashboard 1)", customization);
 DemoDashboard.onDocumentReady(onDocumentReady);
+
+DemoDashboard2 = app2.openDocument("container", "Page1=Line Chart (Dashboard 2)", customization);
+DemoDashboard2.onDocumentReady(onDocumentReady);
 
 //
 // Web Player Callbacks
