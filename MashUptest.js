@@ -21,11 +21,11 @@ function openDoc(analysisPath, divID, vizDetails) {
 	var c_analysisPath = analysisPath;
 	var c_divID = divID;
 	var c_vizDetails = vizDetails;
-	var res = c_vizDetails.split("=");
+	var res = vizDetails.split("=");
 	var tab = res[0];
 	var viz = res[1];
-	var c_parameters = 'flattenDXP="Y";VizTabName='+tab+';vizName='+viz+';';
-	console.log(c_parameters);
+	var c_parameters = "flattenDXP='Y';VizTabName='"+tab+"';vizName='"+viz+"';";
+	console.log(c_parameters)
 	
 	var app;
 	app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath, c_parameters, c_reloadAnalysisInstance);
