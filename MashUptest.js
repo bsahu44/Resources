@@ -11,6 +11,12 @@ customization.showDodPanel = false;
 
 var c_reloadAnalysisInstance = false;
 
+//Parameters to pass
+//analysisPath : '/ACE India/Public/Standardisation_Demo_BI_Portal'
+//parameters : 'flattenDXP="Y";VizTabName="Page1";vizName="Bar Chart (Dashboard 1)";'
+//divID : 'container'
+//vizDetails : 'Page1=Bar Chart (Dashboard 1)'
+
 function openDoc(analysisPath, parameters, divID, vizDetails) {
 	var c_analysisPath = analysisPath;
 	var c_parameters = parameters;
