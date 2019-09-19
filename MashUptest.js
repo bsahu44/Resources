@@ -24,7 +24,7 @@ function openDoc(analysisPath, divID, vizDetails) {
 	var res = vizDetails.split("=");
 	var tab = res[0];
 	var viz = res[1];
-	var c_parameters = "flattenDXP='Y';VizTabName='"+tab+"';vizName='"+viz+"';";
+	var c_parameters = 'flattenDXP="Y";VizTabName="'+tab+'";vizName="'+viz+'";';
 	console.log(c_parameters)
 	
 	var app;
