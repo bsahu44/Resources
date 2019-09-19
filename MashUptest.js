@@ -41,7 +41,7 @@ function openDoc(analysisPath, divID, vizDetails) {
 // Web Player Callbacks
 //
 function onOpened(analysisDocument){
-    //console.log("Document load completed at : " + (new Date).toLocaleTimeString());
+    console.log("Document load completed at : " + (new Date).toLocaleTimeString());
 }
 function errorCallback(errorCode, description){
     // Log error message if something goes wrong in the Web Player.
@@ -49,5 +49,5 @@ function errorCallback(errorCode, description){
 }
 
 function onDocumentReady(){
-    //console.log('ready');
+    console.log('ready');
 }
