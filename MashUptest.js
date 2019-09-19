@@ -17,11 +17,14 @@ var c_reloadAnalysisInstance = false;
 //divID : 'container'
 //vizDetails : 'Page1=Bar Chart (Dashboard 1)'
 
-function openDoc(analysisPath, parameters, divID, vizDetails) {
+function openDoc(analysisPath, divID, vizDetails) {
 	var c_analysisPath = analysisPath;
-	var c_parameters = parameters;
 	var c_divID = divID;
 	var c_vizDetails = vizDetails;
+	var res = vizDetails.split("=");
+	var tab = res[0];
+	var viz = res[1];
+	var c_parameters = 'flattenDXP="Y";VizTabName='+tab+';vizName='+viz+':';
 	
 	var app;
 	app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath, c_parameters, c_reloadAnalysisInstance);
