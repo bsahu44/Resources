@@ -25,6 +25,7 @@ function openDoc(analysisPath, divID, vizDetails) {
 	var tab = res[0];
 	var viz = res[1];
 	var c_parameters = 'flattenDXP="Y";VizTabName='+tab+';vizName='+viz+':';
+	console.log(c_parameters)
 	
 	var app;
 	app = new spotfire.webPlayer.Application(c_serverUrl, customization, c_analysisPath, c_parameters, c_reloadAnalysisInstance);
