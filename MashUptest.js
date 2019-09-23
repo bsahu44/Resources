@@ -1,16 +1,3 @@
-var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
-
-var customization = new spotfire.webPlayer.Customization();
-//Hide UI elements
-customization.showCustomizableHeader = false;
-customization.showStatusBar = false;
-customization.showToolBar = false;
-customization.showPageNavigation = false;
-customization.showFilterPanel = false;
-customization.showDodPanel = false;
-
-var c_reloadAnalysisInstance = false;
-
 //Parameters to pass
 //analysisPath : '/ACE India/Public/Standardisation_Demo_BI_Portal'
 //parameters : 'flattenDXP="Y";VizTabName="Page1";vizName="Bar Chart (Dashboard 1)";'
@@ -18,6 +5,18 @@ var c_reloadAnalysisInstance = false;
 //vizDetails : 'Page1=Bar Chart (Dashboard 1)'
 
 function openDoc(analysisPath, divID, vizDetails) {
+	var c_serverUrl = "http://internal.bi.verisk.com/spotfire/wp/";
+
+	var customization = new spotfire.webPlayer.Customization();
+	//Hide UI elements
+	customization.showCustomizableHeader = false;
+	customization.showStatusBar = false;
+	customization.showToolBar = false;
+	customization.showPageNavigation = false;
+	customization.showFilterPanel = false;
+	customization.showDodPanel = false;
+	var c_reloadAnalysisInstance = false;
+	
 	var c_analysisPath = analysisPath;
 	var c_divID = divID;
 	var c_vizDetails = vizDetails;
