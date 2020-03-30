@@ -70,3 +70,8 @@ $('body').on("click","div[tabindex][title]",function(){
 		waitFor(checkTab,30000,sendData,error);
 	}
 });
+
+if (!document.firstSend){
+    sendData();
+    document.firstSend=1;
+}
