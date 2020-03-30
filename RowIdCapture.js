@@ -24,15 +24,18 @@ function waitFor(condition,timeout,callback,error) {
 document.setObj = new Set();
 
 function sendData() {
+
+	let myArr1 = Array.from(document.setObj);
+	//console.log(myArr1);
 	$('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').each(function(i, obj) {
-			if (!document.setObj.has($(this).text())) {
-				console.log($(this).text());
-				document.setObj.add($(this).text());
-			}
-			
-			
+			document.setObj.add($(this).text());
 		});
-	
+	//console.log(document.setObj);
+	let myArr2 = Array.from(document.setObj);
+	var difference = myArr2.filter(x => myArr1.indexOf(x) === -1);
+	if(difference.length != 0){
+		console.log(difference)
+	}
 }
 
 document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()
@@ -46,12 +49,12 @@ function chekrow() {
 
 $('#prev input').on("click",function(){
 	console.log('prev clicked');
-	waitFor(chekrow,3000,sendData,error);
+	waitFor(chekrow,30000,sendData,error);
 });
 
 $('#next input').on("click",function(){
 	console.log('next clicked');
-	waitFor(chekrow,3000,sendData,error);
+	waitFor(chekrow,30000,sendData,error);
 });
 
 function checkTab(){
@@ -64,6 +67,6 @@ function checkTab(){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		waitFor(checkTab,3000,sendData,error);
+		waitFor(checkTab,30000,sendData,error);
 	}
 });
