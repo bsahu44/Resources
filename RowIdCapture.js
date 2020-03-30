@@ -34,7 +34,7 @@ function sendData() {
 	let myArr2 = Array.from(document.setObj);
 	var difference = myArr2.filter(x => myArr1.indexOf(x) === -1);
 	if(difference.length != 0){
-		console.log(difference)
+		console.log(difference);
 	}
 }
 
