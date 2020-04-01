@@ -31,10 +31,7 @@ function hideCol() {
 		}
 		waitFor(tableLoad,30000,sendData,error);
 		document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()
-		if (!document.firstSend){
-    		sendData();
-    		document.firstSend=1;
-		}
+		
 		return true;
 	}
 	return false;
@@ -95,3 +92,8 @@ $('body').on("click",'#next input', function(){
 	console.log('next clicked');
 	waitFor(chekrow,30000,sendData,error);
 });
+
+if (!document.firstSend){
+    waitFor(hideCol,30000,sendData,error);
+    document.firstSend=1;
+}
