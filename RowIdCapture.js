@@ -72,11 +72,7 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(chekrow,5000,sendData,error);
-		if (!document.firstSend){
-    		waitFor(checkTabLoad,5000,hideCol,error);
-			console.log('first time');
-    		document.firstSend=1;
-		}
+		
 	}
 });
 
@@ -90,4 +86,9 @@ $('body').on("click",'#next input', function(){
 	waitFor(chekrow,5000,sendData,error);
 });
 
+if (!document.firstSend){
+    waitFor(checkTabLoad,5000,hideCol,error);
+	console.log('first time');
+    document.firstSend=1;
+}
 
