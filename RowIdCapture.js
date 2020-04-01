@@ -51,7 +51,7 @@ function sendData() {
 function chekrow() {
 	var rc = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text();
 	
-	if (rc != document.rid) {
+	if (rc != document.rid && rc != '') {
 		document.rid = rc;
 		return true;
 	}
@@ -103,3 +103,4 @@ if (!document.firstSend){
 	console.log('first time');
     document.firstSend=1;
 }
+
