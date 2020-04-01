@@ -62,8 +62,7 @@ function checkFilterChange(){
 	var ff = $("#filterFlag > input").first().val();
 
 	if (ff != document.ff && ff == "Y"){
-		var chk = chekrow();
-		return chk;
+		return true;
 	}
 	
 	return false;
@@ -81,7 +80,9 @@ $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
-		waitFor(checkFilterChange,5000,sendData,error);
+		waitFor(checkFilterChange,5000,function(){
+			waitFor(chekrow,5000,sendData,error);
+		},error);
 		
 	}
 });
