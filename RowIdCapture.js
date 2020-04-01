@@ -15,7 +15,6 @@ function waitFor(condition,timeout,callback,error) {
 } 
 
 
-
 function hideCol() {
 	
 	document.lastCol = $('div.sfc-column-header').length;
@@ -25,7 +24,7 @@ function hideCol() {
 			'div.sfc-column-header:nth-of-type('+document.lastCol+') { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
 		}
-		document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()
+		document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text()
 		
 		return true;
 	}
@@ -50,13 +49,12 @@ function sendData() {
 }
 
 function chekrow() {
-	var rc = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text();
+	var rc = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text();
 	if (rc != document.rid){
 		document.rid = rc;
 		return true;
 	};
 	return false;
-	
 }
 
 
