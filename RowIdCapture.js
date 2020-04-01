@@ -17,6 +17,7 @@ function waitFor(condition,timeout,callback,error) {
 
 
 function hideCol() {
+	
 	document.lastCol = $('div.sfc-column-header').length;
 	if (document.lastCol > 0) {
 		if (!document.customStylesReady){
@@ -88,6 +89,7 @@ $('body').on("click",'#next input', function(){
 
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
+	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	console.log('first time');
     document.firstSend=1;
 }
