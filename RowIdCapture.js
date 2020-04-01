@@ -29,7 +29,6 @@ function hideCol() {
 			'div.sfc-column-header:nth-of-type('+document.lastCol+') { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
 		}
-		waitFor(tableLoad,30000,sendData,error);
 		document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()
 		
 		return true;
@@ -79,7 +78,7 @@ function tabLoadHideCol() {
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		tabLoadHideCol();
+		waitFor(hideCol,30000,sendData,error);
 	}
 });
 
