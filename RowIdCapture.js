@@ -78,7 +78,7 @@ function tabLoadHideCol() {
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		waitFor(hideCol,30000,sendData,error);
+		waitFor(checkTabLoad,30000,sendData,error);
 	}
 });
 
