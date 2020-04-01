@@ -25,7 +25,7 @@ function hideCol() {
     		document.customStylesReady=1;
 		}
 		document.rid = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text()
-		
+		document.ff = $("#filterFlag > input").first().val();
 		return true;
 	}
 	return false;
@@ -50,13 +50,27 @@ function sendData() {
 
 function chekrow() {
 	var rc = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text();
-	if (rc != document.rid){
+	
+	if (rc != document.rid && ff != document.ff){
 		document.rid = rc;
+		document.ff
 		return true;
-	};
+	}
 	return false;
 }
 
+function checkFilterChange(){
+	var ff = $("#filterFlag > input").first().val();
+	var rc = $('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell').text();
+
+	if (rc != document.rid && ff != document.ff){
+		document.rid = rc;
+		document.ff
+		return true;
+	}
+	
+	return false;
+}
 
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
@@ -70,7 +84,7 @@ $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
-		waitFor(chekrow,5000,sendData,error);
+		waitFor(checkFilterChange,5000,sendData,error);
 		
 	}
 });
