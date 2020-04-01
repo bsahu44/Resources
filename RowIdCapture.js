@@ -14,12 +14,7 @@ function waitFor(condition,timeout,callback,error) {
 	}
 } 
 
-function tableLoad(){
-	if ($('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()) {
-		return true;
-	}
-	return false;
-}
+
 
 function hideCol() {
 	document.lastCol = $('div.sfc-column-header').length;
@@ -74,11 +69,17 @@ function tabLoadHideCol() {
 	waitFor(checkTabLoad,30000,hideCol,error);
 }
 
+function tableLoad(){
+	if ($('div[name="aColumn"]:nth-of-type('+document.lastCol+')').find('div.sfc-value-cell:nth-of-type(1)').text()) {
+		return true;
+	}
+	return false;
+}
 
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		waitFor(checkTabLoad,30000,sendData,error);
+		waitFor(tableLoad,30000,sendData,error);
 	}
 });
 
