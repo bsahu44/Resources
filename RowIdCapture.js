@@ -66,7 +66,7 @@ function checkTabLoad(){
 }
 
 function tabLoadHideCol() {
-	waitFor(checkTabLoad,30000,hideCol,error);
+	waitFor(checkTabLoad,5000,hideCol,error);
 }
 
 function tableLoad(){
@@ -79,21 +79,21 @@ function tableLoad(){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		waitFor(tableLoad,30000,sendData,error);
+		waitFor(tableLoad,5000,sendData,error);
 	}
 });
 
 $('body').on("click",'#prev input', function(){
 	console.log('prev clicked');
-	waitFor(chekrow,30000,sendData,error);
+	waitFor(chekrow,5000,sendData,error);
 });
 
 $('body').on("click",'#next input', function(){
 	console.log('next clicked');
-	waitFor(chekrow,30000,sendData,error);
+	waitFor(chekrow,5000,sendData,error);
 });
 
 if (!document.firstSend){
-    waitFor(hideCol,30000,sendData,error);
+    waitFor(hideCol,5000,sendData,error);
     document.firstSend=1;
 }
