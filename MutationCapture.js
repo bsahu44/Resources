@@ -111,3 +111,18 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
+document.rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
+
+$('body').on('click', '#filters', function(){
+	
+	waitFor(function(){
+		var rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
+		if (rc != document.rc){
+			document.rc = rc;
+			return true;
+		}
+		return false;
+	}, 5000, function(){
+		$('#filterChange input').click();
+	}, error)
+});
