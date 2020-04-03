@@ -43,6 +43,8 @@ function sendData() {
 	}
 }
 
+document.cr = $("#capturedRows > input").first().val();
+
 function mutate() {
 	// target element that we will observe
 	const target = $("#capturedRows > input")[0];
@@ -51,7 +53,7 @@ function mutate() {
 		attributes: true
 	};
 
-	document.cr = $("#capturedRows > input").first().val();
+	
 
 	// subscriber function
 	function subscriber(mutations) {
@@ -104,6 +106,7 @@ if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
+	mutate();
 	console.log('first time');
 }
 
