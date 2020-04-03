@@ -15,16 +15,12 @@ function waitFor(condition,timeout,callback,error) {
 } 
 
 function hideCol() {	
-	if (document.lastCol > 0) {
-		if (!document.customStylesReady){
+	if (!document.customStylesReady){
     		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
 			'div.sfc-column-header:nth-of-type(1) { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
-		}
-		document.ff = $("#filterFlag > input").first().val();
-		return true;
 	}
-	return false;
+	document.ff = $("#filterFlag > input").first().val();
 }
 
 // target element that we will observe
@@ -111,4 +107,3 @@ if (!document.firstSend){
 	console.log('first time');
     
 }
-
