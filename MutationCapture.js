@@ -94,6 +94,7 @@ $('body').on("click","div[tabindex][title]",function(){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
 			mutate();
+			sendData();
 			
 		},error);
 		
