@@ -23,34 +23,7 @@ function hideCol() {
 	document.ff = $("#filterFlag > input").first().val();
 }
 
-// target element that we will observe
-const target = $("#capturedRows > input")[0];
-
-// config object
-const config = {
-  attributes: true
-};
-
-document.cr = $("#capturedRows > input").first().val();
-
 document.setObj = new Set();
-
-// subscriber function
-function subscriber(mutations) {
-  var cr = $("#capturedRows > input").first().val();
-  if (cr != document.cr) {
-	  document.cr = cr;
-	  sendData();
-  }
-  
-}
-
-// instantiating observer
-const observer = new MutationObserver(subscriber);
-
-// observing target
-observer.observe(target, config);
-
 
 function sendData() {
 	if (document.firstSend==1) {
@@ -72,11 +45,9 @@ function sendData() {
 
 function checkFilterChange(){
 	var ff = $("#filterFlag > input").first().val();
-
 	if (ff != document.ff && ff == "Y"){
 		return true;
 	}
-	
 	return false;
 }
 
@@ -105,5 +76,30 @@ if (!document.firstSend){
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	console.log('first time');
-    
 }
+
+
+// target element that we will observe
+const target = $("#capturedRows > input")[0];
+// config object
+const config = {
+  attributes: true
+};
+
+document.cr = $("#capturedRows > input").first().val();
+
+// subscriber function
+function subscriber(mutations) {
+  var cr = $("#capturedRows > input").first().val();
+  if (cr != document.cr) {
+	  document.cr = cr;
+	  sendData();
+  }
+  
+}
+
+// instantiating observer
+const observer = new MutationObserver(subscriber);
+
+// observing target
+observer.observe(target, config);
