@@ -112,14 +112,14 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
-document.rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
+document.filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
 
 $('body').on('click', '#filters', function(){
 	
 	waitFor(function(){
-		var rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
-		if (rc != document.rc || rc == ''){
-			document.rc = rc;
+		var filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+		if (filteredRows != document.filteredRows || filteredRows == ''){
+			document.filteredRows = filteredRows;
 			return true;
 		}
 		return false;
