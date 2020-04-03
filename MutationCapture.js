@@ -40,7 +40,7 @@ function sendData() {
 	var difference = myArr2.filter(x => myArr1.indexOf(x) === -1);
 	if(difference.length != 0){
 		console.log(difference);
-		document.rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
+		
 	}
 }
 
@@ -118,7 +118,7 @@ $('body').on('click', '#filters', function(){
 	
 	waitFor(function(){
 		var rc = $('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell').text();
-		if (rc != document.rc){
+		if (rc != document.rc || rc == ''){
 			document.rc = rc;
 			return true;
 		}
