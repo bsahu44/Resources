@@ -90,10 +90,11 @@ $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
-		waitFor(checkFilterChange,5000,function(){
-			waitFor(chekrow,5000,sendData,error);
+		waitFor(checkTabLoad,5000,function(){
+			mutate();
+			
 		},error);
-		mutate();
+		
 		
 	}
 });
@@ -105,3 +106,4 @@ if (!document.firstSend){
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	console.log('first time');
 }
+
