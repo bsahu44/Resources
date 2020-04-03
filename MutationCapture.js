@@ -23,6 +23,7 @@ function hideCol() {
 	document.ff = $("#filterFlag > input").first().val();
 }
 
+
 document.setObj = new Set();
 
 function sendData() {
@@ -42,6 +43,32 @@ function sendData() {
 	}
 }
 
+function mutate() {
+	// target element that we will observe
+	const target = $("#capturedRows > input")[0];
+// config object
+	const config = {
+		attributes: true
+	};
+
+	document.cr = $("#capturedRows > input").first().val();
+
+	// subscriber function
+	function subscriber(mutations) {
+		var cr = $("#capturedRows > input").first().val();
+		if (cr != document.cr) {
+			document.cr = cr;
+			sendData();
+		}
+  
+	}
+
+// instantiating observer
+	const observer = new MutationObserver(subscriber);
+
+// observing target
+	observer.observe(target, config);
+}
 
 function checkFilterChange(){
 	var ff = $("#filterFlag > input").first().val();
@@ -66,6 +93,7 @@ $('body').on("click","div[tabindex][title]",function(){
 		waitFor(checkFilterChange,5000,function(){
 			waitFor(chekrow,5000,sendData,error);
 		},error);
+		mutate();
 		
 	}
 });
@@ -77,29 +105,3 @@ if (!document.firstSend){
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	console.log('first time');
 }
-
-
-// target element that we will observe
-const target = $("#capturedRows > input")[0];
-// config object
-const config = {
-  attributes: true
-};
-
-document.cr = $("#capturedRows > input").first().val();
-
-// subscriber function
-function subscriber(mutations) {
-  var cr = $("#capturedRows > input").first().val();
-  if (cr != document.cr) {
-	  document.cr = cr;
-	  sendData();
-  }
-  
-}
-
-// instantiating observer
-const observer = new MutationObserver(subscriber);
-
-// observing target
-observer.observe(target, config);
