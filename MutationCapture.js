@@ -103,30 +103,23 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
-document.filteredRows = $("#filteredRows").text();
 function mutate2() {
 	// target element that we will observe
-	const target2 = $("#filteredRows")[0];
+	const target2 = $("div#filteredRows").find("span[sf-busy|='false']")[0];
 // config object
 	const config2 = {
 		attributes: true,
+		childList: true,
 		characterData: true
 	};
 
-	
-
 	// subscriber function
-	function subscriber(mutations) {
-		var filteredRows = $("#filteredRows").text();
-		if (filteredRows != document.filteredRows) {
-			document.filteredRows = filteredRows;
-			$('#filterChange input').click();
-		}
-  
+	function subscriber2(mutations) {
+		$('#filterChange input').click();
 	}
 
 // instantiating observer
-	const observer = new MutationObserver(subscriber);
+	const observer = new MutationObserver(subscriber2);
 
 // observing target
 	observer.observe(target2, config2);
