@@ -101,7 +101,7 @@ if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	//mutate();
+	mutate();
 	console.log('first time');
 }
 
