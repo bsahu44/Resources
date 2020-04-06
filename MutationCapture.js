@@ -123,7 +123,7 @@ if (!document.firstSend){
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	mutate();
-	mutate2();
+	waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']"));}, 10000, mutate2,error);
 	console.log('first time');
 }
 
