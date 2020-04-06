@@ -113,3 +113,19 @@ $('body').on('click', '#filters', function(){
 		waitFor(capturedRows,10000,sendData,error);
 	}, error)
 });
+
+
+$('body').on('click', '#prev1',function(){
+	$('#prev input').click();
+});
+
+$('body').on('click', '#next1',function(){
+	$('#next input').click();
+});
+
+
+$(".pageLinks").hover(function(){
+    $(this).css("background-color", "#4CAF50");
+    }, function(){
+    $(this).css("background-color", "#f1f1f1");
+  });
