@@ -95,16 +95,6 @@ $('body').on("click","div[tabindex][title]",function(){
 	}
 });
 
-
-//When User comes to Tab2 for the first time
-if (!document.firstSend){
-    waitFor(checkTabLoad,5000,hideCol,error);
-	document.firstSend=1;
-	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	mutate();
-	console.log('first time');
-}
-
 //Mutation observer for the calculated value filteredRows
 function mutate2() {
 	// target element that we will observe
@@ -126,9 +116,21 @@ function mutate2() {
 	observer.observe(target2, config2);
 }
 
+//When User comes to Tab2 for the first time
+if (!document.firstSend){
+    waitFor(checkTabLoad,5000,hideCol,error);
+	document.firstSend=1;
+	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
+	mutate();
+	mutate2();
+	console.log('first time');
+}
+
+
+
 //When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
-	mutate2();
+	//mutate2();
 	/*
 	waitFor(function(){
 		var filteredRows = $("#filteredRows").text();
