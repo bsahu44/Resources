@@ -133,3 +133,11 @@ $('body').on('click', '#filters', function(){
 	mutate2();
 });
 
+
+$('body').on('click', '#prev1',function(){
+	$('#prev input').click();
+});
+
+$('body').on('click', '#next1',function(){
+	$('#next input').click();
+});
