@@ -86,10 +86,10 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			if(!document.mutateReady) {
+			/*if(!document.mutateReady) {
 				mutate();
 				document.mutateReady=1;
-			}
+			}*/
 			sendData();
 		},error);
 	}
