@@ -109,7 +109,8 @@ function mutate2() {
 	const target2 = $("#filteredRows")[0];
 // config object
 	const config2 = {
-		attributes: true
+		attributes: true,
+		characterData: true
 	};
 
 	
