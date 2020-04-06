@@ -46,27 +46,40 @@ function sendData() {
 
 document.cr = $("#capturedRows > input").first().val();
 
-function capturedRows() {
+function mutate() {
+	// target element that we will observe
+	const target = $("#capturedRows > input")[0];
+// config object
+	const config = {
+		attributes: true
+	};
+
+	
+
+	// subscriber function
+	function subscriber(mutations) {
 		var cr = $("#capturedRows > input").first().val();
 		if (cr != document.cr) {
 			document.cr = cr;
-			return true;
-			
+			sendData();
 		}
-		return false;
   
+	}
+
+// instantiating observer
+	const observer = new MutationObserver(subscriber);
+
+// observing target
+	observer.observe(target, config);
 }
 
-$('body').on("click",'#prev input', function(){
-	console.log('prev clicked');
-	waitFor(capturedRows,10000,sendData,error);
-});
-
-$('body').on("click",'#next input', function(){
-	console.log('next clicked');
-	waitFor(capturedRows,10000,sendData,error);
-});
-
+function checkFilterChange(){
+	var ff = $("#filterFlag > input").first().val();
+	if (ff != document.ff && ff == "Y"){
+		return true;
+	}
+	return false;
+}
 
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
@@ -81,8 +94,9 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			$('#filterChange input').click();
-			waitFor(capturedRows,10000,sendData,error);
+			mutate();
+			sendData();
+			
 		},error);
 		
 		
@@ -94,26 +108,25 @@ if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
+	mutate();
 	console.log('first time');
 }
 
-document.filteredRows = $("#filteredRows").text();
+document.filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
 
 $('body').on('click', '#filters', function(){
 	
 	waitFor(function(){
-		var filteredRows = $("#filteredRows").text();
-		if (filteredRows != document.filteredRows){
+		var filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+		if (filteredRows != document.filteredRows || filteredRows == ''){
 			document.filteredRows = filteredRows;
 			return true;
 		}
 		return false;
-	}, 10000, function(){
+	}, 5000, function(){
 		$('#filterChange input').click();
-		waitFor(capturedRows,10000,sendData,error);
 	}, error)
 });
-
 
 $('body').on('click', '#prev1',function(){
 	$('#prev input').click();
@@ -122,11 +135,3 @@ $('body').on('click', '#prev1',function(){
 $('body').on('click', '#next1',function(){
 	$('#next input').click();
 });
-
-
-$(".pageLinks").hover(function(){
-    $(this).css("background-color", "#4CAF50");
-    }, function(){
-    $(this).css("background-color", "#f1f1f1");
-  });
-
