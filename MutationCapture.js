@@ -104,9 +104,36 @@ if (!document.firstSend){
 }
 
 document.filteredRows = $("#filteredRows").text();
+function mutate2() {
+	// target element that we will observe
+	const target2 = $("#filteredRows")[0];
+// config object
+	const config2 = {
+		attributes: true
+	};
+
+	
+
+	// subscriber function
+	function subscriber(mutations) {
+		var filteredRows = $("#filteredRows").text();
+		if (filteredRows != document.filteredRows) {
+			document.filteredRows = filteredRows;
+			$('#filterChange input').click();
+		}
+  
+	}
+
+// instantiating observer
+	const observer = new MutationObserver(subscriber);
+
+// observing target
+	observer.observe(target2, config2);
+}
 
 $('body').on('click', '#filters', function(){
-	
+	mutate2();
+	/*
 	waitFor(function(){
 		var filteredRows = $("#filteredRows").text();
 		if (filteredRows != document.filteredRows || filteredRows == ''){
@@ -117,4 +144,5 @@ $('body').on('click', '#filters', function(){
 	}, 5000, function(){
 		$('#filterChange input').click();
 	}, error)
+	*/
 });
