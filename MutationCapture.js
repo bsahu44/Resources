@@ -85,8 +85,9 @@ $('body').on("click","div[tabindex][title]",function(){
 				}
 				return false;
 				}, 10000, function(){
-				$('#filterChange input').click();
 				console.log('tab2 clicked');
+				mutate();
+				$('#filterChange input').click();
 				}, error)
 	}
 });
