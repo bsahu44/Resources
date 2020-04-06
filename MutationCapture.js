@@ -14,6 +14,8 @@ function waitFor(condition,timeout,callback,error) {
 	}
 } 
 
+//hide the RowId column
+
 function hideCol() {	
 	if (!document.customStylesReady){
     		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
@@ -23,6 +25,7 @@ function hideCol() {
 }
 
 
+//Send RowId Data
 document.setObj = new Set();
 
 function sendData() {
@@ -43,18 +46,17 @@ function sendData() {
 	}
 }
 
+//Mutation Observer for capturedRows Property
+
 document.cr = $("#capturedRows > input").first().val();
 
 function mutate() {
 	// target element that we will observe
 	const target = $("#capturedRows > input")[0];
-// config object
+	// config object
 	const config = {
 		attributes: true
 	};
-
-	
-
 	// subscriber function
 	function subscriber(mutations) {
 		var cr = $("#capturedRows > input").first().val();
@@ -62,16 +64,15 @@ function mutate() {
 			document.cr = cr;
 			sendData();
 		}
-  
 	}
 
-// instantiating observer
+	// instantiating observer
 	const observer = new MutationObserver(subscriber);
-
-// observing target
+	// observing target
 	observer.observe(target, config);
 }
 
+//Check Tab2 is loaded properly
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
 		return true;
@@ -79,7 +80,7 @@ function checkTabLoad(){
 	return false;
 }
 
-
+//Tab2 click Event
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
@@ -87,14 +88,12 @@ $('body').on("click","div[tabindex][title]",function(){
 		waitFor(checkTabLoad,5000,function(){
 			mutate();
 			sendData();
-			
 		},error);
-		
-		
 	}
 });
 
 
+//When User comes to Tab2 for the first time
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
@@ -103,10 +102,11 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
+//Mutation observer for the calculated value filteredRows
 function mutate2() {
 	// target element that we will observe
 	const target2 = $("div#filteredRows").find("span[sf-busy|='false']")[0];
-// config object
+	// config object
 	const config2 = {
 		attributes: true,
 		childList: true,
@@ -117,14 +117,13 @@ function mutate2() {
 	function subscriber2(mutations) {
 		$('#filterChange input').click();
 	}
-
-// instantiating observer
+	// instantiating observer
 	const observer = new MutationObserver(subscriber2);
-
-// observing target
+	// observing target
 	observer.observe(target2, config2);
 }
 
+//When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
 	mutate2();
 	/*
