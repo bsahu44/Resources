@@ -77,18 +77,11 @@ function checkTabLoad(){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		waitFor(function(){
-				var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-				if (filteredRows != document.filteredRows){
-					document.filteredRows = filteredRows;
-					return true;
-				}
-				return false;
-				}, 10000, function(){
-				console.log('tab2 clicked');
-				mutate();
-				$('#filterChange input').click();
-				}, error)
+		waitFor(checkTabLoad,5000,mutate,error);
+		waitFor(checkTabLoad,5000,function(){
+			console.log('tab2 clicked');
+			$('#filterChange input').click();
+			},error);
 	}
 });
 
