@@ -14,16 +14,18 @@ function waitFor(condition,timeout,callback,error) {
 	}
 } 
 
+//hide the RowId column
+
 function hideCol() {	
 	if (!document.customStylesReady){
     		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
 			'div.sfc-column-header:nth-of-type(1) { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
 	}
-	document.ff = $("#filterFlag > input").first().val();
 }
 
 
+//Send RowId Data
 document.setObj = new Set();
 
 function sendData() {
@@ -44,30 +46,34 @@ function sendData() {
 	}
 }
 
-document.cr = $("#capturedRows > input").first().val();
+//Mutation Observer for capturedRows Property
 
-function capturedRows() {
+document.cr = $("#capturedRows > input").first().val();
+document.filteredRows = $("#filteredRows").text();
+
+function mutate() {
+	// target element that we will observe
+	const target = $("#capturedRows > input")[0];
+	// config object
+	const config = {
+		attributes: true
+	};
+	// subscriber function
+	function subscriber(mutations) {
 		var cr = $("#capturedRows > input").first().val();
 		if (cr != document.cr) {
 			document.cr = cr;
-			return true;
-			
+			sendData();
 		}
-		return false;
-  
+	}
+
+	// instantiating observer
+	const observer = new MutationObserver(subscriber);
+	// observing target
+	observer.observe(target, config);
 }
 
-$('body').on("click",'#prev input', function(){
-	console.log('prev clicked');
-	waitFor(capturedRows,10000,sendData,error);
-});
-
-$('body').on("click",'#next input', function(){
-	console.log('next clicked');
-	waitFor(capturedRows,10000,sendData,error);
-});
-
-
+//Check Tab2 is loaded properly
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
 		return true;
@@ -75,57 +81,55 @@ function checkTabLoad(){
 	return false;
 }
 
-
+//Tab2 click Event
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			$('#filterChange input').click();
-			waitFor(capturedRows,10000,sendData,error);
+			mutate();
+			sendData();
 		},error);
-		
-		
 	}
 });
 
+//Mutation observer for the calculated value filteredRows
+function mutate2() {
+	// target element that we will observe
+	const target2 = $("div#filteredRows").find("span[sf-busy|='false']")[0];
+	// config object
+	const config2 = {
+		characterData: true
+	};
 
+	// subscriber function
+	function subscriber2(mutations) {
+		var filteredRows = $("#filteredRows").text();
+		if (filteredRows != document.filteredRows || filteredRows == ''){
+			document.filteredRows = filteredRows;
+			$('#filterChange input').click();
+		}
+		
+	}
+	// instantiating observer
+	const observer2 = new MutationObserver(subscriber2);
+	// observing target
+	observer2.observe(target2, config2);
+}
+
+//When User comes to Tab2 for the first time
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
+	mutate();
+	mutate2();
 	console.log('first time');
 }
 
-document.filteredRows = $("#filteredRows").text();
 
+//When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
-	
-	waitFor(function(){
-		var filteredRows = $("#filteredRows").text();
-		if (filteredRows != document.filteredRows || filteredRows == ''){
-			document.filteredRows = filteredRows;
-			return true;
-		}
-		return false;
-	}, 10000, function(){
-		$('#filterChange input').click();
-		waitFor(capturedRows,10000,sendData,error);
-	}, error)
+	mutate2();
 });
 
-
-$('body').on('click', '#prev1',function(){
-	$('#prev input').click();
-});
-
-$('body').on('click', '#next1',function(){
-	$('#next input').click();
-});
-
-
-$(".pageLinks").hover(function(){
-    $(this).css("background-color", "#4CAF50");
-    }, function(){
-    $(this).css("background-color", "#f1f1f1");
-  });
