@@ -92,9 +92,9 @@ function checkTabLoad(){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
+		document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			$('#filterChange input').click();
 			waitFor(function(){ return ($("#capturedRows > input").first().val()!="");}, 10000, mutate,error);
 			waitFor(function(){
 				var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
