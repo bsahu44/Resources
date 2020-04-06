@@ -67,13 +67,6 @@ $('body').on("click",'#next input', function(){
 	waitFor(capturedRows,10000,sendData,error);
 });
 
-function checkFilterChange(){
-	var ff = $("#filterFlag > input").first().val();
-	if (ff != document.ff && ff == "Y"){
-		return true;
-	}
-	return false;
-}
 
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
@@ -115,7 +108,7 @@ $('body').on('click', '#filters', function(){
 			return true;
 		}
 		return false;
-	}, 5000, function(){
+	}, 10000, function(){
 		$('#filterChange input').click();
 		waitFor(capturedRows,10000,sendData,error);
 	}, error)
