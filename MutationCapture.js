@@ -95,6 +95,7 @@ $('body').on("click","div[tabindex][title]",function(){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
 			mutate();
+			$('#filterChange input').click();
 			sendData();
 			
 		},error);
@@ -112,12 +113,12 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
-document.filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text()
 
 $('body').on('click', '#filters', function(){
 	
 	waitFor(function(){
-		var filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		if (filteredRows != document.filteredRows || filteredRows == ''){
 			document.filteredRows = filteredRows;
 			return true;
