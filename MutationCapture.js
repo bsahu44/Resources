@@ -101,8 +101,6 @@ function mutate2() {
 	const target2 = $("div#filteredRows").find("span[sf-busy|='false']")[0];
 	// config object
 	const config2 = {
-		attributes: true,
-		childList: true,
 		characterData: true
 	};
 
@@ -127,11 +125,11 @@ if (!document.firstSend){
 }
 
 
-
+/*
 //When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
 	//mutate2();
-	/*
+	
 	waitFor(function(){
 		var filteredRows = $("#filteredRows").text();
 		if (filteredRows != document.filteredRows || filteredRows == ''){
@@ -142,5 +140,6 @@ $('body').on('click', '#filters', function(){
 	}, 5000, function(){
 		$('#filterChange input').click();
 	}, error)
-	*/
+	
 });
+*/
