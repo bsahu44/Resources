@@ -20,7 +20,6 @@ function hideCol() {
 			'div.sfc-column-header:nth-of-type(1) { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
 	}
-	document.ff = $("#filterFlag > input").first().val();
 }
 
 
@@ -71,14 +70,6 @@ function mutate() {
 
 // observing target
 	observer.observe(target, config);
-}
-
-function checkFilterChange(){
-	var ff = $("#filterFlag > input").first().val();
-	if (ff != document.ff && ff == "Y"){
-		return true;
-	}
-	return false;
 }
 
 function checkTabLoad(){
