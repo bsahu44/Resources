@@ -94,13 +94,22 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			mutate();
 			$('#filterChange input').click();
+			waitFor(function(){ return ($("#capturedRows > input").first().val()!="");}, 10000, mutate,error);
+			waitFor(function(){
+				var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+				if (filteredRows != document.filteredRows){
+					document.filteredRows = filteredRows;
+					return true;
+				}
+				return false;
+				}, 10000, function(){
+				$('#filterChange input').click();
+				console.log('filter clicked');
+				}, error)
 			sendData();
 			
-		},error);
-		
-		
+		},error);	
 	}
 });
 
@@ -109,23 +118,24 @@ if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	mutate();
+	waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']").text()!="");}, 10000, function(){
+		document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+	},error);
+	waitFor(function(){ return ($("#capturedRows > input").first().val()!="");}, 10000, mutate,error);
 	console.log('first time');
 }
 
-document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text()
-
 $('body').on('click', '#filters', function(){
-	
 	waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-		if (filteredRows != document.filteredRows || filteredRows == ''){
+		if (filteredRows != document.filteredRows){
 			document.filteredRows = filteredRows;
 			return true;
 		}
 		return false;
-	}, 5000, function(){
+	}, 10000, function(){
 		$('#filterChange input').click();
+		console.log('filter clicked');
 	}, error)
 });
 
