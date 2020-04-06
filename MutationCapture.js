@@ -49,28 +49,7 @@ function sendData() {
 //Mutation Observer for capturedRows Property
 
 document.cr = $("#capturedRows > input").first().val();
-
-function mutate() {
-	// target element that we will observe
-	const target = $("#capturedRows > input")[0];
-	// config object
-	const config = {
-		attributes: true
-	};
-	// subscriber function
-	function subscriber(mutations) {
-		var cr = $("#capturedRows > input").first().val();
-		if (cr != document.cr) {
-			document.cr = cr;
-			sendData();
-		}
-	}
-
-	// instantiating observer
-	const observer = new MutationObserver(subscriber);
-	// observing target
-	observer.observe(target, config);
-}
+document.filteredRows=$("div#filteredRows").text();
 
 //Check Tab2 is loaded properly
 function checkTabLoad(){
@@ -95,32 +74,38 @@ $('body').on("click","div[tabindex][title]",function(){
 	}
 });
 
-//Mutation observer for the calculated value filteredRows
-function mutate2() {
-	// target element that we will observe
-	const target2 = $("div#filteredRows").find("span[sf-busy|='false']")[0];
-	// config object
-	const config2 = {
-		characterData: true
-	};
-
-	// subscriber function
-	function subscriber2(mutations) {
-		$('#filterChange input').click();
-	}
-	// instantiating observer
-	const observer = new MutationObserver(subscriber2);
-	// observing target
-	observer.observe(target2, config2);
-}
 
 //When User comes to Tab2 for the first time
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	mutate();
-	mutate2();
+	if (!document.mutateReady){
+    		$("head").append('<script>const target = $("#capturedRows > input")[0];'+
+	'const config = {'+
+		'attributes: true};'+
+	'function subscriber(mutations) {'+
+		'var cr = $("#capturedRows > input").first().val();'+
+		'if (cr != document.cr) {'+
+			'document.cr = cr;'+
+			'sendData();}}'+
+	'const observer = new MutationObserver(subscriber);'+
+	'observer.observe(target, config);'+
+	
+	'const target2 = $("div#filteredRows").find("span[sf-busy|='+'false'+']")[0];'+
+	'const config2 = {'+
+		'characterData: true};'+
+	'function subscriber2(mutations) {'+
+		'var filteredRows = $("div#filteredRows").text();'+
+		'if (filteredRows != document.filteredRows) {'+
+			'document.filteredRows = filteredRows;'+
+			'$("#filterChange input").click();}}'+
+	'const observer2 = new MutationObserver(subscriber2);'+
+	'observer2.observe(target2, config2);</script>');
+    		document.mutateReady=1;
+	}
+	//mutate();
+	//mutate2();
 	console.log('first time');
 }
 
