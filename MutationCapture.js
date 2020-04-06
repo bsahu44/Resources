@@ -14,18 +14,16 @@ function waitFor(condition,timeout,callback,error) {
 	}
 } 
 
-//hide the RowId column
-
 function hideCol() {	
 	if (!document.customStylesReady){
     		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
 			'div.sfc-column-header:nth-of-type(1) { display: none !important;}'+'</style>');
     		document.customStylesReady=1;
 	}
+	document.ff = $("#filterFlag > input").first().val();
 }
 
 
-//Send RowId Data
 document.setObj = new Set();
 
 function sendData() {
@@ -46,12 +44,43 @@ function sendData() {
 	}
 }
 
-//Mutation Observer for capturedRows Property
-
 document.cr = $("#capturedRows > input").first().val();
-document.filteredRows=$("div#filteredRows").text();
 
-//Check Tab2 is loaded properly
+function mutate() {
+	// target element that we will observe
+	const target = $("#capturedRows > input")[0];
+// config object
+	const config = {
+		attributes: true
+	};
+
+	
+
+	// subscriber function
+	function subscriber(mutations) {
+		var cr = $("#capturedRows > input").first().val();
+		if (cr != document.cr) {
+			document.cr = cr;
+			sendData();
+		}
+  
+	}
+
+// instantiating observer
+	const observer = new MutationObserver(subscriber);
+
+// observing target
+	observer.observe(target, config);
+}
+
+function checkFilterChange(){
+	var ff = $("#filterFlag > input").first().val();
+	if (ff != document.ff && ff == "Y"){
+		return true;
+	}
+	return false;
+}
+
 function checkTabLoad(){
 	if ($('div[name="aColumn"]:nth-of-type(1)').find('div.sfc-value-cell:nth-of-type(1)').text()) {
 		return true;
@@ -59,61 +88,33 @@ function checkTabLoad(){
 	return false;
 }
 
-//Tab2 click Event
+
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			/*if(!document.mutateReady) {
-				mutate();
-				document.mutateReady=1;
-			}*/
+			mutate();
 			sendData();
+			
 		},error);
+		
+		
 	}
 });
 
 
-//When User comes to Tab2 for the first time
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	if (!document.mutateReady){
-    		$("head").append('<script>const target = $("#capturedRows > input")[0];'+
-	'const config = {'+
-		'attributes: true};'+
-	'function subscriber(mutations) {'+
-		'var cr = $("#capturedRows > input").first().val();'+
-		'if (cr != document.cr) {'+
-			'document.cr = cr;'+
-			'sendData();}}'+
-	'const observer = new MutationObserver(subscriber);'+
-	'observer.observe(target, config);'+
-	
-	'const target2 = $("div#filteredRows").find("span[sf-busy|='+'false'+']")[0];'+
-	'const config2 = {'+
-		'characterData: true};'+
-	'function subscriber2(mutations) {'+
-		'var filteredRows = $("div#filteredRows").text();'+
-		'if (filteredRows != document.filteredRows) {'+
-			'document.filteredRows = filteredRows;'+
-			'$("#filterChange input").click();}}'+
-	'const observer2 = new MutationObserver(subscriber2);'+
-	'observer2.observe(target2, config2);</script>');
-    		document.mutateReady=1;
-	}
-	//mutate();
-	//mutate2();
+	mutate();
 	console.log('first time');
 }
 
+document.filteredRows = $("#filteredRows").text();
 
-/*
-//When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
-	//mutate2();
 	
 	waitFor(function(){
 		var filteredRows = $("#filteredRows").text();
@@ -125,6 +126,4 @@ $('body').on('click', '#filters', function(){
 	}, 5000, function(){
 		$('#filterChange input').click();
 	}, error)
-	
 });
-*/
