@@ -46,32 +46,26 @@ function sendData() {
 
 document.cr = $("#capturedRows > input").first().val();
 
-function mutate() {
-	// target element that we will observe
-	const target = $("#capturedRows > input")[0];
-// config object
-	const config = {
-		attributes: true
-	};
-
-	
-
-	// subscriber function
-	function subscriber(mutations) {
+function capturedRows() {
 		var cr = $("#capturedRows > input").first().val();
 		if (cr != document.cr) {
 			document.cr = cr;
-			sendData();
+			return true;
+			
 		}
+		return false;
   
-	}
-
-// instantiating observer
-	const observer = new MutationObserver(subscriber);
-
-// observing target
-	observer.observe(target, config);
 }
+
+$('body').on("click",'#prev input', function(){
+	console.log('prev clicked');
+	waitFor(capturedRows,10000,sendData,error);
+});
+
+$('body').on("click",'#next input', function(){
+	console.log('next clicked');
+	waitFor(capturedRows,10000,sendData,error);
+});
 
 function checkFilterChange(){
 	var ff = $("#filterFlag > input").first().val();
@@ -94,9 +88,8 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			mutate();
-			sendData();
-			
+			$('#filterChange input').click();
+			waitFor(capturedRows,10000,sendData,error);
 		},error);
 		
 		
@@ -125,5 +118,6 @@ $('body').on('click', '#filters', function(){
 		return false;
 	}, 5000, function(){
 		$('#filterChange input').click();
+		waitFor(capturedRows,10000,sendData,error);
 	}, error)
 });
