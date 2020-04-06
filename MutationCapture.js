@@ -88,6 +88,7 @@ $('body').on("click","div[tabindex][title]",function(){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
 			mutate();
+			waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']").text() != '');}, 10000, mutate2,error);
 			sendData();
 		},error);
 	}
@@ -105,7 +106,7 @@ function mutate2() {
 	// subscriber function
 	function subscriber2(mutations) {
 		var filteredRows = $("#filteredRows").text();
-		if (filteredRows != document.filteredRows || filteredRows == ''){
+		if (filteredRows != document.filteredRows){
 			document.filteredRows = filteredRows;
 			$('#filterChange input').click();
 		}
@@ -127,12 +128,12 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
-
+/*
 //When user clicks the filters in Tab2
 $('body').on('click', '#filters', function(){
 	mutate2();
 });
-
+*/
 
 $('body').on('click', '#prev1',function(){
 	$('#prev input').click();
