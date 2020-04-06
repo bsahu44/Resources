@@ -86,7 +86,10 @@ $('body').on("click","div[tabindex][title]",function(){
 	if (tab == "Tab2" ){
 		//waitFor(tableLoad,5000,sendData,error);
 		waitFor(checkTabLoad,5000,function(){
-			mutate();
+			if(!document.mutateReady) {
+				mutate();
+				document.mutateReady=1;
+			}
 			sendData();
 		},error);
 	}
@@ -98,7 +101,7 @@ if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
-	mutate();
+	//mutate();
 	console.log('first time');
 }
 
