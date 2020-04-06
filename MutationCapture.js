@@ -112,12 +112,12 @@ if (!document.firstSend){
 	console.log('first time');
 }
 
-document.filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+document.filteredRows = $("#filteredRows").text();
 
 $('body').on('click', '#filters', function(){
 	
 	waitFor(function(){
-		var filteredRows = $("div[title|='Filtered rows and total number of rows in data table.']").text();
+		var filteredRows = $("#filteredRows").text();
 		if (filteredRows != document.filteredRows || filteredRows == ''){
 			document.filteredRows = filteredRows;
 			return true;
