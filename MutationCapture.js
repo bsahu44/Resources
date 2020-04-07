@@ -100,7 +100,7 @@ if (!document.firstSend){
 	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, function(){
 			mutate();
 			$('#filterChange input').click();
-			sendData();
+			//sendData();
 			document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 			document.cr = $("#capturedRows > input").first().val();
 			console.log('first time');
