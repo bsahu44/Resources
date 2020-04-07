@@ -115,7 +115,7 @@ $('body').on("click","div[tabindex][title]",function(){
 			console.log('Tab2 clicked');
 		}, error);
 		waitFor(checkTabLoad,5000,mutate,error);
-		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 5000, sendData, error);
+		//waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 5000, sendData, error);
 	}
 });
 
