@@ -101,7 +101,9 @@ if (!document.firstSend){
 			mutate();
 			$('#filterChange input').click();
 			sendData();
-			
+			document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+			document.cr = $("#capturedRows > input").first().val();
+			console.log('first time');
 			},error);
 	
 }
@@ -134,6 +136,7 @@ $('body').on('click', '#filters', function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		if (filteredRows != document.filteredRows && filteredRows != ""){
 			document.filteredRows = filteredRows;
+			mutate();
 			return true;
 		}
 		return false;
