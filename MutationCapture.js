@@ -96,8 +96,9 @@ $('body').on("click","div[tabindex][title]",function(){
 
 
 if (!document.firstSend){
-    waitFor(checkTabLoad,5000,hideCol,error);
+    //waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
+	hideCol();
 	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']").text()!="");}, 10000, function(){
 		document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
