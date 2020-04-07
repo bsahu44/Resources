@@ -89,6 +89,7 @@ $('body').on("click","div[tabindex][title]",function(){
 			$('#filterChange input').click();
 			console.log('Tab2 clicked');
 		}, error)
+		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr);}, 5000, sendData, error);
 	}
 });
 
