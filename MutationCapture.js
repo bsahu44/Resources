@@ -148,9 +148,11 @@ $('body').on('click', '#filters', function(){
 
 $('body').on('click', '#prev1',function(){
 	$('#prev input').click();
+	console.log('prev clicked');
 });
 
 $('body').on('click', '#next1',function(){
 	$('#next input').click();
+	console.log('next clicked');
 });
 
