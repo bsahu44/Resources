@@ -74,26 +74,6 @@ function checkTabLoad(){
 	return false;
 }
 
-$('body').on("click","div[tabindex][title]",function(){
-	var tab = this.title;
-	if (tab == "Tab2" ){
-		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");},5000,mutate,error);
-		//mutate();
-		waitFor(function(){
-		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-		if (filteredRows != document.filteredRows && filteredRows != ""){
-			document.filteredRows = filteredRows;
-			return true;
-		}
-		return false;
-		}, 10000, function(){
-			$('#filterChange input').click();
-			console.log('Tab2 clicked');
-		}, error)
-		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 5000, sendData, error);
-	}
-});
-
 
 if (!document.firstSend){
     waitFor(checkTabLoad,5000,hideCol,error);
@@ -117,6 +97,28 @@ if (!document.firstSend){
 		}, error);
 	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, sendData,error);
 }
+
+$('body').on("click","div[tabindex][title]",function(){
+	var tab = this.title;
+	if (tab == "Tab2" ){
+		
+		//mutate();
+		waitFor(function(){
+		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+		if (filteredRows != document.filteredRows && filteredRows != ""){
+			document.filteredRows = filteredRows;
+			return true;
+		}
+		return false;
+		}, 10000, function(){
+			$('#filterChange input').click();
+			console.log('Tab2 clicked');
+		}, error);
+		waitFor(checkTabLoad,5000,mutate,error);
+		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 5000, sendData, error);
+	}
+});
+
 
 $('body').on('click', '#filters', function(){
 	waitFor(function(){
