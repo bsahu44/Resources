@@ -96,26 +96,26 @@ $('body').on("click","div[tabindex][title]",function(){
 
 
 if (!document.firstSend){
-    //waitFor(checkTabLoad,5000,hideCol,error);
+    waitFor(checkTabLoad,5000,hideCol,error);
 	document.firstSend=1;
-	hideCol();
-	waitFor(function(){ return (document.customStylesReady == 1);}, 5000, sendData,error);
 	waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']").text()!="");}, 10000, function(){
 		document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+		document.cr = $("#capturedRows > input").first().val();
 	},error);
 	waitFor(function(){ return ($("#capturedRows > input").first().val()!="");}, 10000, mutate,error);
 	console.log('first time');
 	waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-		if (filteredRows != document.filteredRows && filteredRows != ""){
+		if (filteredRows != ""){
 			document.filteredRows = filteredRows;
 			return true;
 		}
 		return false;
 		}, 10000, function(){
 			$('#filterChange input').click();
-			console.log('Tab2 clicked');
+			console.log('Tab2 clicked first time');
 		}, error);
+	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, sendData,error);
 }
 
 $('body').on('click', '#filters', function(){
