@@ -109,7 +109,6 @@ if (!document.firstSend){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		
 		//mutate();
 		waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
@@ -133,7 +132,7 @@ $('body').on("click","div[tabindex][title]",function(){
 $('body').on('click', '#filters', function(){
 	waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-		if (filteredRows != document.filteredRows){
+		if (filteredRows != document.filteredRows && filteredRows != ""){
 			document.filteredRows = filteredRows;
 			return true;
 		}
