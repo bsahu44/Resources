@@ -77,8 +77,8 @@ function checkTabLoad(){
 $('body').on("click","div[tabindex][title]",function(){
 	var tab = this.title;
 	if (tab == "Tab2" ){
-		//waitFor(checkTabLoad,5000,mutate,error);
-		mutate();
+		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");},5000,mutate,error);
+		//mutate();
 		waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		if (filteredRows != document.filteredRows && filteredRows != ""){
