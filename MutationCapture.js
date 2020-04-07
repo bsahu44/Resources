@@ -96,9 +96,14 @@ if (!document.firstSend){
 		}, 10000, function(){
 			$('#filterChange input').click();
 			console.log('Tab2 clicked first time');
-		}, error);
-	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, sendData,error);
-	*/
+		}, error); */
+	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, function(){
+			mutate();
+			$('#filterChange input').click();
+			sendData();
+			
+			},error);
+	
 }
 
 $('body').on("click","div[tabindex][title]",function(){
@@ -119,7 +124,7 @@ $('body').on("click","div[tabindex][title]",function(){
 			$('#filterChange input').click();
 			console.log('Tab2 clicked');
 		}, error);
-		waitFor(checkTabLoad,5000,mutate,error);
+		//waitFor(checkTabLoad,5000,mutate,error);
 		//waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 10000, sendData, error);
 	}
 });
