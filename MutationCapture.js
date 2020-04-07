@@ -104,6 +104,17 @@ if (!document.firstSend){
 	},error);
 	waitFor(function(){ return ($("#capturedRows > input").first().val()!="");}, 10000, mutate,error);
 	console.log('first time');
+	waitFor(function(){
+		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
+		if (filteredRows != document.filteredRows && filteredRows != ""){
+			document.filteredRows = filteredRows;
+			return true;
+		}
+		return false;
+		}, 10000, function(){
+			$('#filterChange input').click();
+			console.log('Tab2 clicked');
+		}, error);
 }
 
 $('body').on('click', '#filters', function(){
