@@ -76,8 +76,10 @@ function checkTabLoad(){
 
 
 if (!document.firstSend){
-    waitFor(checkTabLoad,5000,hideCol,error);
+    //waitFor(checkTabLoad,5000,hideCol,error);
+	hideCol();
 	document.firstSend=1;
+	/*
 	waitFor(function(){ return ($("div#filteredRows").find("span[sf-busy|='false']").text()!="");}, 10000, function(){
 		document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		document.cr = $("#capturedRows > input").first().val();
@@ -96,6 +98,7 @@ if (!document.firstSend){
 			console.log('Tab2 clicked first time');
 		}, error);
 	waitFor(function(){ return ($("#capturedRows > input").first().val() != "");}, 5000, sendData,error);
+	*/
 }
 
 $('body').on("click","div[tabindex][title]",function(){
@@ -107,15 +110,17 @@ $('body').on("click","div[tabindex][title]",function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 		if (filteredRows != document.filteredRows && filteredRows != ""){
 			document.filteredRows = filteredRows;
+			mutate();
 			return true;
 		}
 		return false;
 		}, 10000, function(){
+			
 			$('#filterChange input').click();
 			console.log('Tab2 clicked');
 		}, error);
-		//waitFor(checkTabLoad,5000,mutate,error);
-		waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 10000, sendData, error);
+		waitFor(checkTabLoad,5000,mutate,error);
+		//waitFor(function(){return ($("#capturedRows > input").first().val() != document.cr && $("#capturedRows > input").first().val() != "");}, 10000, sendData, error);
 	}
 });
 
