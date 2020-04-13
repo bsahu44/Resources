@@ -72,7 +72,7 @@ if (!document.firstSend){
 			mutate();
 			var temp =  $("#capturedRows > input").first().val();
 			$('#filterChange input').click();
-			sendData();
+			//sendData();
 			document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 			document.cr = $("#capturedRows > input").first().val();
 			console.log('first time');
