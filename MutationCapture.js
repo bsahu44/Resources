@@ -1,4 +1,3 @@
-
 function error(){
 	console.log('error occured');
 }
@@ -96,8 +95,7 @@ $('body').on("click","div[tabindex][title]",function(){
 			
 			$('#filterChange input').click();
 			console.log('Tab2 clicked');
-		}, error);
-		
+		}, error);	
 	}
 });
 
@@ -126,4 +124,3 @@ $('body').on('click', '#next1',function(){
 	$('#next input').click();
 	console.log('next clicked');
 });
-
