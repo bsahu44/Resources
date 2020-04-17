@@ -73,7 +73,6 @@ if (!document.firstSend){
 			mutate();
 			var temp =  $("#capturedRows > input").first().val();
 			$('#filterChange input').click();
-			$('#export input').click();
 			//sendData();
 			document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 			document.cr = $("#capturedRows > input").first().val();
@@ -96,7 +95,6 @@ $('body').on("click","div[tabindex][title]",function(){
 		}, 10000, function(){
 			
 			$('#filterChange input').click();
-			$('#export input').click();
 			console.log('Tab2 clicked');
 		}, error);	
 	}
@@ -113,7 +111,6 @@ $('body').on('click', '#filters', function(){
 		return false;
 	}, 10000, function(){
 		$('#filterChange input').click();
-		$('#export input').click();
 		console.log('filter clicked');
 	}, error)
 });
@@ -126,4 +123,9 @@ $('body').on('click', '#prev1',function(){
 $('body').on('click', '#next1',function(){
 	$('#next input').click();
 	console.log('next clicked');
+});
+
+$('body').on('click', '#filterChange input',function(){
+	$('#export input').click();
+	console.log('export clicked');
 });
