@@ -1,27 +1,4 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
  
-@bsahu44 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-bsahu44
-/
-Resources
-0
-00
- Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
-Resources/MutationCapture.js /
-@bsahu44 bsahu44 Update MutationCapture.js
-cf389dc 4 days ago
-126 lines (108 sloc)  3.21 KB
-  
 function error(){
 	console.log('error occured');
 }
