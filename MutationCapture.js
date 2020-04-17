@@ -1,3 +1,27 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@bsahu44 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+bsahu44
+/
+Resources
+0
+00
+ Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
+Resources/MutationCapture.js /
+@bsahu44 bsahu44 Update MutationCapture.js
+cf389dc 4 days ago
+126 lines (108 sloc)  3.21 KB
+  
 function error(){
 	console.log('error occured');
 }
@@ -15,9 +39,9 @@ function waitFor(condition,timeout,callback,error) {
 
 function hideCol() {	
 	if (!document.customStylesReady){
-    		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
+    		$("head").append('<style>div[name="aColumn"]:nth-of-type(1) { display: none !important;}'+
 			'div.sfc-column-header:nth-of-type(1) { display: none !important;}'+'</style>');
-    		document.customStylesReady=1;
+    		document.customStylesReady=1;
 	}
 }
 
@@ -72,6 +96,7 @@ if (!document.firstSend){
 			mutate();
 			var temp =  $("#capturedRows > input").first().val();
 			$('#filterChange input').click();
+			$('#export input').click();
 			//sendData();
 			document.filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
 			document.cr = $("#capturedRows > input").first().val();
@@ -94,11 +119,11 @@ $('body').on("click","div[tabindex][title]",function(){
 		}, 10000, function(){
 			
 			$('#filterChange input').click();
+			$('#export input').click();
 			console.log('Tab2 clicked');
 		}, error);	
 	}
 });
-
 
 $('body').on('click', '#filters', function(){
 	waitFor(function(){
@@ -111,6 +136,7 @@ $('body').on('click', '#filters', function(){
 		return false;
 	}, 10000, function(){
 		$('#filterChange input').click();
+		$('#export input').click();
 		console.log('filter clicked');
 	}, error)
 });
