@@ -125,7 +125,3 @@ $('body').on('click', '#next1',function(){
 	console.log('next clicked');
 });
 
-$('body').on('click', '#filterChange input',function(){
-	$('#export input').click();
-	console.log('export clicked');
-});
