@@ -116,17 +116,3 @@ $('body').on('click', '#next1',function(){
 	$('#next input').click();
 	console.log('next clicked');
 });
-
-document.total = $("div#total").find("span[sf-busy|='false']").text();
-
-function checkFilterMarking() {
-	var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
-	if (filteredRows != document.total && filteredRows != ""){
-		$("span#export").css('display','inline');
-	}
-	else {
-		$("span#export").css('display','none');
-	}
-}
-
-setInterval(checkFilterMarking, 200);
