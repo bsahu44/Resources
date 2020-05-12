@@ -14,6 +14,7 @@ function waitFor(condition,timeout,callback,error) {
 	}
 }
 
+//sendData function to send the RowId
 
 document.setObj = new Set();
 
@@ -58,6 +59,8 @@ function mutate() {
 }
 
 
+//Send the RowId first time on going to export tab
+
 if (!document.firstSend){
 	
 	document.firstSend=1;
@@ -92,6 +95,8 @@ $('body').on("click","div[tabindex][title]",function(){
 	}
 });
 
+//On changing the filters
+
 $('body').on('click', '#filters', function(){
 	waitFor(function(){
 		var filteredRows = $("div#filteredRows").find("span[sf-busy|='false']").text();
@@ -116,3 +121,11 @@ $('body').on('click', '#next1',function(){
 	$('#next input').click();
 	console.log('next clicked');
 });
+
+//On clicking the Export button
+
+$('body').on('click', '#export input',function(){
+	var exportedRowId = $('#filteredRows').text();
+	console.log(exportedRowId);
+});
+
